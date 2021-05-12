@@ -4,13 +4,10 @@ describe('User can see login landing page', () => {
   })
   
   describe('Successfully', () => {
-    it('is expected to show image', () => {
-      cy.get('[data-cy=landing-image]').should('exist');
-    });
-    it('is expected to show login modal', () => {
-      cy.get('[data-cy=login-modal]').should('exist');
-      cy.get('[data-cy=login-modal]').within(() => {
-        cy.get('[data-cy=login-email]').type('user@mail.com');
+    it('is expected to show login form', () => {
+      cy.get('[data-cy=login-form]').should('exist');
+      cy.get('[data-cy=login-form]').within(() => {
+        cy.get('[data-cy=login-username]').type('user@mail.com');
         cy.get('[data-cy=login-password]').type('password');
         cy.get('[data-cy=login-btn]').click();
       });
