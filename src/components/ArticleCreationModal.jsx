@@ -8,10 +8,10 @@ const ArticleCreationModal = () => {
   const [error, setError] = useState();
   const [message, setMessage] = useState();
 
-  const categories = [
-    { key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
-    { key: 'UFO', text: 'Aliens', value: 'aliens' },
-  ];
+	const categories = [
+		{ key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
+		{ key: 'UFO', text: 'Aliens', value: 'aliens' },
+	];
 
   const createArticle = async (event) => {
     event.preventDefault();
