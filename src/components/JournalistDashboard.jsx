@@ -1,10 +1,9 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+
+import ArticleCreationModal from './ArticleCreationModal';
 
 const JournalistDashboard = () => {
-  return (
-  <Button data-cy='create-article-btn'>Create Article</Button>
-  )
+	return <ArticleCreationModal />;
 };
 
 export default JournalistDashboard;
