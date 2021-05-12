@@ -6,17 +6,15 @@ import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 const ArticleCreationModal = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState();
-  const [error, setError] = useState();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-	const categories = [
-		{ key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
-		{ key: 'UFO', text: 'Aliens', value: 'aliens' },
-	];
+  const categories = [
+    { key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
+    { key: 'UFO', text: 'Aliens', value: 'aliens' },
+  ];
 
   const createArticle = async (event) => {
     event.preventDefault();
-    debugger;
     try {
       let response = await axios.post('/articles', {
         params: {
@@ -26,11 +24,18 @@ const ArticleCreationModal = () => {
           body: event.target.body.value,
         },
       });
-      dispatch({type: 'SUCCESS_MESSAGE', payload: response.data.message })
-      setOpen(false);
+      dispatch({ type: 'SUCCESS_MESSAGE', payload: response.data.message });
     } catch (error) {
-      setError(error);
+      if (error.response.status === 500) {
+        dispatch({
+          type: 'ERROR_MESSAGE',
+          payload: 'Something went wrong on our server, try again later',
+        });
+      } else {
+        dispatch({ type: 'ERROR_MESSAGE', payload: error.message });
+      }
     }
+    setOpen(false);
   };
 
   return (
@@ -81,11 +86,7 @@ const ArticleCreationModal = () => {
             placeholder='Article Body'
             data-cy='body'
           />
-          <Form.Button
-            color='green'
-            type='submit'
-            data-cy='submit-btn' 
-          >
+          <Form.Button color='green' type='submit' data-cy='submit-btn'>
             Submit
           </Form.Button>
         </Form>

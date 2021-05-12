@@ -1,14 +1,16 @@
 import React from 'react';
 import ArticleCreationModal from './ArticleCreationModal';
-import PopupMessage from './PopupMessage';
+import SuccessMessage from './SuccessMessage';
+import ErrorMessage from './ErrorMessage';
 
 const JournalistDashboard = () => {
-	return (
-		<>
-			<ArticleCreationModal />
-			<PopupMessage />
-		</>
-	);
+  return (
+    <>
+      <ArticleCreationModal />
+      <SuccessMessage />
+      <ErrorMessage />
+    </>
+  );
 };
 
 export default JournalistDashboard;

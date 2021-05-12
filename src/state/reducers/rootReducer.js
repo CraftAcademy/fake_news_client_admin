@@ -4,14 +4,21 @@ const rootReducer = (state, action) => {
 			return {
 				...state,
 				message: action.payload,
-				popupOpen: true,
+				successOpen: true,
 			};
 
     case 'CLOSE_MESSAGE': 
     return {
       ...state,
-      popupOpen: false
+      successOpen: false,
+      errorOpen: false
     }
+    case 'ERROR_MESSAGE':
+      return {
+        ...state,
+        message: action.payload,
+				errorOpen: true
+      }
 
 		default:
 			return state;
