@@ -6,7 +6,7 @@ const LogInLandingpage = () => {
     <Segment basic style={styles.segment}>
       <Grid columns='2' divided>
         <Grid.Column verticalAlign='middle'>
-          <Image src='../images/ufo_admin_login.jpg' size='medium'/>
+          <Image src='./images/OREG1950.jpg' size='medium'/>
         </Grid.Column>
         <Grid.Column verticalAlign='middle'>
           <Form data-cy='login-form'>
