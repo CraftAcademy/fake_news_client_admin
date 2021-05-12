@@ -1,12 +1,16 @@
 describe('User can create article', () => {
   beforeEach(() => {
-    cy.visit('/')
-  })
+    cy.visit('/');
+
+    cy.intercept('POST', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+      fixture: { message: 'Your article has successfully been created' },
+    });
+  });
 
   describe('successfully', () => {
     it('can fill the article creation form and submit', () => {
-      cy.get('[data-cy=create-article-btn]').click()
-      cy.get('[data-cy=article-creation-modal]').should('be.visible')
+      cy.get('[data-cy=create-article-btn]').click();
+      cy.get('[data-cy=article-creation-modal]').should('be.visible');
       cy.get('[data-cy=article-creation-form]').within(() => {
         cy.get('[data-cy=title]').type('Title')
         cy.get('[data-cy=teaser]').type('CIA is spying on you')
@@ -17,5 +21,5 @@ describe('User can create article', () => {
       })
       cy.get('[data-cy=article-creation-modal]').should('not.be.visible')
     });
-  })  
-})
+  });
+});
