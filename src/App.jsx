@@ -1,10 +1,12 @@
 import React from 'react'
+import LogInLandingpage from './component/LogInLandingpage'
+
 
 const App = () => {
   return (
-    <div>
-      Hello world
-    </div>
+    <>
+      <LogInLandingpage />
+    </>
   );
 }
 
