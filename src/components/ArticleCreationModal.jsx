@@ -1,12 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 
 const ArticleCreationModal = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState();
   const [error, setError] = useState();
-	const [message, setMessage] = useState();
+  const [message, setMessage] = useState();
 
   const categories = [
     { key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
@@ -25,7 +25,8 @@ const ArticleCreationModal = () => {
           body: event.target.body.value,
         },
       });
-			setMessage(response.data.message)
+      setMessage(response.data.message);
+      setOpen(false);
     } catch (error) {
       setError(error);
     }
@@ -39,48 +40,55 @@ const ArticleCreationModal = () => {
       open={open}
       trigger={<Button data-cy='create-article-btn'>Create Article</Button>}
     >
-      <Form
-        data-cy='article-creation-form'
-        onSubmit={(event) => createArticle(event)}
-      >
-        <Form.Group widths='equal'>
-          <Form.Input
+      <Modal.Header inverted>Create New Article</Modal.Header>
+      <Segment padded basic>
+        <Form
+          data-cy='article-creation-form'
+          onSubmit={(event) => createArticle(event)}
+        >
+          <Form.Group widths='equal'>
+            <Form.Input
+              required
+              fluid
+              label='Title'
+              name='title'
+              placeholder='Title'
+              data-cy='title'
+            />
+            <Form.Select
+              required
+              data-cy='categories'
+              fluid
+              name='category'
+              label='Category'
+              options={categories}
+              onChange={(event) => setCategory(event.target.textContent)}
+              placeholder='Category'
+            />
+          </Form.Group>
+          <Form.TextArea
             required
-            fluid
-            label='Title'
-            name='title'
-            placeholder='Title'
-            data-cy='title'
+            label='Teaser'
+            name='teaser'
+            placeholder='Teaser'
+            data-cy='teaser'
           />
-          <Form.Select
+          <Form.TextArea
             required
-            data-cy='categories'
-            fluid
-            name='category'
-            label='Category'
-            options={categories}
-            onChange={(event) => setCategory(event.target.textContent)}
-            placeholder='Category'
+            label='Main Text'
+            name='body'
+            placeholder='Article Body'
+            data-cy='body'
           />
-        </Form.Group>
-        <Form.TextArea
-          required
-          label='Teaser'
-          name='teaser'
-          placeholder='Teaser'
-          data-cy='teaser'
-        />
-        <Form.TextArea
-          required
-          label='Main Text'
-          name='body'
-          placeholder='Article Body'
-          data-cy='body'
-        />
-        <Form.Button type='submit' data-cy='submit-btn'>
-          Submit
-        </Form.Button>
-      </Form>
+          <Form.Button
+            color='green'
+            type='submit'
+            data-cy='submit-btn'
+          >
+            Submit
+          </Form.Button>
+        </Form>
+      </Segment>
     </Modal>
   );
 };
