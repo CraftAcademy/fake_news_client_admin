@@ -2,9 +2,9 @@ describe('User can create article', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    cy.intercept('POST', 'https://fake-newzzzz.herokuapp.com/api/articles', {
-      fixture: { message: 'Your article has successfully been created' },
-    });
+    cy.intercept('POST', 'https://fake-newzzzz.herokuapp.com/api/articles', 
+      { message: 'Your article has successfully been created' }
+    );
   });
 
   describe('successfully', () => {
@@ -17,7 +17,7 @@ describe('User can create article', () => {
         cy.get('[data-cy=body]').type('No for real! Get a tinfoil hat quick!')
         cy.get('[data-cy=categories]').click();
         cy.get('.item').contains('Flat Earth').click()
-        cy.get(['data-cy=submit-btn']).click()
+        cy.get('[data-cy=submit-btn]').click()
       })
       cy.get('[data-cy=article-creation-modal]').should('not.be.visible')
     });
