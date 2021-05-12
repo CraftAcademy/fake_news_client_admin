@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 
 const ArticleCreationModal = () => {
   const [open, setOpen] = useState(false);
   const [category, setCategory] = useState();
   const [error, setError] = useState();
-  const [message, setMessage] = useState();
+  const dispatch = useDispatch()
 
 	const categories = [
 		{ key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
@@ -25,7 +26,7 @@ const ArticleCreationModal = () => {
           body: event.target.body.value,
         },
       });
-      setMessage(response.data.message);
+      dispatch({type: 'SUCCESS_MESSAGE', payload: response.data.message })
       setOpen(false);
     } catch (error) {
       setError(error);
@@ -83,7 +84,7 @@ const ArticleCreationModal = () => {
           <Form.Button
             color='green'
             type='submit'
-            data-cy='submit-btn'
+            data-cy='submit-btn' 
           >
             Submit
           </Form.Button>

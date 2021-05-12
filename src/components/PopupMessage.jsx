@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { Portal, Segment, Button, Header } from 'semantic-ui-react';
+import { useSelector } from 'react-redux';
 
-const PopupMessage = (props) => {
+const PopupMessage = () => {
 	const [popup, setPopup] = useState(false);
+	const message = useSelector((state) => state.message);
 
 	return (
-		<Portal
-			closeOnTriggerClick
-			openOnTriggerClick
-			//trigger={}
-	
-      >
+		<Portal closeOnTriggerClick openOnTriggerChange trigger={<Button>Hello</Button>}>
 			<Segment
 				style={{
 					left: '40%',
@@ -19,7 +16,7 @@ const PopupMessage = (props) => {
 					zIndex: 1000,
 				}}>
 				<Header>Success</Header>
-				<p>{props.message}</p>
+				<p>{message}</p>
 			</Segment>
 		</Portal>
 	);
