@@ -4,6 +4,8 @@ import Dashboard from './components/Dashboard';
 import PopupMessage from './components/PopupMessage';
 import { Switch, Route } from 'react-router';
 
+document.body.style = 'background: #202020'
+
 const App = () => {
   return (
     <>
