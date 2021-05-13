@@ -1,12 +1,12 @@
 import React from 'react';
-import JournalistDashboard from './components/JournalistDashboard';
+import Dashboard from './components/Dashboard';
 
 const App = () => {
-  return (
-    <div>
-      <JournalistDashboard />
-    </div>
-  );
+	return (
+		<>
+			<Dashboard />
+		</>
+	);
 };
 
 export default App;
