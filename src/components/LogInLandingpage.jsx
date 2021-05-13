@@ -1,21 +1,22 @@
 import React from 'react';
 import { Grid, Image, Segment, Form, Button } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
 
 const LogInLandingpage = () => {
   return (
     <Segment basic style={styles.segment}>
       <Grid columns='2' divided>
         <Grid.Column verticalAlign='middle'>
-          <Image src='./images/OREG1950.jpg' size='medium'/>
+          <Image src='./images/OREG1950.jpg' size='medium' />
         </Grid.Column>
         <Grid.Column verticalAlign='middle'>
-          <Form data-cy='login-form'>
-            <Form.Field>
-              <input placeholder='username' data-cy='login-username' />
-            </Form.Field>
-            <Form.Field>
-              <input placeholder='password' data-cy='login-password' />
-            </Form.Field>
+          <Form
+            data-cy='login-form'
+            as={NavLink}
+            to={{ pathname: '/dashboard' }}
+          >
+            <Form.Input placeholder='username' data-cy='login-username' />
+            <Form.Input placeholder='password' data-cy='login-password' />
             <Button type='submit' data-cy='login-btn'>
               Login
             </Button>
