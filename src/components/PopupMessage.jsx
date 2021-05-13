@@ -1,30 +1,38 @@
 import React from 'react';
 import { Portal, Segment, Header } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import { popupClose } from '../modules/popup';
+import { popupClose } from '../modules/Messages';
 
-const ErrorMessage = () => {
+const SuccessMessage = () => {
   const message = useSelector((state) => state.message);
-  const popupOpen = useSelector((state) => state.errorOpen);
+  const error = useSelector((state) => state.error);
+  const popupOpen = useSelector((state) => state.popupOpen);
+  let header = 'Success'
+  let color = 'green'
+
+  if (error) {
+    color = 'red'
+    header = 'Error:'
+  }
 
   return (
     <Portal closeOnDocumentClick onClose={() => popupClose()} open={popupOpen}>
       <Segment
         inverted
-        color='red'
+        color={color}
         style={{
           left: '50%',
           position: 'fixed',
-          top: '53%',
+          top: '50%',
           transform: 'translate(-50%, -100%)',
           zIndex: 1000,
         }}
       >
-        <Header>Error:</Header>
-        <p data-cy='error-message'>{message}</p>
+        <Header>{header}</Header>
+        <p data-cy='popup-message'>{message}</p>
       </Segment>
     </Portal>
   );
 };
 
-export default ErrorMessage;
+export default SuccessMessage;
