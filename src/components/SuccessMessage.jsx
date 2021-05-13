@@ -1,6 +1,6 @@
 import React from 'react';
 import { Portal, Segment, Header } from 'semantic-ui-react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { popupClose } from '../modules/popup';
 
 const SuccessMessage = () => {
