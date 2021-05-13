@@ -1,6 +1,7 @@
 import React from 'react'
 import LogInLandingpage from './components/LogInLandingpage'
 import Dashboard from './components/Dashboard';
+import PopupMessage from './components/PopupMessage'
 import { Switch, Route } from 'react-router';
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
       <Route exact path="/" component={LogInLandingpage}></Route>
       <Route exact path="/dashboard" component={Dashboard}></Route>
     </Switch>
-      
+    <PopupMessage/>
     </>
   );
 };
