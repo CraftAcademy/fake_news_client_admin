@@ -1,0 +1,10 @@
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "email": "bob.kramer@hotmail.com",
+    "provider": "email",
+    "uid": "bob.kramer@hotmail.com",
+    "allow_password_change": false
+  }
+}
