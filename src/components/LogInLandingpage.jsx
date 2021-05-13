@@ -7,16 +7,16 @@ import Popup from '../modules/Popup';
 import Credentials from '../modules/Credentials';
 
 const LogInLandingpage = () => {
-  const authenticated = useSelector(state => state.authenticated)
+  const authenticated = useSelector((state) => state.authenticated);
 
   const handleLogin = async (event) => {
-    event.preventDefault();    
-    let credentials = Credentials.getFormInput(event)
+    event.preventDefault();
+    let credentials = Credentials.getFormInput(event);
 
     try {
-      let response = await axios.post('auth/sign_in', credentials);    
-      Credentials.saveToLocalStorage(response)
-      Credentials.authenticate()
+      let response = await axios.post('auth/sign_in', credentials);
+      Credentials.saveToLocalStorage(response);
+      Credentials.authenticate();
     } catch (error) {
       if (error.response.status === 401) {
         Popup.open(
@@ -29,9 +29,9 @@ const LogInLandingpage = () => {
     }
   };
 
-  return (    
+  return (
     <Segment basic style={styles.segment}>
-      {authenticated && <Redirect to='/dashboard'/>}
+      {authenticated && <Redirect to='/dashboard' />}
       <Grid columns='2' divided>
         <Grid.Column verticalAlign='middle'>
           <Image src='./images/OREG1950.jpg' size='medium' />
@@ -56,10 +56,7 @@ const LogInLandingpage = () => {
                 data-cy='login-password'
               ></Input>
             </Form.Field>
-            <Button
-              type='submit'
-              data-cy='login-btn'
-            >
+            <Button type='submit' data-cy='login-btn'>
               Login
             </Button>
           </Form>

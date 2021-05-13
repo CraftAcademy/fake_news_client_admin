@@ -7,12 +7,12 @@ const SuccessMessage = () => {
   const message = useSelector((state) => state.message);
   const error = useSelector((state) => state.error);
   const popupOpen = useSelector((state) => state.popupOpen);
-  let header = 'Success'
-  let color = 'green'
+  let header = 'Success';
+  let color = 'green';
 
   if (error) {
-    color = 'red'
-    header = 'Error:'
+    color = 'red';
+    header = 'Error:';
   }
 
   return (

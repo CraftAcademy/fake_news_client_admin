@@ -1,5 +1,5 @@
 const initialState = {
-  authenticated: false
-}
+  authenticated: false,
+};
 
-export default initialState
+export default initialState;

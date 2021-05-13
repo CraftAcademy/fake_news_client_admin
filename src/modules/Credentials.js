@@ -5,7 +5,7 @@ const Credentials = {
     return {
       email: event.target.username.value,
       password: event.target.password.value,
-      source: 'admin-system' 
+      source: 'admin-system',
     };
   },
 
@@ -22,7 +22,7 @@ const Credentials = {
 
   authenticate() {
     store.dispatch({ type: 'LOG_IN' });
-  }
-}
+  },
+};
 
-export default Credentials
+export default Credentials;

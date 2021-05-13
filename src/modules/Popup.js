@@ -10,7 +10,7 @@ const Popup = {
 
   close() {
     store.dispatch({ type: 'CLOSE_MESSAGE' });
-  }
-}
+  },
+};
 
-export default Popup
+export default Popup;
