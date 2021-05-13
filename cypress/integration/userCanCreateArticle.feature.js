@@ -25,14 +25,14 @@ describe('User can create article', () => {
         'contain',
         'Your article has successfully been created'
       );
-      cy.wait(1000)
+      cy.wait(1000);
     });
   });
 
   describe('unsuccessfully', () => {
     before(() => {
       cy.intercept('POST', 'https://fake-newzzzz.herokuapp.com/api/articles', {
-        statusCode: 500
+        statusCode: 500,
       });
     });
 

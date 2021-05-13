@@ -10,10 +10,10 @@ import store from './state/store/configureStore';
 axios.defaults.baseURL = 'https://fake-newzzzz.herokuapp.com/api';
 
 ReactDOM.render(
-	<Provider store={store}>
-		<App />
-	</Provider>,
-	document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );
 
 reportWebVitals();

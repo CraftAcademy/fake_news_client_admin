@@ -1,19 +1,14 @@
 import React from 'react';
 import { Portal, Segment, Header } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
-import store from '../state/store/configureStore'
+import { popupClose } from '../modules/popup';
 
 const SuccessMessage = () => {
-  const message = useSelector(state => state.message);
-  const popupOpen = useSelector(state => state.successOpen);
- 
+  const message = useSelector((state) => state.message);
+  const popupOpen = useSelector((state) => state.successOpen);
 
   return (
-    <Portal
-      closeOnDocumentClick
-      onClose={() => store.dispatch({ type: 'CLOSE_MESSAGE' })}
-      open={popupOpen}
-    >
+    <Portal closeOnDocumentClick onClose={() => popupClose()} open={popupOpen}>
       <Segment
         inverted
         color='green'
