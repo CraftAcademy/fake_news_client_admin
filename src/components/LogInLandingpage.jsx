@@ -1,42 +1,37 @@
 import React from 'react';
-import { Grid, Image, Segment, Form, Button } from 'semantic-ui-react';
+import { Grid, Image, Segment, Form, Button, Input } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { popupOpen } from '../modules/Messages';
+import Popup from '../modules/Popup';
+import Credentials from '../modules/Credentials';
 
 const LogInLandingpage = () => {
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  const authenticated = useSelector(state => state.authenticated)
 
-    let credentials = {
-      email: event.target.username.value,
-      password: event.target.password.value,
-    };
+  const handleLogin = async (event) => {
+    event.preventDefault();    
+    let credentials = Credentials.getFormInput(event)
+
     try {
-      let response = await axios.post('auth/sign_in', credentials);
-      const userCredentials = {
-        uid: response.headers['uid'],
-        client: response.headers['client'],
-        access_token: response.headers['access-token'],
-        expiry: response.headers['expiry'],
-        token_type: 'Bearer',
-      };
-      localStorage.setItem('userData', JSON.stringify(userCredentials));
-      return <Redirect to='/dashboard' />;
+      let response = await axios.post('auth/sign_in', credentials);    
+      Credentials.saveToLocalStorage(response)
+      Credentials.authenticate()
     } catch (error) {
       if (error.response.status === 401) {
-        popupOpen(
+        Popup.open(
           'ERROR_MESSAGE',
           'You are not authorised to do this, contact your system adminstrator'
         );
       } else {
-        popupOpen('ERROR_MESSAGE', error.message);
+        Popup.open('ERROR_MESSAGE', error.message);
       }
     }
   };
 
-  return (
+  return (    
     <Segment basic style={styles.segment}>
+      {authenticated && <Redirect to='/dashboard'/>}
       <Grid columns='2' divided>
         <Grid.Column verticalAlign='middle'>
           <Image src='./images/OREG1950.jpg' size='medium' />
@@ -44,27 +39,26 @@ const LogInLandingpage = () => {
         <Grid.Column verticalAlign='middle'>
           <Form onSubmit={(event) => handleLogin(event)} data-cy='login-form'>
             <Form.Field>
-              <input
+              <Input
+                required
                 name='username'
                 type='string'
                 placeholder='username'
                 data-cy='login-username'
-              ></input>
+              ></Input>
             </Form.Field>
             <Form.Field>
-              <input
+              <Input
+                required
                 name='password'
-                type='string'
+                type='password'
                 placeholder='password'
                 data-cy='login-password'
-              ></input>
+              ></Input>
             </Form.Field>
-
             <Button
               type='submit'
               data-cy='login-btn'
-              // as={NavLink}
-              // to={{ pathname: '/dashboard' }}
             >
               Login
             </Button>

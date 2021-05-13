@@ -1,7 +1,7 @@
 import React from 'react';
 import { Portal, Segment, Header } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import { popupClose } from '../modules/Messages';
+import Popup from '../modules/Popup';
 
 const SuccessMessage = () => {
   const message = useSelector((state) => state.message);
@@ -16,7 +16,7 @@ const SuccessMessage = () => {
   }
 
   return (
-    <Portal closeOnDocumentClick onClose={() => popupClose()} open={popupOpen}>
+    <Portal closeOnDocumentClick onClose={() => Popup.close()} open={popupOpen}>
       <Segment
         inverted
         color={color}
