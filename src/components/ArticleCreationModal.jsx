@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
-import Articles from '../modules/article';
+import Articles from '../modules/articles';
 import { popupOpen } from '../modules/popup';
 
 const ArticleCreationModal = () => {
