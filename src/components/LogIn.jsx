@@ -37,7 +37,7 @@ const LogInLandingpage = () => {
                 placeholder='password'
                 data-cy='login-password'></Input>
             </Form.Field>
-            <Button type='submit' data-cy='login-btn'>
+            <Button type='submit' data-cy='login-btn' style={{backgroundColor: '#FCE42D'}}>
               Login
             </Button>
           </Form>

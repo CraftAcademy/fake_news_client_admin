@@ -7,19 +7,12 @@ const SuccessMessage = () => {
   const message = useSelector((state) => state.message);
   const error = useSelector((state) => state.error);
   const popupOpen = useSelector((state) => state.popupOpen);
-  let header = 'Success';
-  let color = 'green';
-
-  if (error) {
-    color = 'red';
-    header = 'Error:';
-  }
 
   return (
     <Portal closeOnDocumentClick onClose={() => Popup.close()} open={popupOpen}>
       <Segment
         inverted
-        color={color}
+        color={error ? 'red' : 'green'}
         style={{
           left: '50%',
           position: 'fixed',
@@ -28,7 +21,7 @@ const SuccessMessage = () => {
           zIndex: 1000,
         }}
       >
-        <Header>{header}</Header>
+        <Header>{error ? 'Error' : 'Success'}</Header>
         <p data-cy='popup-message'>{message}</p>
       </Segment>
     </Portal>

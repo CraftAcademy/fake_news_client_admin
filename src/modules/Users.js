@@ -36,10 +36,6 @@ const saveToLocalStorage = (response) => {
   localStorage.setItem('userData', JSON.stringify(userCredentials));
 };
 
-const getFromLocalStorage = () => {
-  JSON.parse(localStorage.getItem('userData'));
-};
-
 const authenticate = () => {
   store.dispatch({ type: 'LOG_IN' });
 };
