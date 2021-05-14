@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
-import { popupOpen } from '../modules/Messages';
+import Popup from '../modules/Popup';
 
 const ArticleCreationModal = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -16,16 +16,16 @@ const ArticleCreationModal = () => {
     event.preventDefault();
     try {
       let response = await Articles.create(event, category);
-      popupOpen('SUCCESS_MESSAGE', response.data.message);
+      Popup.open('SUCCESS_MESSAGE', response.data.message);
       setModalOpen(false);
     } catch (error) {
       if (error.response.status === 500) {
-        popupOpen(
+        Popup.open(
           'ERROR_MESSAGE',
           'Something went wrong on our server, try again later'
         );
       } else {
-        popupOpen('ERROR_MESSAGE', error.message);
+        Popup.open('ERROR_MESSAGE', error.message);
       }
     }
   };

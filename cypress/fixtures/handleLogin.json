@@ -1,0 +1,12 @@
+{
+  "data": {
+      "email": "mrfake@fakenews.com",
+      "uid": "mrfake@fakenews.com",
+      "id": 1,
+      "provider": "email",
+      "allow_password_change": false,
+      "role": "journalist",
+      "first_name": "Mr.",
+      "last_name": "Fake"
+  }
+}
