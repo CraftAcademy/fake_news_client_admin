@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import ArticleCreationModal from './ArticleCreationModal'
-import { useSelector } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import React, { useEffect } from 'react';
+import ArticleCreationModal from './ArticleCreationModal';
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -9,15 +9,15 @@ import {
   Segment,
   Button,
   Grid,
-} from 'semantic-ui-react'
-import Articles from '../modules/Articles'
+} from 'semantic-ui-react';
+import Articles from '../modules/Articles';
 
 const JournalistDashboard = () => {
-  const { authenticated, articles } = useSelector((state) => state)
+  const { authenticated, fullName, articles } = useSelector((state) => state);
 
   useEffect(() => {
-    Articles.index()
-  }, [])
+    Articles.index();
+  }, []);
 
   const listOfArticles = articles.map((article) => {
     return (
@@ -25,7 +25,7 @@ const JournalistDashboard = () => {
         key={article.id}
         data-cy='article'
         style={{ borderBottom: '1px solid white' }}>
-        <Item.Content>
+        <Item.Content style={{ width: '100%' }} verticalAlign='middle'>
           <Item.Header
             data-cy='title'
             as={Header}
@@ -34,17 +34,17 @@ const JournalistDashboard = () => {
             {article.title}
           </Item.Header>
           <Item.Meta data-cy='date' style={{ color: 'white' }}>
-            {article.date}
+            Created at: {article.date}
           </Item.Meta>
         </Item.Content>
-        <Item.Extra>
+        <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
           <Button floated='right' style={{ backgroundColor: '#FCE42D' }}>
             Edit
           </Button>
         </Item.Extra>
       </Item>
-    )
-  })
+    );
+  });
 
   return (
     <>
@@ -59,19 +59,20 @@ const JournalistDashboard = () => {
         </Grid.Row>
         <Grid.Row centered>
           <p
+            data-cy='greeting'
             style={{
               color: 'white',
               fontSize: 14,
               fontStyle: 'italic',
             }}>
-            ADMIN LOGIN
+            {`WELCOME BACK ${fullName.toUpperCase()}`}
           </p>
         </Grid.Row>
         <Grid.Row>
           <ArticleCreationModal />
         </Grid.Row>
       </Grid>
-      <Container text as={Segment} inverted>
+      <Container text as={Segment} inverted style={{maxHeight: 600, overflowY: 'hidden'}}>
         {typeof articles === 'string' ? (
           <p data-cy='no-articles-message'>You don't have any articles yet</p>
         ) : (
@@ -79,7 +80,7 @@ const JournalistDashboard = () => {
         )}
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default JournalistDashboard
+export default JournalistDashboard;

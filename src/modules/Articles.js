@@ -4,7 +4,6 @@ import store from '../state/store/configureStore';
 
 const Articles = {
   async create(event, category, setModalOpen) {
-    let headers = getFromLocalStorage();
     let params = {
       article: {
         title: event.target.title.value,
@@ -15,7 +14,7 @@ const Articles = {
     };
     try {
       let response = await axios.post('/articles', params, {
-        headers: headers,
+        headers: getFromLocalStorage(),
       });
       setModalOpen(false);
       debugger;

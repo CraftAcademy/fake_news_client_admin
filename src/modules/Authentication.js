@@ -6,23 +6,22 @@ const Authentication = {
   async signIn(event) {
     let credentials = getFormInput(event);
     try {
-      let response = await axios.post('auth/sign_in', credentials );
+      let response = await axios.post('auth/sign_in', credentials);
       saveToLocalStorage(response);
-      authenticate();
+      authenticate(response.data.data);
     } catch (error) {
-      errorHandler(error)
+      errorHandler(error);
     }
   },
   async validateToken() {
-    let headers = getFromLocalStorage()
     try {
-      let response = await axios.get('auth/validate_token', { headers: headers })
+      let response = await axios.get('auth/validate_token', {
+        headers: getFromLocalStorage(),
+      });
       saveToLocalStorage(response);
-      authenticate();
-    } catch (error) {
-      
-    }
-  }
+      authenticate(response.data.data);
+    } catch (error) {}
+  },
 };
 
 export default Authentication;
@@ -52,8 +51,9 @@ const getFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userData'));
 };
 
-const authenticate = () => {
-  store.dispatch({ type: 'LOG_IN' });
+const authenticate = (data) => {
+  let fullName = `${data.first_name} ${data.last_name}`;
+  store.dispatch({ type: 'LOG_IN', payload: fullName });
 };
 
 const errorHandler = (error) => {
@@ -65,6 +65,4 @@ const errorHandler = (error) => {
   } else {
     Popup.open('ERROR_MESSAGE', error.message);
   }
-}
-
-
+};
