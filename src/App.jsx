@@ -1,5 +1,5 @@
 import React from 'react';
-import LogInLandingpage from './components/LogInLandingpage';
+import LogInLandingpage from './components/LogIn';
 import Dashboard from './components/Dashboard';
 import PopupMessage from './components/PopupMessage';
 import { Switch, Route } from 'react-router';

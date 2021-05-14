@@ -2,31 +2,14 @@ import React from 'react';
 import { Grid, Image, Segment, Form, Button, Input } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
-import Popup from '../modules/Popup';
-import Credentials from '../modules/Credentials';
+import Users from '../modules/Users';
 
 const LogInLandingpage = () => {
   const authenticated = useSelector((state) => state.authenticated);
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    let credentials = Credentials.getFormInput(event);
-
-    try {
-      let response = await axios.post('auth/sign_in', credentials);
-      Credentials.saveToLocalStorage(response);
-      Credentials.authenticate();
-    } catch (error) {
-      if (error.response.status === 401) {
-        Popup.open(
-          'ERROR_MESSAGE',
-          'You are not authorised to do this, contact your system adminstrator'
-        );
-      } else {
-        Popup.open('ERROR_MESSAGE', error.message);
-      }
-    }
+    Users.signIn(event);
   };
 
   return (
@@ -44,8 +27,7 @@ const LogInLandingpage = () => {
                 name='username'
                 type='string'
                 placeholder='username'
-                data-cy='login-username'
-              ></Input>
+                data-cy='login-username'></Input>
             </Form.Field>
             <Form.Field>
               <Input
@@ -53,8 +35,7 @@ const LogInLandingpage = () => {
                 name='password'
                 type='password'
                 placeholder='password'
-                data-cy='login-password'
-              ></Input>
+                data-cy='login-password'></Input>
             </Form.Field>
             <Button type='submit' data-cy='login-btn'>
               Login

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 import Popup from '../modules/Popup';
-import Credentials from '../modules/Credentials';
+import Credentials from '../modules/Users';
 
 const ArticleCreationModal = () => {
   const [modalOpen, setModalOpen] = useState(false);
