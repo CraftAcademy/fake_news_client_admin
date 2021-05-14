@@ -16,8 +16,8 @@ const SuccessMessage = () => {
         style={{
           left: '50%',
           position: 'fixed',
-          top: '50%',
-          transform: 'translate(-50%, -100%)',
+          bottom: 25,
+          transform: 'translate(-50%)',
           zIndex: 1000,
         }}
       >

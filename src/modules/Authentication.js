@@ -13,6 +13,16 @@ const Authentication = {
       errorHandler(error)
     }
   },
+  async validateToken() {
+    let credentials = getFromLocalStorage()
+    try {
+      let response = await axios.get('auth/validate_token', { headers: credentials })
+      saveToLocalStorage(response);
+      authenticate();
+    } catch (error) {
+      
+    }
+  }
 };
 
 export default Authentication;
@@ -36,6 +46,10 @@ const saveToLocalStorage = (response) => {
     token_type: 'Bearer',
   };
   localStorage.setItem('userData', JSON.stringify(userCredentials));
+};
+
+const getFromLocalStorage = () => {
+  JSON.parse(localStorage.getItem('userData'));
 };
 
 const authenticate = () => {

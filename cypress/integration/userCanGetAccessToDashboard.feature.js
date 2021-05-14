@@ -1,9 +1,9 @@
-describe('User can see login landing page', () => {
+describe('User can get access to dashboard', () => {
   beforeEach(() => {
     cy.visit('/');
   });
 
-  describe('Successfully', () => {
+  describe('Successfully through signing in', () => {
     before(() => {
       cy.intercept(
         'POST',
@@ -25,7 +25,25 @@ describe('User can see login landing page', () => {
     });
   });
 
-  describe('Unsuccessfully', () => {
+  describe('Successfully through token validation', () => {
+    before(() => {
+      cy.intercept(
+        'GET',
+        'https://fake-newzzzz.herokuapp.com/api/auth/validate_token',
+        {
+          fixture: 'handleLogin.json',
+        }
+      );
+    })
+
+    it('is expected to send user directly to dashboard', () => {
+      cy.url().should('contain', 'http://localhost:3002/dashboard')
+      cy.get('[data-cy=create-article-btn]').should('be.visible')
+      cy.wait(500)
+    })
+  });
+
+  describe('Unsuccessfully through faulty sign in', () => {
     before(() => {
       cy.intercept(
         'POST',
@@ -46,5 +64,23 @@ describe('User can see login landing page', () => {
         'You are not authorised to do this, contact your system adminstrator'
       );
     });
-  });  
+  });
+
+  describe('Unsuccessfully through token validation', () => {
+    before(() => {
+      cy.intercept(
+        'GET',
+        'https://fake-newzzzz.herokuapp.com/api/auth/validate_token',
+        {
+          statusCode: 401
+        }
+      );
+    })
+
+    it('is expected to send user directly to dashboard', () => {
+      cy.visit('/dashboard')
+      cy.url().should('contain', 'http://localhost:3002/')
+      cy.get('[data-cy=login-form]').should('be.visible');
+    })
+  });
 });
