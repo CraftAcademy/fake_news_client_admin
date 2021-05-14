@@ -2,24 +2,35 @@ import React from 'react';
 import { Grid, Image, Segment, Form, Button, Input } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Users from '../modules/Users';
+import Authentication from '../modules/Authentication';
 
-const LogInLandingpage = () => {
+const LogIn = () => {
   const authenticated = useSelector((state) => state.authenticated);
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    Users.signIn(event);
+    Authentication.signIn(event);
   };
 
   return (
     <Segment basic style={styles.segment}>
       {authenticated && <Redirect to='/dashboard' />}
+
       <Grid columns='2' divided>
-        <Grid.Column verticalAlign='middle'>
-          <Image src='./images/OREG1950.jpg' size='medium' />
+        <Grid.Row centered>
+          <h1 style={{ color: 'white', fontSize: 40 }}>
+            FAKE
+            <span style={{ color: '#FCE42D' }}> ? </span>
+            NEWS
+          </h1>
+        </Grid.Row>
+        <Grid.Row centered>
+          <p style={{ color: 'white', fontSize: 14, fontStyle: 'italic', marginBottom: 30 }}>ADMIN LOGIN</p>
+        </Grid.Row>
+        <Grid.Column verticalAlign='middle' >
+          <Image src='./images/OREG1950.jpg' size='medium' style={{float: 'right'}} />
         </Grid.Column>
-        <Grid.Column verticalAlign='middle'>
+        <Grid.Column verticalAlign='middle' width={6}>
           <Form onSubmit={(event) => handleLogin(event)} data-cy='login-form'>
             <Form.Field>
               <Input
@@ -37,7 +48,7 @@ const LogInLandingpage = () => {
                 placeholder='password'
                 data-cy='login-password'></Input>
             </Form.Field>
-            <Button type='submit' data-cy='login-btn' style={{backgroundColor: '#FCE42D'}}>
+            <Button type='submit' data-cy='login-btn' style={{ backgroundColor: '#FCE42D' }}>
               Login
             </Button>
           </Form>
@@ -47,7 +58,7 @@ const LogInLandingpage = () => {
   );
 };
 
-export default LogInLandingpage;
+export default LogIn;
 
 const styles = {
   segment: {

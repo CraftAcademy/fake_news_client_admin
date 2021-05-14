@@ -2,7 +2,7 @@ import store from '../state/store/configureStore';
 import axios from 'axios';
 import Popup from './Popup';
 
-const Users = {
+const Authentication = {
   async signIn(event) {
     let credentials = getFormInput(event);
     try {
@@ -14,6 +14,8 @@ const Users = {
     }
   },
 };
+
+export default Authentication;
 
 //-----HELPER FUNCTIONS-------
 
@@ -51,4 +53,4 @@ const errorHandler = (error) => {
   }
 }
 
-export default Users;
+
