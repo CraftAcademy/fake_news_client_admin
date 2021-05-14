@@ -1,47 +1,32 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
-import Popup from '../modules/Popup';
-import Credentials from '../modules/Credentials';
 
 const ArticleCreationModal = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [category, setCategory] = useState();
 
   const categories = [
-    { key: 'FE', text: 'Flat Earth', value: 'flatEarth' },
-    { key: 'UFO', text: 'Aliens', value: 'aliens' },
+    { key: 'FE', text: 'Flat Earth', value: 'Flat Earth' },
+    { key: 'UFO', text: 'Aliens', value: 'Aliens' },
   ];
 
   const createArticle = async (event) => {
     event.preventDefault();
-    try {
-      let headers = Credentials.getFromLocalStorage()
-      let response = await Articles.create(event, category, headers);
-      Popup.open('SUCCESS_MESSAGE', response.data.message);
-      setModalOpen(false);
-    } catch (error) {
-      if (error.response.status === 500) {
-        Popup.open(
-          'ERROR_MESSAGE',
-          'Something went wrong on our server, try again later'
-        );
-      } else {
-        Popup.open('ERROR_MESSAGE', error.message);
-      }
-    }
+    Articles.create(event, category, setModalOpen)
   };
 
   return (
     <Modal
       data-cy='article-creation-modal'
+   
       onOpen={() => setModalOpen(true)}
       onClose={() => setModalOpen(false)}
       open={modalOpen}
-      trigger={<Button data-cy='create-article-btn'>Create Article</Button>}
+      trigger={<Button data-cy='create-article-btn' style={{backgroundColor: '#FCE42D'}}>Create Article</Button>}
     >
-      <Modal.Header inverted>Create New Article</Modal.Header>
-      <Segment padded basic>
+      <Modal.Header inverted  >Create New Article</Modal.Header>
+      <Segment padded basic >
         <Form
           data-cy='article-creation-form'
           onSubmit={(event) => createArticle(event)}
@@ -80,7 +65,7 @@ const ArticleCreationModal = () => {
             placeholder='Article Body'
             data-cy='body'
           />
-          <Form.Button color='green' type='submit' data-cy='submit-btn'>
+          <Form.Button style={{backgroundColor: '#FCE42D'}} type='submit' data-cy='submit-btn'>
             Submit
           </Form.Button>
         </Form>
