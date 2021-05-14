@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 import Popup from '../modules/Popup';
+import Credentials from '../modules/Credentials';
 
 const ArticleCreationModal = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -15,7 +16,8 @@ const ArticleCreationModal = () => {
   const createArticle = async (event) => {
     event.preventDefault();
     try {
-      let response = await Articles.create(event, category);
+      let headers = Credentials.getFromLocalStorage()
+      let response = await Articles.create(event, category, headers);
       Popup.open('SUCCESS_MESSAGE', response.data.message);
       setModalOpen(false);
     } catch (error) {

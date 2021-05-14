@@ -20,6 +20,10 @@ const Credentials = {
     localStorage.setItem('userData', JSON.stringify(userCredentials));
   },
 
+  getFromLocalStorage() {
+    JSON.parse(localStorage.getItem('userData'))
+  },
+
   authenticate() {
     store.dispatch({ type: 'LOG_IN' });
   },
