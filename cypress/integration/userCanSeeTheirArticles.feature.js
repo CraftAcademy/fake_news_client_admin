@@ -1,5 +1,12 @@
 describe('User can see their articles', () => {
   beforeEach(() => {
+    cy.intercept(
+      'GET',
+      'https://fake-newzzzz.herokuapp.com/api/auth/validate_token',
+      {
+        fixture: 'handleLogin.json',
+      }
+    );
     cy.visit('/dashboard');
   });
 
@@ -22,12 +29,12 @@ describe('User can see their articles', () => {
             'contain',
             "Amateur Rocket-Maker Finally Launches Himself Off Earth - Now To Prove It's Flat"
           );
-          cy.get('[data-cy=date]').should('2021-05-13, 20:03');
+          cy.get('[data-cy=date]').should('contain', '2021-05-12, 18:14');
         });
     });
 
     it('is expected to show the name of the journaist', () => {
-      cy.get('[data-cy=greeting]').should('contain', 'Mr. Fake')
-    })
+      cy.get('[data-cy=greeting]').should('contain', 'Mr. Fake');
+    });
   });
 });

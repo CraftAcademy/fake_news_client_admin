@@ -2,7 +2,7 @@ import axios from 'axios';
 import Popup from './Popup';
 import store from '../state/store/configureStore';
 
-let headers = getFromLocalStorage();
+// let headers = getFromLocalStorage();
 
 const Articles = {
   async create(event, category, setModalOpen) {
@@ -18,7 +18,7 @@ const Articles = {
       let response = await axios.post(
         '/articles',
         { params: params },
-        { headers: headers }
+        { headers: getFromLocalStorage() }
       );
       Popup.open('SUCCESS_MESSAGE', response.data.message);
       setModalOpen(false);
@@ -29,7 +29,7 @@ const Articles = {
 
   async index() {
     try {
-      let response = await axios.get('/articles', { headers: headers });
+      let response = await axios.get('/articles', { headers: getFromLocalStorage() });
       if (response.status === 204) {
         store.dispatch({
           type: 'SET_ARTICLES',
