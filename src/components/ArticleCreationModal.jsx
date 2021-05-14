@@ -19,13 +19,13 @@ const ArticleCreationModal = () => {
   return (
     <Modal
       data-cy='article-creation-modal'
-   
+
       onOpen={() => setModalOpen(true)}
       onClose={() => setModalOpen(false)}
       open={modalOpen}
       trigger={<Button data-cy='create-article-btn' style={{backgroundColor: '#FCE42D'}}>Create Article</Button>}
     >
-      <Modal.Header inverted  >Create New Article</Modal.Header>
+      <Modal.Header>Create New Article</Modal.Header>
       <Segment padded basic >
         <Form
           data-cy='article-creation-form'

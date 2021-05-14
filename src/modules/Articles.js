@@ -2,10 +2,9 @@ import axios from 'axios';
 import Popup from './Popup';
 import store from '../state/store/configureStore';
 
-// let headers = getFromLocalStorage();
-
 const Articles = {
   async create(event, category, setModalOpen) {
+    let headers = getFromLocalStorage();
     let params = {
       article: {
         title: event.target.title.value,
@@ -15,13 +14,12 @@ const Articles = {
       },
     };
     try {
-      let response = await axios.post(
-        '/articles',
-        { params: params },
-        { headers: getFromLocalStorage() }
-      );
-      Popup.open('SUCCESS_MESSAGE', response.data.message);
+      let response = await axios.post('/articles', params, {
+        headers: headers,
+      });
       setModalOpen(false);
+      debugger;
+      Popup.open('SUCCESS_MESSAGE', response.data.message);
     } catch (error) {
       errorHandler(error);
     }
@@ -29,7 +27,9 @@ const Articles = {
 
   async index() {
     try {
-      let response = await axios.get('/articles', { headers: getFromLocalStorage() });
+      let response = await axios.get('/articles', {
+        headers: getFromLocalStorage(),
+      });
       if (response.status === 204) {
         store.dispatch({
           type: 'SET_ARTICLES',
@@ -48,7 +48,7 @@ const Articles = {
 };
 
 const getFromLocalStorage = () => {
-  JSON.parse(localStorage.getItem('userData'));
+  return JSON.parse(localStorage.getItem('userData'));
 };
 
 const errorHandler = (error) => {

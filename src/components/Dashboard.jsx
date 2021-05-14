@@ -20,7 +20,6 @@ const JournalistDashboard = () => {
   }, [])
 
   const listOfArticles = articles.map((article) => {
-    debugger
     return (
       <Item
         key={article.id}
@@ -35,7 +34,7 @@ const JournalistDashboard = () => {
             {article.title}
           </Item.Header>
           <Item.Meta data-cy='date' style={{ color: 'white' }}>
-            {article.not_a_date}
+            {article.date}
           </Item.Meta>
         </Item.Content>
         <Item.Extra>
