@@ -8,7 +8,7 @@ const Authentication = {
     try {
       let response = await axios.post('auth/sign_in', credentials);
       saveToLocalStorage(response);
-      authenticate();
+      authenticate(response.data.data);
     } catch (error) {
       errorHandler(error)
     }
@@ -16,9 +16,9 @@ const Authentication = {
   async validateToken() {
     let credentials = getFromLocalStorage()
     try {
-      let response = await axios.get('auth/validate_token', { headers: credentials })
+      let response = await axios.get('auth/validate_token', { headers: credentials })      
       saveToLocalStorage(response);
-      authenticate();
+      authenticate(response.data.data);
     } catch (error) {
       
     }
@@ -52,8 +52,9 @@ const getFromLocalStorage = () => {
   JSON.parse(localStorage.getItem('userData'));
 };
 
-const authenticate = () => {
-  store.dispatch({ type: 'LOG_IN' });
+const authenticate = (data) => {
+  let fullName = `${data.first_name} ${data.last_name}`
+  store.dispatch({ type: 'LOG_IN', payload: fullName });
 };
 
 const errorHandler = (error) => {

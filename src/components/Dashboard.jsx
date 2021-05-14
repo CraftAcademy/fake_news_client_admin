@@ -13,7 +13,7 @@ import {
 import Articles from '../modules/Articles'
 
 const JournalistDashboard = () => {
-  const { authenticated, articles } = useSelector((state) => state)
+  const { authenticated, fullName, articles } = useSelector((state) => state)
 
   useEffect(() => {
     Articles.index()
@@ -35,7 +35,7 @@ const JournalistDashboard = () => {
             {article.title}
           </Item.Header>
           <Item.Meta data-cy='date' style={{ color: 'white' }}>
-            {article.not_a_date}
+            Published at: {article.published}
           </Item.Meta>
         </Item.Content>
         <Item.Extra>
@@ -59,13 +59,13 @@ const JournalistDashboard = () => {
           </h1>
         </Grid.Row>
         <Grid.Row centered>
-          <p
+          <p data-cy='greeting'
             style={{
               color: 'white',
               fontSize: 14,
               fontStyle: 'italic',
             }}>
-            ADMIN LOGIN
+            {`WELCOME BACK ${fullName.toUpperCase()}`}
           </p>
         </Grid.Row>
         <Grid.Row>
