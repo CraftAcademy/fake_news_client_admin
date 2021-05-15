@@ -1,4 +1,4 @@
-describe('', () => {
+describe('User can edit article', () => {
   beforeEach(() => {
     cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
       fixture: 'handleLogin.json',
@@ -13,34 +13,44 @@ describe('', () => {
   });
 
   describe('Succesfully', () => {
+    beforeEach(() => {
+      cy.intercept('PUT', 'http://localhost:3000/api/articles/**', {
+        message: 'You successfully updated the article',
+      });
+    });
+
     it('is expected to show prefilled edit article modal', () => {
       cy.get('[data-cy=edit-article-btn]').first().click();
       cy.get('[data-cy=article-edit-modal]').should('be.visible');
       cy.get('[data-cy=article-edit-form]').within(() => {
-        cy.get('[data-cy=title]').should(
-          'include',
-          'Amateur Rocket-Maker Finally Launches Himself'
-        );
+        cy.get('[data-cy=title]')
+          .find('input')
+          .should(
+            'have.value',
+            "Amateur Rocket-Maker Finally Launches Himself Off Earth - Now To Prove It's Flat"
+          );
         cy.get('[data-cy=teaser]').should(
-          'include',
-          'Mike Hughes, a California man'
+          'contain.text',
+          'Mike Hughes, a California man who is most known for'
         );
         cy.get('[data-cy=body]').should(
-          'include',
-          'Science gets a lot of respect these days.'
+          'contain.text',
+          'Science gets a lot of respect these days'
         );
-        cy.get('[data-cy=categories]').should('contain', 'Aliens');
+        cy.get('[data-cy="categories"]')
+          .find('[aria-atomic="true"]')
+          .should('contain', 'Aliens');
       });
     });
 
-    it('is expected to show success message and update article in the list', () => {
+    it.only('is expected to show success message and update article in the list', () => {
       cy.get('[data-cy=edit-article-btn]').first().click();
       cy.get('[data-cy=article-edit-modal]').should('be.visible');
       cy.get('[data-cy=article-edit-form]').within(() => {
-        cy.get('[data-cy=title]').type(
-          'Amateur rocket man became flat after all'
-        );
-        cy.get('[data-cy=submit.btn]').click();
+        cy.get('[data-cy=title]')
+          .clear()
+          .type('Amateur rocket man became flat after all');
+        cy.get('[data-cy=submit-btn]').click();
       });
       cy.get('[data-cy=popup-message]').should(
         'contain',

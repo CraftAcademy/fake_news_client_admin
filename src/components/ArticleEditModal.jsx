@@ -1,25 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 const ArticleEditModal = ({ id }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [category, setCategory] = useState();
   const [article, setArticle] = useState({});
-
-  useEffect(() => {
-    Articles.show(id);
-  }, [id]);
 
   const categories = [
     { key: 'FE', text: 'Flat Earth', value: 'Flat Earth' },
     { key: 'UFO', text: 'Aliens', value: 'Aliens' },
   ];
 
+  const getArticle = async (id) => {
+    let response = await Articles.show(id);
+    response && setArticle(response)
+  }
+
   const editArticle = async (event) => {
     event.preventDefault();
-    Articles.update(event, category, setModalOpen, id);
+    Articles.update(article, setModalOpen);
   };
+
+  const handleChange = (event) => {
+    setArticle({
+      ...article,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const handleChangeCategory = (event) => {
+    setArticle({
+      ...article,
+      category: event.target.textContent
+    })  
+  }
 
   return (
     <Modal
@@ -30,11 +44,12 @@ const ArticleEditModal = ({ id }) => {
       trigger={
         <Button
           data-cy='edit-article-btn'
-          style={{ backgroundColor: '#FCE42D' }}>
+          style={{ backgroundColor: '#FCE42D' }}
+          onClick = {() => getArticle()}>
           Edit Article
         </Button>
       }>
-      <Modal.Header>Create New Article</Modal.Header>
+      <Modal.Header>Edit Article</Modal.Header>
       <Segment padded basic>
         <Form
           data-cy='article-edit-form'
@@ -43,6 +58,7 @@ const ArticleEditModal = ({ id }) => {
             <Form.Input
               required
               fluid
+              onChange={(event) => handleChange(event)}
               value={article.title}
               label='Title'
               name='title'
@@ -53,16 +69,17 @@ const ArticleEditModal = ({ id }) => {
               required
               data-cy='categories'
               fluid
-              value={article.title}
+              onChange={(event) => handleChangeCategory(event)}
+              value={article.category}
               name='category'
               label='Category'
               options={categories}
-              onChange={(event) => setCategory(event.target.textContent)}
               placeholder='Category'
             />
           </Form.Group>
           <Form.TextArea
             required
+            onChange={(event) => handleChange(event)}
             value={article.teaser}
             label='Teaser'
             name='teaser'
@@ -71,6 +88,7 @@ const ArticleEditModal = ({ id }) => {
           />
           <Form.TextArea
             required
+            onChange={(event) => handleChange(event)}
             label='Main Text'
             value={article.body}
             name='body'

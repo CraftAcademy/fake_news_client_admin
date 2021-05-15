@@ -8,7 +8,6 @@ import {
   Header,
   Item,
   Segment,
-  Button,
   Grid,
 } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
@@ -64,7 +63,7 @@ const JournalistDashboard = () => {
               fontSize: 14,
               fontStyle: 'italic',
             }}>
-            {`WELCOME BACK ${fullName.toUpperCase()}`}
+            {`WELCOME BACK ${fullName}`}
           </p>
         </Grid.Row>
         <Grid.Row>
