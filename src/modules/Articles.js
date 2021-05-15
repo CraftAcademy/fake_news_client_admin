@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Popup from './Popup';
 import store from '../state/store/configureStore';
+import errorHandler from './ErrorHandler'
 
 const Articles = {
   async create(event, category, setModalOpen) {
@@ -17,7 +18,6 @@ const Articles = {
         headers: getFromLocalStorage(),
       });
       setModalOpen(false);
-      debugger;
       Popup.open('SUCCESS_MESSAGE', response.data.message);
     } catch (error) {
       errorHandler(error);
@@ -48,17 +48,6 @@ const Articles = {
 
 const getFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userData'));
-};
-
-const errorHandler = (error) => {
-  if (error.response.status === 500) {
-    Popup.open(
-      'ERROR_MESSAGE',
-      'Something went wrong on our server, try again later'
-    );
-  } else {
-    Popup.open('ERROR_MESSAGE', error.message);
-  }
 };
 
 export default Articles;
