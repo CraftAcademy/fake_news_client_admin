@@ -2,9 +2,16 @@ import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
+const emptyArticle = {
+  title: '',
+  teaser: '',
+  body: '',
+  category: ''
+}
+
 const ArticleEditModal = ({ id }) => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [article, setArticle] = useState({});
+  const [article, setArticle] = useState(emptyArticle);
   const [originalArticle, setOriginalArticle] = useState({});
 
   const categories = [
@@ -53,7 +60,7 @@ const ArticleEditModal = ({ id }) => {
         <Button
           data-cy='edit-article-btn'
           style={{ backgroundColor: '#FCE42D' }}
-          onClick={() => getArticle()}>
+          onClick={() => getArticle(id)}>
           Edit
         </Button>
       }>

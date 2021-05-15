@@ -3,13 +3,7 @@ import ArticleCreationModal from './ArticleCreationModal';
 import ArticleEditModal from './ArticleEditModal';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import {
-  Container,
-  Header,
-  Item,
-  Segment,
-  Grid,
-} from 'semantic-ui-react';
+import { Container, Header, Item, Segment, Grid } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 const JournalistDashboard = () => {

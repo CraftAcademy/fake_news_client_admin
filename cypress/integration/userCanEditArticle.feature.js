@@ -43,7 +43,7 @@ describe('User can edit article', () => {
       });
     });
 
-    it('is expected to show success message and update article in the list', () => {
+    it('is expected to show success message', () => {
       cy.get('[data-cy=article-edit-form]').within(() => {
         cy.get('[data-cy=title]')
           .clear()
@@ -53,11 +53,16 @@ describe('User can edit article', () => {
       cy.get('[data-cy=popup-message]').should(
         'contain',
         'You successfully updated the article'
-      );      
+      );
     });
   });
 
   describe('Unsuccesfully', () => {
+    beforeEach(() => {
+      cy.intercept('PUT', 'http://localhost:3000/api/articles/**', {
+        message: 'You successfully updated the article',
+      });
+    });
     it('is expected to restrict article submit if any fields are empty', () => {
       cy.get('[data-cy=article-edit-form]').within(() => {
         cy.get('[data-cy=title]').clear();
