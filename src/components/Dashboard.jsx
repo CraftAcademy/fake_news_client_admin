@@ -77,7 +77,7 @@ const JournalistDashboard = () => {
         as={Segment}
         inverted
         style={{ maxHeight: 550, overflowY: 'scroll' }}>
-        {typeof articles === 'string' ? (
+        {articles ? (
           <p data-cy='no-articles-message'>You don't have any articles yet</p>
         ) : (
           <Item.Group>{listOfArticles}</Item.Group>
