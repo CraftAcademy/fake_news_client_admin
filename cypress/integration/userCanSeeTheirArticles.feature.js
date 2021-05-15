@@ -2,7 +2,7 @@ describe('User can see their articles', () => {
   beforeEach(() => {
     cy.intercept(
       'GET',
-      'http://localhost:3000/api/auth/sign_in/auth/validate_token',
+      'http://localhost:3000/api/auth/validate_token',
       {
         fixture: 'handleLogin.json',
       }
@@ -11,7 +11,7 @@ describe('User can see their articles', () => {
 
   describe('Successfully', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'http://localhost:3000/api/auth/sign_in/articles', {
+      cy.intercept('GET', 'http://localhost:3000/api/articles', {
         fixture: 'listOfArticles.json',
       });
       cy.visit('/dashboard');
@@ -44,7 +44,7 @@ describe('User can see their articles', () => {
   describe('Unsuccessfully', () => {
     describe('as there is no articles to show', () => {
       beforeEach(() => {
-        cy.intercept('GET', 'http://localhost:3000/api/auth/sign_in/articles', {
+        cy.intercept('GET', 'http://localhost:3000/api/articles', {
           statusCode: 204,
         });
         cy.visit('/dashboard');
@@ -60,7 +60,7 @@ describe('User can see their articles', () => {
 
     describe('because the the service is down', () => {
       beforeEach(() => {
-        cy.intercept('GET', 'http://localhost:3000/api/auth/sign_in/articles', {
+        cy.intercept('GET', 'http://localhost:3000/api/articles', {
           statusCode: 500,
         });
         cy.visit('/dashboard');
