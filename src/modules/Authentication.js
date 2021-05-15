@@ -1,6 +1,6 @@
 import store from '../state/store/configureStore';
 import axios from 'axios';
-import Popup from './Popup';
+import errorHandler from './ErrorHandler'
 
 const Authentication = {
   async signIn(event) {
@@ -54,15 +54,4 @@ const getFromLocalStorage = () => {
 const authenticate = (data) => {
   let fullName = `${data.first_name} ${data.last_name}`;
   store.dispatch({ type: 'LOG_IN', payload: fullName });
-};
-
-const errorHandler = (error) => {
-  if (error.response.status === 401) {
-    Popup.open(
-      'ERROR_MESSAGE',
-      'You are not authorised to do this, contact your system adminstrator'
-    );
-  } else {
-    Popup.open('ERROR_MESSAGE', error.message);
-  }
 };
