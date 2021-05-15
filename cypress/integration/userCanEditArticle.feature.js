@@ -42,7 +42,7 @@ describe('User can edit article', () => {
           .should('contain', 'Aliens');
       });
     });
-    
+
     it('is expected to show success message and update article in the list', () => {
       cy.get('[data-cy=article-edit-form]').within(() => {
         cy.get('[data-cy=title]')
@@ -53,16 +53,7 @@ describe('User can edit article', () => {
       cy.get('[data-cy=popup-message]').should(
         'contain',
         'You successfully updated the article'
-      );
-      // cy.get('body').click('center');
-      // cy.get('[data-cy=article]')
-      //   .first()
-      //   .within(() => {
-      //     cy.get('[data-cy=title]').should(
-      //       'contain',
-      //       'Amateur rocket man became flat after all'
-      //     );
-      //   });
+      );      
     });
   });
 
