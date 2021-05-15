@@ -19,33 +19,32 @@ const JournalistDashboard = () => {
     Articles.index();
   }, []);
 
-  const listOfArticles = () =>
-    articles.map((article) => {
-      return (
-        <Item
-          key={article.id}
-          data-cy='article'
-          style={{ borderBottom: '1px solid white' }}>
-          <Item.Content style={{ width: '100%' }} verticalAlign='middle'>
-            <Item.Header
-              data-cy='title'
-              as={Header}
-              size='small'
-              style={{ color: 'white' }}>
-              {article.title}
-            </Item.Header>
-            <Item.Meta data-cy='date' style={{ color: 'white' }}>
-              Created at: {article.date}
-            </Item.Meta>
-          </Item.Content>
-          <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
-            <Button floated='right' style={{ backgroundColor: '#FCE42D' }}>
-              Edit
-            </Button>
-          </Item.Extra>
-        </Item>
-      );
-    });
+  const listOfArticles = articles.map((article) => {
+    return (
+      <Item
+        key={article.id}
+        data-cy='article'
+        style={{ borderBottom: '1px solid white' }}>
+        <Item.Content style={{ width: '100%' }} verticalAlign='middle'>
+          <Item.Header
+            data-cy='title'
+            as={Header}
+            size='small'
+            style={{ color: 'white' }}>
+            {article.title}
+          </Item.Header>
+          <Item.Meta data-cy='date' style={{ color: 'white' }}>
+            Created at: {article.date}
+          </Item.Meta>
+        </Item.Content>
+        <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
+          <Button floated='right' style={{ backgroundColor: '#FCE42D' }}>
+            Edit
+          </Button>
+        </Item.Extra>
+      </Item>
+    );
+  });
 
   return (
     <>
@@ -78,10 +77,10 @@ const JournalistDashboard = () => {
         as={Segment}
         inverted
         style={{ maxHeight: 600, overflowY: 'hidden' }}>
-        {typeof articles === 'string' ? (
+        {articles ? (
           <p data-cy='no-articles-message'>You don't have any articles yet</p>
         ) : (
-          <Item.Group>{listOfArticles()}</Item.Group>
+          <Item.Group>{listOfArticles}</Item.Group>
         )}
       </Container>
     </>

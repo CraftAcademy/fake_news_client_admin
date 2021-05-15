@@ -50,7 +50,7 @@ describe('User can see their articles', () => {
         cy.visit('/dashboard');
       });
 
-      it('is expected to show the message if there are no articles', () => {
+      it.only('is expected to show the message if there are no articles', () => {
         cy.get('[data-cy=no-articles-message]').should(
           'contain',
           "You don't have any articles yet"

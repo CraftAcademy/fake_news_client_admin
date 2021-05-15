@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Popup from './Popup';
 import store from '../state/store/configureStore';
-import errorHandler from './ErrorHandler'
+import errorHandler from './ErrorHandler';
 
 const Articles = {
   async create(event, category, setModalOpen) {
@@ -32,7 +32,7 @@ const Articles = {
       if (response.status === 204) {
         store.dispatch({
           type: 'SET_ARTICLES',
-          payload: "You don't have any articles yet",
+          payload: [],
         });
       } else {
         store.dispatch({
