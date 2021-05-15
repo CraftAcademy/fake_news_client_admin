@@ -63,7 +63,7 @@ const JournalistDashboard = () => {
               fontSize: 14,
               fontStyle: 'italic',
             }}>
-            {`WELCOME BACK ${fullName}`}
+            {`WELCOME BACK ${fullName.toUpperCase()}`}
           </p>
         </Grid.Row>
         <Grid.Row>

@@ -5,6 +5,7 @@ import Articles from '../modules/Articles';
 const ArticleEditModal = ({ id }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [article, setArticle] = useState({});
+  const [originalArticle, setOriginalArticle] = useState({});
 
   const categories = [
     { key: 'FE', text: 'Flat Earth', value: 'Flat Earth' },
@@ -13,27 +14,34 @@ const ArticleEditModal = ({ id }) => {
 
   const getArticle = async (id) => {
     let response = await Articles.show(id);
-    response && setArticle(response)
-  }
+    if (response) {
+      setArticle(response);
+      setOriginalArticle(response);
+    }
+  };
 
   const editArticle = async (event) => {
     event.preventDefault();
-    Articles.update(article, setModalOpen);
+    if (article === originalArticle) {
+      setModalOpen(false);
+    } else {
+      Articles.update(article, setModalOpen);
+    }
   };
 
   const handleChange = (event) => {
     setArticle({
       ...article,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const handleChangeCategory = (event) => {
     setArticle({
       ...article,
-      category: event.target.textContent
-    })  
-  }
+      category: event.target.textContent,
+    });
+  };
 
   return (
     <Modal
@@ -45,8 +53,8 @@ const ArticleEditModal = ({ id }) => {
         <Button
           data-cy='edit-article-btn'
           style={{ backgroundColor: '#FCE42D' }}
-          onClick = {() => getArticle()}>
-          Edit Article
+          onClick={() => getArticle()}>
+          Edit
         </Button>
       }>
       <Modal.Header>Edit Article</Modal.Header>

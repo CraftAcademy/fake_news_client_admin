@@ -62,7 +62,6 @@ const Articles = {
       let response = await axios.put(`/articles/${article.id}`, params, {
         headers: getFromLocalStorage(),
       });
-      debugger
       Popup.open('SUCCESS_MESSAGE', response.data.message);
       setModalOpen(false);
     } catch (error) {
