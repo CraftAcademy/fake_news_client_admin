@@ -76,11 +76,11 @@ const JournalistDashboard = () => {
         text
         as={Segment}
         inverted
-        style={{ maxHeight: 600, overflowY: 'hidden' }}>
-        {articles ? (
-          <p data-cy='no-articles-message'>You don't have any articles yet</p>
-        ) : (
+        style={{ maxHeight: 550, overflowY: 'scroll' }}>
+        {articles[0] ? (
           <Item.Group>{listOfArticles}</Item.Group>
+        ) : (
+          <p data-cy='no-articles-message'>You don't have any articles yet</p>
         )}
       </Container>
     </>

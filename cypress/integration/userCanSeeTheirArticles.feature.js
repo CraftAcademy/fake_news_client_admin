@@ -2,7 +2,7 @@ describe('User can see their articles', () => {
   beforeEach(() => {
     cy.intercept(
       'GET',
-      'https://fake-newzzzz.herokuapp.com/api/auth/validate_token',
+      'http://localhost:3000/api/auth/validate_token',
       {
         fixture: 'handleLogin.json',
       }
@@ -11,7 +11,7 @@ describe('User can see their articles', () => {
 
   describe('Successfully', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+      cy.intercept('GET', 'http://localhost:3000/api/articles', {
         fixture: 'listOfArticles.json',
       });
       cy.visit('/dashboard');
@@ -44,13 +44,13 @@ describe('User can see their articles', () => {
   describe('Unsuccessfully', () => {
     describe('as there is no articles to show', () => {
       beforeEach(() => {
-        cy.intercept('GET', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+        cy.intercept('GET', 'http://localhost:3000/api/articles', {
           statusCode: 204,
         });
         cy.visit('/dashboard');
       });
 
-      it.only('is expected to show the message if there are no articles', () => {
+      it('is expected to show the message if there are no articles', () => {
         cy.get('[data-cy=no-articles-message]').should(
           'contain',
           "You don't have any articles yet"
@@ -60,7 +60,7 @@ describe('User can see their articles', () => {
 
     describe('because the the service is down', () => {
       beforeEach(() => {
-        cy.intercept('GET', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+        cy.intercept('GET', 'http://localhost:3000/api/articles', {
           statusCode: 500,
         });
         cy.visit('/dashboard');

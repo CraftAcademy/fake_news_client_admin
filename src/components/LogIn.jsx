@@ -25,10 +25,22 @@ const LogIn = () => {
           </h1>
         </Grid.Row>
         <Grid.Row centered>
-          <p style={{ color: 'white', fontSize: 14, fontStyle: 'italic', marginBottom: 30 }}>ADMIN LOGIN</p>
+          <p
+            style={{
+              color: 'white',
+              fontSize: 14,
+              fontStyle: 'italic',
+              marginBottom: 30,
+            }}>
+            ADMIN LOGIN
+          </p>
         </Grid.Row>
-        <Grid.Column verticalAlign='middle' >
-          <Image src='./images/OREG1950.jpg' size='medium' style={{float: 'right'}} />
+        <Grid.Column verticalAlign='middle'>
+          <Image
+            src='./images/OREG1950.jpg'
+            size='medium'
+            style={{ float: 'right' }}
+          />
         </Grid.Column>
         <Grid.Column verticalAlign='middle' width={6}>
           <Form onSubmit={(event) => handleLogin(event)} data-cy='login-form'>
@@ -48,7 +60,10 @@ const LogIn = () => {
                 placeholder='password'
                 data-cy='login-password'></Input>
             </Form.Field>
-            <Button type='submit' data-cy='login-btn' style={{ backgroundColor: '#FCE42D' }}>
+            <Button
+              type='submit'
+              data-cy='login-btn'
+              style={{ backgroundColor: '#FCE42D' }}>
               Login
             </Button>
           </Form>
