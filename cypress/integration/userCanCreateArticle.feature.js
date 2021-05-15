@@ -1,9 +1,15 @@
 describe('User can create article', () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+      statusCode: 401,
+    });
     cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
       fixture: 'handleLogin.json',
     });
+    cy.intercept('GET', 'http://localhost:3000/api/articles', {
+      fixture: 'listOfArticles.json',
+    });
+    cy.visit('/');
     cy.get('[data-cy=login-form]').within(() => {
       cy.get('[data-cy=login-username]').type('user@mail.com');
       cy.get('[data-cy=login-password]').type('password');

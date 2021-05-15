@@ -1,13 +1,19 @@
 describe('User can get access to dashboard', () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.intercept('GET', 'http://localhost:3000/api/articles', {
+      fixture: 'listOfArticles.json',
+    });
   });
 
   describe('Successfully through signing in', () => {
     before(() => {
+      cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+        statusCode: 401,
+      });
       cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
         fixture: 'handleLogin.json',
       });
+      cy.visit('/');
     });
 
     it('is expected to show dashboard after login', () => {
@@ -22,10 +28,11 @@ describe('User can get access to dashboard', () => {
   });
 
   describe('Successfully through token validation', () => {
-    before(() => {
+    beforeEach(() => {
       cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
         fixture: 'handleLogin.json',
       });
+      cy.visit('/');
     });
 
     it('is expected to send user directly to dashboard', () => {
@@ -37,9 +44,13 @@ describe('User can get access to dashboard', () => {
 
   describe('Unsuccessfully through faulty sign in', () => {
     before(() => {
+      cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+        statusCode: 401,
+      });
       cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
         statusCode: 401,
       });
+      cy.visit('/');
     });
 
     it('is expected to show error if login fails', () => {
@@ -61,6 +72,7 @@ describe('User can get access to dashboard', () => {
       cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
         statusCode: 401,
       });
+      cy.visit('/');
     });
 
     it('is expected to send user directly to dashboard', () => {
