@@ -1,9 +1,10 @@
 import axios from 'axios';
 import Popup from './Popup';
+import store from '../state/store/configureStore';
+import errorHandler from './ErrorHandler';
 
 const Articles = {
   async create(event, category, setModalOpen) {
-    let headers = getFromLocalStorage()
     let params = {
       article: {
         title: event.target.title.value,
@@ -11,30 +12,42 @@ const Articles = {
         body: event.target.body.value,
         category: category,
       },
-    }
+    };
     try {
-      let response = await axios.post('/articles', { params: params }, { headers: headers });
-      Popup.open('SUCCESS_MESSAGE', response.data.message);
+      let response = await axios.post('/articles', params, {
+        headers: getFromLocalStorage(),
+      });
       setModalOpen(false);
+      Popup.open('SUCCESS_MESSAGE', response.data.message);
     } catch (error) {
-      errorHandler(error)
+      errorHandler(error);
+    }
+  },
+
+  async index() {
+    try {
+      let response = await axios.get('/articles', {
+        headers: getFromLocalStorage(),
+      });
+      if (response.status === 204) {
+        store.dispatch({
+          type: 'SET_ARTICLES',
+          payload: [],
+        });
+      } else {
+        store.dispatch({
+          type: 'SET_ARTICLES',
+          payload: response.data.articles,
+        });
+      }
+    } catch (error) {
+      errorHandler(error);
     }
   },
 };
 
 const getFromLocalStorage = () => {
-  JSON.parse(localStorage.getItem('userData'));
+  return JSON.parse(localStorage.getItem('userData'));
 };
-
-const errorHandler = (error) => {
-  if (error.response.status === 500) {
-    Popup.open(
-      'ERROR_MESSAGE',
-      'Something went wrong on our server, try again later'
-    )
-  } else {
-    Popup.open('ERROR_MESSAGE', error.message);
-  }
-}
 
 export default Articles;

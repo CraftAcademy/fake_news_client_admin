@@ -23,6 +23,12 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         authenticated: true,
+        fullName: action.payload
+      };
+    case 'SET_ARTICLES':
+      return {
+        ...state,
+        articles: action.payload,
       };
     default:
       return state;

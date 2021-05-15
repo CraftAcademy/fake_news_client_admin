@@ -1,6 +1,6 @@
 import store from '../state/store/configureStore';
 import axios from 'axios';
-import Popup from './Popup';
+import errorHandler from './ErrorHandler'
 
 const Authentication = {
   async signIn(event) {
@@ -8,21 +8,20 @@ const Authentication = {
     try {
       let response = await axios.post('auth/sign_in', credentials);
       saveToLocalStorage(response);
-      authenticate();
+      authenticate(response.data.data);
     } catch (error) {
-      errorHandler(error)
+      errorHandler(error);
     }
   },
   async validateToken() {
-    let credentials = getFromLocalStorage()
     try {
-      let response = await axios.get('auth/validate_token', { headers: credentials })
+      let response = await axios.get('auth/validate_token', {
+        headers: getFromLocalStorage(),
+      });
       saveToLocalStorage(response);
-      authenticate();
-    } catch (error) {
-      
-    }
-  }
+      authenticate(response.data.data);
+    } catch (error) {}
+  },
 };
 
 export default Authentication;
@@ -49,22 +48,10 @@ const saveToLocalStorage = (response) => {
 };
 
 const getFromLocalStorage = () => {
-  JSON.parse(localStorage.getItem('userData'));
+  return JSON.parse(localStorage.getItem('userData'));
 };
 
-const authenticate = () => {
-  store.dispatch({ type: 'LOG_IN' });
+const authenticate = (data) => {
+  let fullName = `${data.first_name} ${data.last_name}`;
+  store.dispatch({ type: 'LOG_IN', payload: fullName });
 };
-
-const errorHandler = (error) => {
-  if (error.response.status === 401) {
-    Popup.open(
-      'ERROR_MESSAGE',
-      'You are not authorised to do this, contact your system adminstrator'
-    );
-  } else {
-    Popup.open('ERROR_MESSAGE', error.message);
-  }
-}
-
-

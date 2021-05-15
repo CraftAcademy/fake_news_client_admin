@@ -21,7 +21,7 @@ describe('User can get access to dashboard', () => {
         cy.get('[data-cy=login-password]').type('password');
         cy.get('[data-cy=login-btn]').click();
       });
-      cy.get('[data-cy=create-article-btn]').should('be.visible');
+      cy.get('[data-cy=create-article-btn]').should('be.visible');      
     });
   });
 
