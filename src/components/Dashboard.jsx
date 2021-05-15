@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import ArticleCreationModal from './ArticleCreationModal';
+import ArticleEditModal from './ArticleEditModal';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import {
@@ -38,9 +39,7 @@ const JournalistDashboard = () => {
           </Item.Meta>
         </Item.Content>
         <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
-          <Button floated='right' style={{ backgroundColor: '#FCE42D' }}>
-            Edit
-          </Button>
+          <ArticleEditModal id={article.id} />
         </Item.Extra>
       </Item>
     );

@@ -14,7 +14,7 @@ describe('', () => {
 
   describe('Succesfully', () => {
     it('is expected to show prefilled edit article modal', () => {
-      cy.get('[data-cy=edit-btn]').first().click();
+      cy.get('[data-cy=edit-article-btn]').first().click();
       cy.get('[data-cy=article-edit-modal]').should('be.visible');
       cy.get('[data-cy=article-edit-form]').within(() => {
         cy.get('[data-cy=title]').should(
@@ -34,7 +34,7 @@ describe('', () => {
     });
 
     it('is expected to show success message and update article in the list', () => {
-      cy.get('[data-cy=edit-btn]').first().click();
+      cy.get('[data-cy=edit-article-btn]').first().click();
       cy.get('[data-cy=article-edit-modal]').should('be.visible');
       cy.get('[data-cy=article-edit-form]').within(() => {
         cy.get('[data-cy=title]').type(

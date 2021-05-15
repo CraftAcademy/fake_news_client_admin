@@ -44,6 +44,37 @@ const Articles = {
       errorHandler(error);
     }
   },
+
+  async show(id) {
+    try {
+      let response = await axios.get(`/articles/${id}`, {
+        headers: getFromLocalStorage(),
+      });
+      return response.data.article;
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
+
+  async update(event, category, setModalOpen, id) {
+    let params = {
+      article: {
+        title: event.target.title.value,
+        teaser: event.target.teaser.value,
+        body: event.target.body.value,
+        category: category,
+      },
+    };
+    try {
+      let response = await axios.put(`/articles/${id}`, params, {
+        headers: getFromLocalStorage,
+      });
+      Popup.open('SUCCESS_MESSAGE', response.data.message);
+      setModalOpen(false);
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
 };
 
 const getFromLocalStorage = () => {
