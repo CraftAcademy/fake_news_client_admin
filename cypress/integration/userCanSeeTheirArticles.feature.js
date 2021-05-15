@@ -1,15 +1,11 @@
 describe('User can see their articles', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+    cy.intercept('GET', 'http://localhost:3000/api/articles', {
       fixture: 'listOfArticles.json',
     });
-    cy.intercept(
-      'GET',
-      'https://fake-newzzzz.herokuapp.com/api/auth/validate_token',
-      {
-        fixture: 'handleLogin.json',
-      }
-    );
+    cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+      fixture: 'handleLogin.json',
+    });
     cy.visit('/dashboard');
   });
 

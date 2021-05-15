@@ -1,17 +1,16 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import LogIn from './components/LogIn';
 import Dashboard from './components/Dashboard';
 import PopupMessage from './components/PopupMessage';
 import { Switch, Route } from 'react-router';
 import Authentication from './modules/Authentication';
 
-document.body.style = 'background: #202020'
+document.body.style = 'background: #202020';
 
 const App = () => {
-
   useEffect(() => {
-    Authentication.validateToken()
-  }, [])
+    Authentication.validateToken();
+  }, []);
 
   return (
     <>

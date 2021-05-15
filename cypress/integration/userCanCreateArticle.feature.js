@@ -1,13 +1,9 @@
 describe('User can create article', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.intercept(
-      'POST',
-      'https://fake-newzzzz.herokuapp.com/api/auth/sign_in',
-      {
-        fixture: 'handleLogin.json',
-      }
-    );
+    cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
+      fixture: 'handleLogin.json',
+    });
     cy.get('[data-cy=login-form]').within(() => {
       cy.get('[data-cy=login-username]').type('user@mail.com');
       cy.get('[data-cy=login-password]').type('password');
@@ -17,7 +13,7 @@ describe('User can create article', () => {
 
   describe('successfully', () => {
     before(() => {
-      cy.intercept('POST', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+      cy.intercept('POST', 'http://localhost:3000/api/articles', {
         message: 'Your article has successfully been created',
       });
     });
@@ -43,7 +39,7 @@ describe('User can create article', () => {
 
   describe('unsuccessfully', () => {
     before(() => {
-      cy.intercept('POST', 'https://fake-newzzzz.herokuapp.com/api/articles', {
+      cy.intercept('POST', 'http://localhost:3000/api/articles', {
         statusCode: 500,
       });
     });

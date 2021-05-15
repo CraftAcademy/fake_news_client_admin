@@ -19,8 +19,7 @@ const SuccessMessage = () => {
           bottom: 25,
           transform: 'translate(-50%)',
           zIndex: 1000,
-        }}
-      >
+        }}>
         <Header>{error ? 'Error' : 'Success'}</Header>
         <p data-cy='popup-message'>{message}</p>
       </Segment>

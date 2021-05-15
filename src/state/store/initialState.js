@@ -1,7 +1,7 @@
 const initialState = {
   authenticated: false,
   articles: [],
-  fullName: ''
+  fullName: '',
 };
 
 export default initialState;

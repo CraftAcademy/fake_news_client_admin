@@ -13,24 +13,27 @@ const ArticleCreationModal = () => {
 
   const createArticle = async (event) => {
     event.preventDefault();
-    Articles.create(event, category, setModalOpen)
+    Articles.create(event, category, setModalOpen);
   };
 
   return (
     <Modal
       data-cy='article-creation-modal'
-
       onOpen={() => setModalOpen(true)}
       onClose={() => setModalOpen(false)}
       open={modalOpen}
-      trigger={<Button data-cy='create-article-btn' style={{backgroundColor: '#FCE42D'}}>Create Article</Button>}
-    >
+      trigger={
+        <Button
+          data-cy='create-article-btn'
+          style={{ backgroundColor: '#FCE42D' }}>
+          Create Article
+        </Button>
+      }>
       <Modal.Header>Create New Article</Modal.Header>
-      <Segment padded basic >
+      <Segment padded basic>
         <Form
           data-cy='article-creation-form'
-          onSubmit={(event) => createArticle(event)}
-        >
+          onSubmit={(event) => createArticle(event)}>
           <Form.Group widths='equal'>
             <Form.Input
               required
@@ -65,7 +68,10 @@ const ArticleCreationModal = () => {
             placeholder='Article Body'
             data-cy='body'
           />
-          <Form.Button style={{backgroundColor: '#FCE42D'}} type='submit' data-cy='submit-btn'>
+          <Form.Button
+            style={{ backgroundColor: '#FCE42D' }}
+            type='submit'
+            data-cy='submit-btn'>
             Submit
           </Form.Button>
         </Form>

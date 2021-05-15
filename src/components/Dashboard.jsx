@@ -72,7 +72,11 @@ const JournalistDashboard = () => {
           <ArticleCreationModal />
         </Grid.Row>
       </Grid>
-      <Container text as={Segment} inverted style={{maxHeight: 600, overflowY: 'hidden'}}>
+      <Container
+        text
+        as={Segment}
+        inverted
+        style={{ maxHeight: 550, overflowY: 'scroll' }}>
         {typeof articles === 'string' ? (
           <p data-cy='no-articles-message'>You don't have any articles yet</p>
         ) : (
