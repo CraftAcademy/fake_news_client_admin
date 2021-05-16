@@ -45,7 +45,7 @@ describe('User can see their articles', () => {
     describe('as there is no articles to show', () => {
       beforeEach(() => {
         cy.intercept('GET', 'http://localhost:3000/api/articles', {
-          statusCode: 204,
+          articles: [],
         });
         cy.visit('/dashboard');
       });

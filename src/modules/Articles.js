@@ -9,7 +9,7 @@ const Articles = {
       let response = await axios.get('/articles', {
         headers: getFromLocalStorage(),
       });
-      if (response.status === 204) {
+      if (response.status.articles === []) {
         store.dispatch({
           type: 'SET_ARTICLES',
           payload: [],
