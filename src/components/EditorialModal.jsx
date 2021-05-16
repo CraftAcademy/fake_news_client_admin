@@ -15,11 +15,12 @@ const EditorialModal = ({ id, isCreateMode }) => {
   const [originalArticle, setOriginalArticle] = useState({});
 
   const categories = [
-    { key: 'FE', text: 'Hollywood', value: 'Flat Earth' },
+    { key: 'HW', text: 'Hollywood', value: 'Hollywood' },
     { key: 'UFO', text: 'Aliens', value: 'Aliens' },
     { key: 'ILU', text: 'Illuminati', value: 'Illuminati' },
     { key: 'POL', text: 'Politics', value: 'Politics' },
     { key: 'COV', text: 'Covid', value: 'Covid' },
+    { key: 'SC', text: 'Science', value: 'Science'}
   ];
 
   const handleEditorial = async () => {
