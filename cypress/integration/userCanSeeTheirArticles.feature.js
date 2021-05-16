@@ -31,7 +31,7 @@ describe('User can see their articles', () => {
           );
           cy.get('[data-cy=date]').should(
             'contain',
-            'Created at: 2021-05-12, 18:14'
+            'Created at: 2021-05-14, 18:14'
           );
         });
     });
