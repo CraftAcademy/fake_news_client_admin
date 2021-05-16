@@ -1,16 +1,16 @@
 describe('User can get access to dashboard', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3000/api/articles', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'listOfArticles.json',
     });
   });
 
   describe('Successfully through signing in', () => {
     before(() => {
-      cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
         statusCode: 401,
       });
-      cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
+      cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/auth/sign_in', {
         fixture: 'handleLogin.json',
       });
       cy.visit('/');
@@ -29,7 +29,7 @@ describe('User can get access to dashboard', () => {
 
   describe('Successfully through token validation', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
         fixture: 'handleLogin.json',
       });
       cy.visit('/');
@@ -44,10 +44,10 @@ describe('User can get access to dashboard', () => {
 
   describe('Unsuccessfully through faulty sign in', () => {
     before(() => {
-      cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
         statusCode: 401,
       });
-      cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
+      cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/auth/sign_in', {
         statusCode: 401,
       });
       cy.visit('/');
@@ -69,7 +69,7 @@ describe('User can get access to dashboard', () => {
 
   describe('Unsuccessfully through token validation', () => {
     before(() => {
-      cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
         statusCode: 401,
       });
       cy.visit('/');
