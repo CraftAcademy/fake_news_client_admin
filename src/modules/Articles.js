@@ -50,7 +50,7 @@ const Articles = {
     }
   },
 
-  async update(article, setModalOpen, id) {
+  async update(article, setModalOpen) {
     let params = { article: article };
     try {
       let response = await axios.put(`/articles/${article.id}`, params, {
