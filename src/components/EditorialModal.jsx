@@ -6,33 +6,39 @@ const emptyArticle = {
   title: '',
   teaser: '',
   body: '',
-  category: ''
-}
+  category: '',
+};
 
-const ArticleEditModal = ({ id }) => {
+const EditorialModal = ({ id, isCreateMode }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [article, setArticle] = useState(emptyArticle);
   const [originalArticle, setOriginalArticle] = useState({});
 
   const categories = [
-    { key: 'FE', text: 'Flat Earth', value: 'Flat Earth' },
+    { key: 'FE', text: 'Hollywood', value: 'Flat Earth' },
     { key: 'UFO', text: 'Aliens', value: 'Aliens' },
+    { key: 'ILU', text: 'Illuminati', value: 'Illuminati' },
+    { key: 'POL', text: 'Politics', value: 'Politics' },
+    { key: 'COV', text: 'Covid', value: 'Covid' },
   ];
+
+  const handleEditorial = async () => {
+    if (isCreateMode) {
+      Articles.create(article, setModalOpen);
+    } else {
+      if (article === originalArticle) {
+        setModalOpen(false);
+      } else {
+        Articles.update(article, setModalOpen);
+      }
+    }
+  };
 
   const getArticle = async (id) => {
     let response = await Articles.show(id);
     if (response) {
       setArticle(response);
       setOriginalArticle(response);
-    }
-  };
-
-  const editArticle = async (event) => {
-    event.preventDefault();
-    if (article === originalArticle) {
-      setModalOpen(false);
-    } else {
-      Articles.update(article, setModalOpen);
     }
   };
 
@@ -52,23 +58,29 @@ const ArticleEditModal = ({ id }) => {
 
   return (
     <Modal
-      data-cy='article-edit-modal'
+      data-cy='editorial-modal'
       onOpen={() => setModalOpen(true)}
       onClose={() => setModalOpen(false)}
       open={modalOpen}
       trigger={
-        <Button
-          data-cy='edit-article-btn'
-          style={{ backgroundColor: '#FCE42D' }}
-          onClick={() => getArticle(id)}>
-          Edit
-        </Button>
+        isCreateMode ? (
+          <Button
+            data-cy='create-article-btn'
+            style={{ backgroundColor: '#FCE42D' }}>
+            Create Article
+          </Button>
+        ) : (
+          <Button
+            data-cy='edit-article-btn'
+            style={{ backgroundColor: '#FCE42D' }}
+            onClick={() => getArticle(id)}>
+            Edit
+          </Button>
+        )
       }>
       <Modal.Header>Edit Article</Modal.Header>
       <Segment padded basic>
-        <Form
-          data-cy='article-edit-form'
-          onSubmit={(event) => editArticle(event)}>
+        <Form data-cy='article-form' onSubmit={handleEditorial}>
           <Form.Group widths='equal'>
             <Form.Input
               required
@@ -122,4 +134,4 @@ const ArticleEditModal = ({ id }) => {
   );
 };
 
-export default ArticleEditModal;
+export default EditorialModal;

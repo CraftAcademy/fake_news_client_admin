@@ -21,8 +21,8 @@ describe('User can edit article', () => {
     });
 
     it('is expected to show prefilled edit article modal', () => {
-      cy.get('[data-cy=article-edit-modal]').should('be.visible');
-      cy.get('[data-cy=article-edit-form]').within(() => {
+      cy.get('[data-cy=editorial-modal]').should('be.visible');
+      cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]')
           .find('input')
           .should(
@@ -44,7 +44,7 @@ describe('User can edit article', () => {
     });
 
     it('is expected to show success message', () => {
-      cy.get('[data-cy=article-edit-form]').within(() => {
+      cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]')
           .clear()
           .type('Amateur rocket man became flat after all');
@@ -64,7 +64,7 @@ describe('User can edit article', () => {
       });
     });
     it('is expected to restrict article submit if any fields are empty', () => {
-      cy.get('[data-cy=article-edit-form]').within(() => {
+      cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]').clear();
         cy.get('[data-cy=submit-btn]').click();
         cy.get('input:invalid').should('have.length', 1);
@@ -78,7 +78,7 @@ describe('User can edit article', () => {
       });
     });
     it('it expected to close the modal but not send a request if field values are unchanged', () => {
-      cy.get('[data-cy=article-edit-form]').within(() => {
+      cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=submit-btn]').click();
       });
       cy.get('[data-cy=article-edit-modal]').should('not.exist');

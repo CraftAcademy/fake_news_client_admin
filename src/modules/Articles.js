@@ -36,15 +36,8 @@ const Articles = {
     }
   },
 
-  async create(event, category, setModalOpen) {
-    let params = {
-      article: {
-        title: event.target.title.value,
-        teaser: event.target.teaser.value,
-        body: event.target.body.value,
-        category: category,
-      },
-    };
+  async create(article, setModalOpen) {
+    let params = { article: article };
     try {
       let response = await axios.post('/articles', params, {
         headers: getFromLocalStorage(),
