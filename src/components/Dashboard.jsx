@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import ArticleCreationModal from './ArticleCreationModal';
-import ArticleEditModal from './ArticleEditModal';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Container, Header, Item, Segment, Grid } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
+import EditorialModal from './EditorialModal';
 
 const JournalistDashboard = () => {
   const { authenticated, fullName, articles } = useSelector((state) => state);
@@ -32,7 +31,7 @@ const JournalistDashboard = () => {
           </Item.Meta>
         </Item.Content>
         <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
-          <ArticleEditModal id={article.id} />
+          <EditorialModal id={article.id} />
         </Item.Extra>
       </Item>
     );
@@ -61,18 +60,23 @@ const JournalistDashboard = () => {
           </p>
         </Grid.Row>
         <Grid.Row>
-          <ArticleCreationModal />
+          <EditorialModal isCreateMode={true} />
         </Grid.Row>
       </Grid>
       <Container
         text
         as={Segment}
-        inverted
-        style={{ maxHeight: 550, overflowY: 'scroll' }}>
+        style={{
+          maxHeight: 550,
+          overflowY: 'scroll',
+          backgroundColor: '#202325',
+        }}>
         {articles[0] ? (
           <Item.Group>{listOfArticles}</Item.Group>
         ) : (
-          <p data-cy='no-articles-message'>You don't have any articles yet</p>
+          <p data-cy='no-articles-message' style={{ color: 'white' }}>
+            You don't have any articles yet
+          </p>
         )}
       </Container>
     </>
