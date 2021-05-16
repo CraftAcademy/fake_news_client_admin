@@ -1,12 +1,12 @@
 describe('User can edit article', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
       fixture: 'handleLogin.json',
     });
-    cy.intercept('GET', 'http://localhost:3000/api/articles', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'listOfArticles.json',
     });
-    cy.intercept('GET', 'http://localhost:3000/api/articles/**', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
       fixture: 'amateurRocketManArticleFixture.json',
     });
     cy.visit('/');
@@ -15,7 +15,7 @@ describe('User can edit article', () => {
 
   describe('Succesfully', () => {
     beforeEach(() => {
-      cy.intercept('PUT', 'http://localhost:3000/api/articles/**', {
+      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
         message: 'You successfully updated the article',
       });
     });
@@ -59,7 +59,7 @@ describe('User can edit article', () => {
 
   describe('Unsuccesfully', () => {
     beforeEach(() => {
-      cy.intercept('PUT', 'http://localhost:3000/api/articles/**', {
+      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
         message: 'You successfully updated the article',
       });
     });
