@@ -1,12 +1,12 @@
 describe('User can create article', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3000/api/auth/validate_token', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
       statusCode: 401,
     });
-    cy.intercept('POST', 'http://localhost:3000/api/auth/sign_in', {
+    cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/auth/sign_in', {
       fixture: 'handleLogin.json',
     });
-    cy.intercept('GET', 'http://localhost:3000/api/articles', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'listOfArticles.json',
     });
     cy.visit('/');
@@ -19,7 +19,7 @@ describe('User can create article', () => {
 
   describe('successfully', () => {
     before(() => {
-      cy.intercept('POST', 'http://localhost:3000/api/articles', {
+      cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/articles', {
         message: 'Your article has successfully been created',
       });
     });
@@ -45,7 +45,7 @@ describe('User can create article', () => {
 
   describe('unsuccessfully', () => {
     before(() => {
-      cy.intercept('POST', 'http://localhost:3000/api/articles', {
+      cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/articles', {
         statusCode: 500,
       });
     });
