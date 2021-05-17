@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
 import Articles, { imageEncoder } from '../modules/Articles';
@@ -62,7 +61,7 @@ const EditorialModal = ({ id, isCreateMode }) => {
   const handleImage = async (event) => {
     let file = event.target.files[0];
     setThumbnail(file);
-   let encodedFile = await imageEncoder(file);
+    let encodedFile = await imageEncoder(file);
     setArticle({
       ...article,
       image: encodedFile,
@@ -91,10 +90,17 @@ const EditorialModal = ({ id, isCreateMode }) => {
           </Button>
         )
       }>
-      <Modal.Header>Edit Article</Modal.Header>
+      <Modal.Header>{isCreateMode ? 'Create' : 'Edit'} Article</Modal.Header>
       <Segment padded basic>
         <Form data-cy='article-form' onSubmit={handleEditorial}>
-          <Form.Group>
+          <Form.Group
+            style={{
+              border: '1px solid lightgrey',
+              borderRadius: 5,
+              padding: '10px 0',
+              margin: 0,
+              marginBottom: 5,
+            }}>
             <Form.Field widths={5}>
               <Form.Input
                 style={{ width: 400, marginBottom: 10 }}
@@ -129,12 +135,20 @@ const EditorialModal = ({ id, isCreateMode }) => {
               />
             </Form.Field>
             <div>
-              {thumbnail && (
+              {article.image && (
                 <img
                   data-cy='thumbnail'
-                  src={URL.createObjectURL(thumbnail)}
+                  src={
+                    thumbnail ? URL.createObjectURL(thumbnail) : article.image
+                  }
                   alt='thumbnail'
-                  style={{ objectFit: 'cover', width: 300, height: 200 }}
+                  style={{
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: 200,
+                    alignSelf: 'center',
+                    padding: '0 35px',
+                  }}
                 />
               )}
             </div>
