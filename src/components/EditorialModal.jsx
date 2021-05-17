@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
-import Articles from '../modules/Articles';
+import Articles, { imageEncoder } from '../modules/Articles';
 
 const emptyArticle = {
   title: '',
@@ -58,8 +59,14 @@ const EditorialModal = ({ id, isCreateMode }) => {
     });
   };
 
-  const handleImage = (event) => {
-    setThumbnail(event.target.files[0]);
+  const handleImage = async (event) => {
+    let file = event.target.files[0];
+    setThumbnail(file);
+   let encodedFile = await imageEncoder(file);
+    setArticle({
+      ...article,
+      image: encodedFile,
+    });
   };
 
   return (
@@ -117,13 +124,19 @@ const EditorialModal = ({ id, isCreateMode }) => {
                 label='Image'
                 name='image'
                 data-cy='image'
-                required
+                required={isCreateMode ? true : false}
                 onChange={(event) => handleImage(event)}
               />
             </Form.Field>
             <div>
-              { thumbnail && 
-              <img data-cy='thumbnail' src={URL.createObjectURL(thumbnail)} alt="thumbnail" style={{ objectFit: 'cover', width: 300, height: 200}} /> }
+              {thumbnail && (
+                <img
+                  data-cy='thumbnail'
+                  src={URL.createObjectURL(thumbnail)}
+                  alt='thumbnail'
+                  style={{ objectFit: 'cover', width: 300, height: 200 }}
+                />
+              )}
             </div>
           </Form.Group>
 
