@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Segment } from 'semantic-ui-react';
-import Articles from '../modules/Articles';
+import Articles, { imageEncoder } from '../modules/Articles';
 
 const emptyArticle = {
   title: '',
@@ -13,6 +13,7 @@ const EditorialModal = ({ id, isCreateMode }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [article, setArticle] = useState(emptyArticle);
   const [originalArticle, setOriginalArticle] = useState({});
+  const [thumbnail, setThumbnail] = useState();
 
   const categories = [
     { key: 'HW', text: 'Hollywood', value: 'Hollywood' },
@@ -20,7 +21,7 @@ const EditorialModal = ({ id, isCreateMode }) => {
     { key: 'ILU', text: 'Illuminati', value: 'Illuminati' },
     { key: 'POL', text: 'Politics', value: 'Politics' },
     { key: 'COV', text: 'Covid', value: 'Covid' },
-    { key: 'SC', text: 'Science', value: 'Science'}
+    { key: 'SC', text: 'Science', value: 'Science' },
   ];
 
   const handleEditorial = async () => {
@@ -57,6 +58,16 @@ const EditorialModal = ({ id, isCreateMode }) => {
     });
   };
 
+  const handleImage = async (event) => {
+    let file = event.target.files[0];
+    setThumbnail(file);
+    let encodedFile = await imageEncoder(file);
+    setArticle({
+      ...article,
+      image: encodedFile,
+    });
+  };
+
   return (
     <Modal
       data-cy='editorial-modal'
@@ -79,32 +90,70 @@ const EditorialModal = ({ id, isCreateMode }) => {
           </Button>
         )
       }>
-      <Modal.Header>Edit Article</Modal.Header>
+      <Modal.Header>{isCreateMode ? 'Create' : 'Edit'} Article</Modal.Header>
       <Segment padded basic>
         <Form data-cy='article-form' onSubmit={handleEditorial}>
-          <Form.Group widths='equal'>
-            <Form.Input
-              required
-              fluid
-              onChange={(event) => handleChange(event)}
-              value={article.title}
-              label='Title'
-              name='title'
-              placeholder='Title'
-              data-cy='title'
-            />
-            <Form.Select
-              required
-              data-cy='categories'
-              fluid
-              onChange={(event) => handleChangeCategory(event)}
-              value={article.category}
-              name='category'
-              label='Category'
-              options={categories}
-              placeholder='Category'
-            />
+          <Form.Group
+            style={{
+              border: '1px solid lightgrey',
+              borderRadius: 5,
+              padding: '10px 0',
+              margin: 0,
+              marginBottom: 5,
+            }}>
+            <Form.Field widths={5}>
+              <Form.Input
+                style={{ width: 400, marginBottom: 10 }}
+                required
+                fluid
+                onChange={(event) => handleChange(event)}
+                value={article.title}
+                label='Title'
+                name='title'
+                placeholder='Title'
+                data-cy='title'
+              />
+              <Form.Select
+                style={{ marginBottom: 10 }}
+                required
+                data-cy='categories'
+                fluid
+                onChange={(event) => handleChangeCategory(event)}
+                value={article.category}
+                name='category'
+                label='Category'
+                options={categories}
+                placeholder='Category'
+              />
+              <Form.Input
+                type='file'
+                label='Image'
+                name='image'
+                data-cy='image'
+                required={isCreateMode ? true : false}
+                onChange={(event) => handleImage(event)}
+              />
+            </Form.Field>
+            <div>
+              {article.image && (
+                <img
+                  data-cy='thumbnail'
+                  src={
+                    thumbnail ? URL.createObjectURL(thumbnail) : article.image
+                  }
+                  alt='thumbnail'
+                  style={{
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: 200,
+                    alignSelf: 'center',
+                    padding: '0 35px',
+                  }}
+                />
+              )}
+            </div>
           </Form.Group>
+
           <Form.TextArea
             required
             onChange={(event) => handleChange(event)}
