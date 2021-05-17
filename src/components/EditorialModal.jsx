@@ -13,6 +13,7 @@ const EditorialModal = ({ id, isCreateMode }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [article, setArticle] = useState(emptyArticle);
   const [originalArticle, setOriginalArticle] = useState({});
+  const [thumbnail, setThumbnail] = useState();
 
   const categories = [
     { key: 'HW', text: 'Hollywood', value: 'Hollywood' },
@@ -20,7 +21,7 @@ const EditorialModal = ({ id, isCreateMode }) => {
     { key: 'ILU', text: 'Illuminati', value: 'Illuminati' },
     { key: 'POL', text: 'Politics', value: 'Politics' },
     { key: 'COV', text: 'Covid', value: 'Covid' },
-    { key: 'SC', text: 'Science', value: 'Science'}
+    { key: 'SC', text: 'Science', value: 'Science' },
   ];
 
   const handleEditorial = async () => {
@@ -57,6 +58,10 @@ const EditorialModal = ({ id, isCreateMode }) => {
     });
   };
 
+  const handleImage = (event) => {
+    setThumbnail(event.target.files[0]);
+  };
+
   return (
     <Modal
       data-cy='editorial-modal'
@@ -82,29 +87,46 @@ const EditorialModal = ({ id, isCreateMode }) => {
       <Modal.Header>Edit Article</Modal.Header>
       <Segment padded basic>
         <Form data-cy='article-form' onSubmit={handleEditorial}>
-          <Form.Group widths='equal'>
-            <Form.Input
-              required
-              fluid
-              onChange={(event) => handleChange(event)}
-              value={article.title}
-              label='Title'
-              name='title'
-              placeholder='Title'
-              data-cy='title'
-            />
-            <Form.Select
-              required
-              data-cy='categories'
-              fluid
-              onChange={(event) => handleChangeCategory(event)}
-              value={article.category}
-              name='category'
-              label='Category'
-              options={categories}
-              placeholder='Category'
-            />
+          <Form.Group>
+            <Form.Field widths={5}>
+              <Form.Input
+                style={{ width: 400, marginBottom: 10 }}
+                required
+                fluid
+                onChange={(event) => handleChange(event)}
+                value={article.title}
+                label='Title'
+                name='title'
+                placeholder='Title'
+                data-cy='title'
+              />
+              <Form.Select
+                style={{ marginBottom: 10 }}
+                required
+                data-cy='categories'
+                fluid
+                onChange={(event) => handleChangeCategory(event)}
+                value={article.category}
+                name='category'
+                label='Category'
+                options={categories}
+                placeholder='Category'
+              />
+              <Form.Input
+                type='file'
+                label='Image'
+                name='image'
+                data-cy='image'
+                required
+                onChange={(event) => handleImage(event)}
+              />
+            </Form.Field>
+            <div>
+              { thumbnail && 
+              <img data-cy='thumbnail' src={URL.createObjectURL(thumbnail)} alt="thumbnail" style={{ objectFit: 'cover', width: 300, height: 200}} /> }
+            </div>
           </Form.Group>
+
           <Form.TextArea
             required
             onChange={(event) => handleChange(event)}
