@@ -35,7 +35,7 @@ const Articles = {
       errorHandler(error);
     }
   },
-
+  
   async create(article, setModalOpen) {
     let params = { article: article };
     try {
@@ -49,7 +49,7 @@ const Articles = {
       errorHandler(error);
     }
   },
-
+  
   async update(article, setModalOpen) {
     let params = { article: article };
     try {
@@ -70,5 +70,13 @@ const Articles = {
 const getFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userData'));
 };
+
+ export const imageEncoder = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 export default Articles;
