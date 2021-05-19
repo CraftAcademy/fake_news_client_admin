@@ -79,7 +79,7 @@ const EditorialModal = ({ id, isCreateMode }) => {
           <Button
             data-cy='create-article-btn'
             style={{ backgroundColor: '#FCE42D' }}>
-            Create Article
+            Write a new article
           </Button>
         ) : (
           <Button
