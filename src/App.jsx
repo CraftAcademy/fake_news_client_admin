@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard';
 import PopupMessage from './components/PopupMessage';
 import { Switch, Route } from 'react-router';
 import Authentication from './modules/Authentication';
+import './App.css'
 
 document.body.style = 'background: #202020';
 

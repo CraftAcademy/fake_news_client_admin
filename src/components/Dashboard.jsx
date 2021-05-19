@@ -1,37 +1,70 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { Container, Header, Item, Segment, Grid } from 'semantic-ui-react';
+import { Header, Item, Grid, Button } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
-import EditorialModal from './EditorialModal';
+import SideMenu from './SideMenu';
+import FixedHeader from './FixedHeader';
+import EditorialForm from './EditorialForm';
 
 const JournalistDashboard = () => {
-  const { authenticated, fullName, articles } = useSelector((state) => state);
+  const [active, setActive] = useState(false);
+  const { authenticated, articles } = useSelector((state) => state);
+  const [article, setArticle] = useState();
 
   useEffect(() => {
     Articles.index();
+    setActive(false);
   }, []);
+
+  const getArticle = async (id) => {
+    setActive(false);
+    let response = await Articles.show(id);
+    if (response) {
+      setArticle(response);
+      setActive(true);
+    }
+  };
+
+  const openCreateForm = () => {
+    setArticle('');
+    setActive(false);
+    setTimeout(() => {
+      setActive(true);
+    }, 200);
+  };
 
   const listOfArticles = articles.map((article) => {
     return (
       <Item
         key={article.id}
         data-cy='article'
-        style={{ borderBottom: '1px solid white' }}>
+        style={{ borderBottom: '1px solid white', paddingBottom: 10 }}>
         <Item.Content style={{ width: '100%' }} verticalAlign='middle'>
           <Item.Header
             data-cy='title'
             as={Header}
             size='small'
-            style={{ color: 'white' }}>
+            style={{
+              color: 'white',
+              fontFamily: 'Roboto Condensed',
+              fontSize: 20,
+            }}>
             {article.title}
           </Item.Header>
-          <Item.Meta data-cy='date' style={{ color: 'white' }}>
+          <Item.Meta
+            as='p'
+            data-cy='date'
+            style={{ color: 'white', fontSize: 16, paddingTop: 10 }}>
             Created at: {article.date}
           </Item.Meta>
         </Item.Content>
         <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
-          <EditorialModal id={article.id} />
+          <Button
+            data-cy='edit-article-btn'
+            onClick={() => getArticle(article.id)}>
+            Edit
+          </Button>
         </Item.Extra>
       </Item>
     );
@@ -40,47 +73,75 @@ const JournalistDashboard = () => {
   return (
     <>
       {!authenticated && <Redirect to='/' />}
-      <Grid centered>
-        <Grid.Row centered>
-          <h1 style={{ color: 'white', fontSize: 40, marginTop: 25 }}>
-            FAKE
-            <span style={{ color: '#FCE42D' }}> ? </span>
-            NEWS
-          </h1>
-        </Grid.Row>
-        <Grid.Row centered>
-          <p
-            data-cy='greeting'
-            style={{
-              color: 'white',
-              fontSize: 14,
-              fontStyle: 'italic',
-            }}>
-            {`WELCOME BACK ${fullName.toUpperCase()}`}
-          </p>
-        </Grid.Row>
-        <Grid.Row>
-          <EditorialModal isCreateMode={true} />
-        </Grid.Row>
+      <FixedHeader />
+      <SideMenu />
+      <Button
+        data-cy='create-article-btn'
+        style={styles.createButton}
+        onClick={() => openCreateForm()}>
+        Write new article
+      </Button>
+      <Grid centered style={{ paddingTop: 50 }}>
+        <h1
+          style={{
+            color: 'white',
+            fontSize: 60,
+            fontFamily: 'KoHo',
+            marginTop: 40,
+          }}>
+          FAKE
+          <span style={{ color: '#FCE42D' }}> ? </span>
+          NEWS
+        </h1>
       </Grid>
-      <Container
-        text
-        as={Segment}
-        style={{
-          maxHeight: 550,
-          overflowY: 'scroll',
-          backgroundColor: '#202325',
-        }}>
-        {articles[0] ? (
-          <Item.Group>{listOfArticles}</Item.Group>
-        ) : (
-          <p data-cy='no-articles-message' style={{ color: 'white' }}>
-            You don't have any articles yet
-          </p>
+
+      <div style={styles.wrapper}>
+        <div className='box-shadow' style={styles.articleContainer}>
+          {articles[0] ? (
+            <Item.Group style={{ paddingBottom: 10 }}>
+              {listOfArticles}
+            </Item.Group>
+          ) : (
+            <p data-cy='no-articles-message' style={{ color: 'white' }}>
+              You don't have any articles yet
+            </p>
+          )}
+        </div>
+        {active && (
+          <div style={styles.formContainer} className='box-shadow'>
+            <EditorialForm articleData={article} setActive={setActive} />
+          </div>
         )}
-      </Container>
+      </div>
     </>
   );
 };
 
 export default JournalistDashboard;
+
+const styles = {
+  articleContainer: {
+    maxHeight: 625,
+    overflowY: 'scroll',
+    backgroundColor: '#202325',
+    padding: 15,
+
+    width: '30%',
+    marginLeft: 300,
+  },
+  wrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 75,
+  },
+  formContainer: {
+    width: '45%',
+    marginLeft: '5%',
+    padding: 10,
+  },
+  createButton: {
+    position: 'absolute',
+    top: 105,
+    left: 300,
+  },
+};

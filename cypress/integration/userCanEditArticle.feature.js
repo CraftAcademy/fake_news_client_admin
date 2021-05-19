@@ -1,8 +1,12 @@
 describe('User can edit article', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
-      fixture: 'handleLogin.json',
-    });
+    cy.intercept(
+      'GET',
+      'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+      {
+        fixture: 'handleLogin.json',
+      }
+    );
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'listOfArticles.json',
     });
@@ -15,13 +19,16 @@ describe('User can edit article', () => {
 
   describe('Succesfully', () => {
     beforeEach(() => {
-      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
-        message: 'You successfully updated the article',
-      });
+      cy.intercept(
+        'PUT',
+        'https://fakest-newzz.herokuapp.com/api/articles/**',
+        {
+          message: 'You successfully updated the article',
+        }
+      );
     });
 
     it('is expected to show prefilled edit article modal', () => {
-      cy.get('[data-cy=editorial-modal]').should('be.visible');
       cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]')
           .find('input')
@@ -41,7 +48,7 @@ describe('User can edit article', () => {
           .find('[aria-atomic="true"]')
           .should('contain', 'Aliens');
       });
-      cy.get('[data-cy=thumbnail]').should('be.visible')
+      cy.get('[data-cy=thumbnail]').should('be.visible');
     });
 
     it('is expected to show success message', () => {
@@ -60,9 +67,13 @@ describe('User can edit article', () => {
 
   describe('Unsuccesfully', () => {
     beforeEach(() => {
-      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
-        message: 'You successfully updated the article',
-      });
+      cy.intercept(
+        'PUT',
+        'https://fakest-newzz.herokuapp.com/api/articles/**',
+        {
+          message: 'You successfully updated the article',
+        }
+      );
     });
     it('is expected to restrict article submit if any fields are empty', () => {
       cy.get('[data-cy=article-form]').within(() => {
