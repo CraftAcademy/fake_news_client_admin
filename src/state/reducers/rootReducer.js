@@ -25,6 +25,11 @@ const rootReducer = (state, action) => {
         authenticated: true,
         fullName: action.payload,
       };
+    case 'LOG_OUT':
+      return {
+        ...state,
+        authenticated: false,
+      };
     case 'SET_ARTICLES':
       return {
         ...state,

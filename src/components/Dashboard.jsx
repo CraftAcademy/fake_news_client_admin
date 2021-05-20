@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { Header, Item, Grid, Button } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
-import SideMenu from './SideMenu';
+
 import EditorialForm from './EditorialForm';
 
 const JournalistDashboard = () => {
@@ -71,14 +70,7 @@ const JournalistDashboard = () => {
 
   return (
     <>
-      {!authenticated && <Redirect to='/' />}
-      <SideMenu />
-      <Button
-        data-cy='create-article-btn'
-        style={styles.createButton}
-        onClick={() => openCreateForm()}>
-        Write new article
-      </Button>
+   
       <Grid centered style={{ paddingTop: 50 }}></Grid>
 
       <div style={styles.wrapper}>

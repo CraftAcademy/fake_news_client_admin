@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Icon, Menu } from 'semantic-ui-react';
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState('dashboard');
@@ -34,8 +34,11 @@ const SideMenu = () => {
       <Menu.Item
         name='backyard'
         active={activeItem === 'backyard'}
-        onClick={handleItemClick}>
-        Backyard Articles
+        onClick={handleItemClick}
+        as={Link}
+        to='/create'>
+        Write new article
+        <Icon name='plus'></Icon>
       </Menu.Item>
 
       <Menu.Item

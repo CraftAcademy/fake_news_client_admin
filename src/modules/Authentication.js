@@ -21,7 +21,10 @@ const Authentication = {
       });
       saveToLocalStorage(response);
       authenticate(response.data.data);
-    } catch (error) {}
+    } catch (error) {
+      localStorage.clear()
+      store.dispatch({type: 'LOG_OUT'})
+    }
   },
 };
 
