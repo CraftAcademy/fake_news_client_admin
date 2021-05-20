@@ -21,7 +21,6 @@ const Articles = {
         });
       }
     } catch (error) {
-      debugger
       errorHandler(error);
     }
   },
@@ -36,7 +35,7 @@ const Articles = {
       errorHandler(error);
     }
   },
-  
+
   async create(article, setModalOpen) {
     let params = { article: article };
     try {
@@ -50,7 +49,7 @@ const Articles = {
       errorHandler(error);
     }
   },
-  
+
   async update(article, setModalOpen) {
     let params = { article: article };
     try {
@@ -72,7 +71,7 @@ const getFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userData'));
 };
 
- export const imageEncoder = (file) =>
+export const imageEncoder = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);

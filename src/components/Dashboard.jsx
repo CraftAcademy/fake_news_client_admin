@@ -27,7 +27,10 @@ const JournalistDashboard = () => {
       <Table.Cell>
         <Rating
           icon='star'
-          defaultRating={article.rating}
+          size='tiny'
+          defaultRating={
+            article.rating ? article.rating : Math.floor(Math.random() * 6)
+          }
           maxRating={5}
           disabled
         />
