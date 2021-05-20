@@ -5,11 +5,16 @@
 
 p {
   font-family: 'Roboto Condensed', sans-serif;
-  color: black;
 }
 
 button {
-  background-color: #fce42d !important;
+  border: 2px solid #fdfd96 !important;
+  background: transparent !important;
+  color: white !important;
+  transition: 0.3s;
+}
+button:hover {
+  scale: 1.1;
 }
 
 input,

@@ -1,9 +1,16 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 
-const FixedHeader = () => {
+const Navbar = () => {
   return (
     <div style={styles.container} className='box-shadow'>
+      <div>
+        <h1 style={styles.title}>
+          FAKE
+          <span style={{ color: '#FCE42D' }}> ? </span>
+          NEWS
+        </h1>
+      </div>
       <Button size='tiny' style={styles.button}>
         Log Out
       </Button>
@@ -11,23 +18,30 @@ const FixedHeader = () => {
   );
 };
 
-export default FixedHeader;
+export default Navbar;
 
 const styles = {
   container: {
     position: 'fixed',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     width: '100%',
     marginTop: 15,
-    padding: 0,
+    padding: '0 25px',
     height: 50,
     backgroundColor: '#202325',
     zIndex: 200,
-    display: 'flex',
-    justifyContent: 'flex-end',
     paddingRight: 25,
   },
   button: {
     backgroundColor: '#FCE42D',
     alignSelf: 'center',
+  },
+  title: {
+    color: 'white',
+    fontSize: 30,
+    fontFamily: 'KoHo',
   },
 };

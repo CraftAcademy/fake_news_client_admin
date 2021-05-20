@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { Header, Item, Grid, Button } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 import SideMenu from './SideMenu';
-import FixedHeader from './FixedHeader';
 import EditorialForm from './EditorialForm';
 
 const JournalistDashboard = () => {
@@ -73,7 +72,6 @@ const JournalistDashboard = () => {
   return (
     <>
       {!authenticated && <Redirect to='/' />}
-      <FixedHeader />
       <SideMenu />
       <Button
         data-cy='create-article-btn'
@@ -81,19 +79,7 @@ const JournalistDashboard = () => {
         onClick={() => openCreateForm()}>
         Write new article
       </Button>
-      <Grid centered style={{ paddingTop: 50 }}>
-        <h1
-          style={{
-            color: 'white',
-            fontSize: 60,
-            fontFamily: 'KoHo',
-            marginTop: 40,
-          }}>
-          FAKE
-          <span style={{ color: '#FCE42D' }}> ? </span>
-          NEWS
-        </h1>
-      </Grid>
+      <Grid centered style={{ paddingTop: 50 }}></Grid>
 
       <div style={styles.wrapper}>
         <div className='box-shadow' style={styles.articleContainer}>

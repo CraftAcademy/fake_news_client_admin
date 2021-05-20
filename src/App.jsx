@@ -4,7 +4,8 @@ import Dashboard from './components/Dashboard';
 import PopupMessage from './components/PopupMessage';
 import { Switch, Route } from 'react-router';
 import Authentication from './modules/Authentication';
-import './App.css'
+import './App.css';
+import Navbar from './components/Navbar';
 
 document.body.style = 'background: #202020';
 
@@ -15,6 +16,7 @@ const App = () => {
 
   return (
     <>
+      <Navbar />
       <Switch>
         <Route exact path='/' component={LogIn}></Route>
         <Route exact path='/dashboard' component={Dashboard}></Route>
