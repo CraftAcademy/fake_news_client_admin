@@ -11,7 +11,7 @@ const Navbar = () => {
           NEWS
         </h1>
       </div>
-      <Button size='tiny' style={styles.button}>
+      <Button data-cy='logout-button' size='tiny' style={styles.button}>
         Log Out
       </Button>
     </div>

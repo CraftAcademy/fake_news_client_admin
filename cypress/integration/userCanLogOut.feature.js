@@ -7,7 +7,25 @@ describe('User can log out', () => {
         fixture: 'handleLogin.json',
       }
     );
+    cy.intercept(
+      'DELETE',
+      'https://fakest-newzz.herokuapp.com/api/auth/sign_out',
+      {
+        statusCode: 200,
+      }
+    );
     cy.visit('/');
+    cy.get('[data-cy=login-form]').within(() => {
+      cy.get('[data-cy=login-username]').type('user@mail.com');
+      cy.get('[data-cy=login-password]').type('password');
+      cy.get('[data-cy=login-btn]').click();
+    });
   });
-  it('is expected to get redirected back to ')
+  describe('user succsessfully log out', () => {
+    it('is expected to get redirected back to main page', () => {
+      cy.get('[data-cy=logout-button]').click();
+      cy.get('[data-cy=login-btn]').should('be.visible');
+      cy.get('[data-cy=logout-button]').should('not.exist');
+    });
+  });
 });
