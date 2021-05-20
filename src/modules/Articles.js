@@ -21,6 +21,7 @@ const Articles = {
         });
       }
     } catch (error) {
+      debugger
       errorHandler(error);
     }
   },

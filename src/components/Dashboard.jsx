@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Header, Item, Grid, Button } from 'semantic-ui-react';
+import { Header, Item, Grid, Button, Table, Rating } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 import EditorialForm from './EditorialForm';
@@ -31,65 +31,57 @@ const JournalistDashboard = () => {
       setActive(true);
     }, 200);
   };
+  const listOfArticles = articles.map((article) => (
+    <Table.Row key={article.id} textAlign="center">
+      <Table.Cell textAlign="left" width={5}>
+        {article.title}
+      </Table.Cell>
+      <Table.Cell singleLine>{article.category}</Table.Cell>
 
-  const listOfArticles = articles.map((article) => {
-    return (
-      <Item
-        key={article.id}
-        data-cy='article'
-        style={{ borderBottom: '1px solid white', paddingBottom: 10 }}>
-        <Item.Content style={{ width: '100%' }} verticalAlign='middle'>
-          <Item.Header
-            data-cy='title'
-            as={Header}
-            size='small'
-            style={{
-              color: 'white',
-              fontFamily: 'Roboto Condensed',
-              fontSize: 20,
-            }}>
-            {article.title}
-          </Item.Header>
-          <Item.Meta
-            as='p'
-            data-cy='date'
-            style={{ color: 'white', fontSize: 16, paddingTop: 10 }}>
-            Created at: {article.date}
-          </Item.Meta>
-        </Item.Content>
-        <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
-          <Button
-            data-cy='edit-article-btn'
-            onClick={() => getArticle(article.id)}>
-            Edit
-          </Button>
-        </Item.Extra>
-      </Item>
-    );
-  });
+      <Table.Cell>{article.date}</Table.Cell>
+      <Table.Cell>
+        {article.author
+          ? `${article.author.first_name} ${article.author.last_name}`
+          : 'Bob Kramer'}
+      </Table.Cell>
+      <Table.Cell>
+        <Rating
+          icon="star"
+          defaultRating={article.rating}
+          maxRating={5}
+          disabled
+        />
+      </Table.Cell>
+      <Table.Cell>
+        <Button>Action</Button>
+      </Table.Cell>
+    </Table.Row>
+  ));
 
   return (
     <>
-   
-      <Grid centered style={{ paddingTop: 50 }}></Grid>
-
-      <div style={styles.wrapper}>
-        <div className='box-shadow' style={styles.articleContainer}>
-          {articles[0] ? (
-            <Item.Group style={{ paddingBottom: 10 }}>
-              {listOfArticles}
-            </Item.Group>
-          ) : (
-            <p data-cy='no-articles-message' style={{ color: 'white' }}>
-              You don't have any articles yet
-            </p>
-          )}
+      <div style={styles.container}>
+        <div className="box-shadow" style={styles.articleContainer}>
+          <Table celled padded inverted >
+            <Table.Header>
+              <Table.Row textAlign="center">
+                <Table.HeaderCell singleLine>Title</Table.HeaderCell>
+                <Table.HeaderCell>Categories</Table.HeaderCell>
+                <Table.HeaderCell>Posted On</Table.HeaderCell>
+                <Table.HeaderCell>Author</Table.HeaderCell>
+                <Table.HeaderCell>Rating</Table.HeaderCell>
+                <Table.HeaderCell>Action</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {articles[0] ? (
+              <Table.Body>{listOfArticles}</Table.Body>
+            ) : (
+              <p data-cy="no-articles-message" style={{ color: 'white' }}>
+                You don't have any articles yet
+              </p>
+            )}
+          </Table>
         </div>
-        {active && (
-          <div style={styles.formContainer} className='box-shadow'>
-            <EditorialForm articleData={article} setActive={setActive} />
-          </div>
-        )}
       </div>
     </>
   );
@@ -104,13 +96,14 @@ const styles = {
     backgroundColor: '#202325',
     padding: 15,
 
-    width: '30%',
-    marginLeft: 300,
+    width: '100%',
   },
-  wrapper: {
+  container: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 75,
+    marginTop: 100,
+    marginLeft: 300,
+    marginRight: 100,
   },
   formContainer: {
     width: '45%',

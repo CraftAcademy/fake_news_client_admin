@@ -28,7 +28,7 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    marginTop: 15,
+    top: 0,
     padding: '0 25px',
     height: 50,
     backgroundColor: '#202325',
