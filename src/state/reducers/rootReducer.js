@@ -18,12 +18,20 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         popupOpen: false,
+        error: false,
       };
     case 'LOG_IN':
       return {
         ...state,
         authenticated: true,
         fullName: action.payload,
+      };
+    case 'LOG_OUT':
+      return {
+        ...state,
+        authenticated: false,
+        message: action.payload,
+        popupOpen: true,
       };
     case 'SET_ARTICLES':
       return {
