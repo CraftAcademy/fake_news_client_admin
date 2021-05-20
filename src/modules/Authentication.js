@@ -1,9 +1,9 @@
 import store from '../state/store/configureStore';
 import axios from 'axios';
-import errorHandler from './ErrorHandler'
+import errorHandler from './ErrorHandler';
 
 const Authentication = {
-  async signIn(event) {
+  async signIn(event, setLoading) {
     let credentials = getFormInput(event);
     try {
       let response = await axios.post('auth/sign_in', credentials);
@@ -12,6 +12,7 @@ const Authentication = {
     } catch (error) {
       errorHandler(error);
     }
+    setLoading(false);
   },
   async validateToken() {
     try {

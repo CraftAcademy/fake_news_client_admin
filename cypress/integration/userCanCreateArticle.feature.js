@@ -34,7 +34,6 @@ describe('User can create article', () => {
 
     it('can fill the article creation form and submit', () => {
       cy.get('[data-cy=create-article-btn]').click();
-      cy.get('[data-cy=editorial-modal]').should('be.visible');
       cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]').type('Title');
         cy.get('[data-cy=teaser]').type('CIA is spying on you');
@@ -66,7 +65,6 @@ describe('User can create article', () => {
 
     it('can fill the article creation form and submit', () => {
       cy.get('[data-cy=create-article-btn]').click();
-      cy.get('[data-cy=editorial-modal]').should('be.visible');
       cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]').type('Title');
         cy.get('[data-cy=teaser]').type('CIA is spying on you');
@@ -74,8 +72,8 @@ describe('User can create article', () => {
         cy.get('[data-cy=categories]').click();
         cy.get('.item').contains('Illuminati').click();
         cy.get('[data-cy=image]')
-        .attachFile('imageFixture.jpg', { subjectType: 'drag-n-drop' })
-        .trigger('change');
+          .attachFile('imageFixture.jpg', { subjectType: 'drag-n-drop' })
+          .trigger('change');
         cy.get('[data-cy=submit-btn]').click();
       });
       cy.get('[data-cy=popup-message]').should(
