@@ -8,6 +8,7 @@ import Authentication from './modules/Authentication';
 import SideMenu from './components/SideMenu';
 import './App.css';
 import Navbar from './components/Navbar';
+import EditorialForm from './components/EditorialForm';
 
 document.body.style = 'background: #202020';
 
@@ -30,6 +31,10 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={LogIn}></Route>
         <Route exact path='/dashboard' component={Dashboard}></Route>
+        <Route exact path='/create'>
+          <EditorialForm isCreateMode={true} />
+        </Route>
+        <Route exact path='/edit' component={EditorialForm} />
       </Switch>
       <PopupMessage />
     </>

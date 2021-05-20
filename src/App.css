@@ -14,7 +14,9 @@ button {
   transition: 0.3s;
 }
 button:hover {
-  scale: 1.1;
+  background-color: #fdfd96 !important;
+  transform: scale(1.1);
+  color: black !important;
 }
 
 input,

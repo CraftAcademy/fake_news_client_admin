@@ -56,11 +56,12 @@ export default SideMenu;
 
 const styles = {
   container: {
-    position: 'absolute',
+    position: 'fixed',
     zIndex: 100,
-    height: '100vh',
+    height: '100%',
     top: 0,
     display: 'flex',
     paddingTop: 75,
+    width: 250,
   },
 };
