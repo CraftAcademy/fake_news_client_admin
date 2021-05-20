@@ -27,9 +27,9 @@ const EditorialForm = ({ isCreateMode }) => {
 
   useEffect(() => {
     if (!isCreateMode) {
-      // eslint-disable-next-line
       getArticle();
     }
+    // eslint-disable-next-line
   }, [isCreateMode]);
 
   const getArticle = async () => {
