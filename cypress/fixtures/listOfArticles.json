@@ -1,24 +1,60 @@
 {
   "articles": [
-    {
-      "id": 4,
-      "title": "Amateur Rocket-Maker Finally Launches Himself Off Earth - Now To Prove It's Flat",
-      "date": "2021-05-14, 18:14"
-    },
-    {
-      "id": 3,
-      "title": "New Year 2020: 10 Moments This Decade That Made Us Say, \"Wait, What?\"",
-      "date": "2021-05-14, 13:14"
-    },
-    {
-      "id": 2,
-      "title": "'It is a trap!': Inside the QAnon attack that never happened",
-      "date": "2021-05-13, 20:03"
-    },
-    {
-      "id": 1,
-      "title": "New Vaccine Conspiracy Theories Are Going Viral in Arabic",
-      "date": "2021-05-13, 18:03"
-    }
+      {
+          "id": 7,
+          "title": "Moderna Chief Medical Officer Confirms mRNA Injection For COVID-19 Can Change Your Genetic Code.",
+          "teaser": "From a TEDx Beacon Street talk occurred in 2017, Tal Zaks, chief medical officer of Moderna, Inc., one pharmaceutical company manufacturer of the experimental mRNA technology injection, confirms mRNA injection for COVID-19 can change your genetic code or DNA.",
+          "date": "2021-05-19, 15:10",
+          "category": "Hollywood",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/93wree7gq2b2mn6m8mw7h7vismvc?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184423Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a8b2a4d9c4d5e48be630b36c624d9a9bf2221701dfa52be4f520d09f8579ec57"
+      },
+      {
+          "id": 6,
+          "title": "Amateur Rocket-Maker Finally Launches Himself Off Earth - Now To Prove It's Flat",
+          "teaser": "Several police vehicles surrounded Pawlowski after he finished a service on Saturday, ordered him out of his car and made him kneel down on a busy highway to arrest him.",
+          "date": "2021-05-19, 15:10",
+          "category": "Covid",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/3gto4sydx2um2jhnk187rldrbvm4?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184423Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=753cee01d7bffbdf102c08ab8ea4e95550c89761f2c8a3d8fc0ecef9d8675b6d"
+      },
+      {
+          "id": 5,
+          "title": "The Covid-19 Vaccine Will Contain A Microchip",
+          "teaser": "Despite the majority of us keeping our fingers crossed for a Covid-19 vaccine to be developed as soon as possible, others on the internet are sceptical about the benefits of a such a cure.",
+          "date": "2021-05-19, 15:10",
+          "category": "Covid",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/7w93r5y72vntpogapgg6nwxy8cp5?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184424Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6e083c24c5c829a127e91511ae124036542b7169b82373f6eb28fd79d4da7038"
+      },
+      {
+          "id": 4,
+          "title": "Amateur Rocket-Maker Finally Launches Himself Off Earth - Now To Prove It's Flat",
+          "teaser": "Mike Hughes, a California man who is most known for his belief that the Earth is shaped like a Frisbee, finally blasted off into the sky in a steam-powered rocket he had built himself.",
+          "date": "2021-05-19, 15:10",
+          "category": "Science",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/l6tzkfinht95sampjqd5ns5lpeix?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184424Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=463e8d8aacc6d37430b8f7592ce1f586c5067c72d6e428fa7b105e7b0f6c3f4d"
+      },
+      {
+          "id": 3,
+          "title": "New Year 2020: 10 Moments This Decade That Made Us Say, \"Wait, What?\"",
+          "teaser": "Happy New Year 2020: This list of ten moments includes not just personalities in India and across the world, but also certain events which have had a number of consequences for those involved.",
+          "date": "2021-05-19, 15:10",
+          "category": "Science",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/ireivnxpyf00g1vleopddtyk6x7o?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184424Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=81c353a6dcebea138f669ff6c5a93ffb68b6049dc663ec0686ecbc960ad54ad3"
+      },
+      {
+          "id": 2,
+          "title": "‘It is a trap!’: Inside the QAnon attack that never happened",
+          "teaser": "Why fears of violence on March 4, the mythical day Trump was supposed to be inaugurated to a second term, proved unfounded.",
+          "date": "2021-05-19, 15:10",
+          "category": "Illuminati",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/sop4xummulpqmhcd1fxtk6yi5550?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184425Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b08f50b061072cf59b452699ede978b817776fad1fd4a2c0a474f194d9ad82d0"
+      },
+      {
+          "id": 1,
+          "title": "New Vaccine Conspiracy Theories Are Going Viral in Arabic",
+          "teaser": "Facebook has been criticized for failing to curb misinformation in English. But little attention has been paid to the scale of the problem in Arabic.",
+          "date": "2021-05-19, 15:10",
+          "category": "Aliens",
+          "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/39se5vnkfpub6nhawzaui6n5olws?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184425Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f5c9bdc7b4c6e266f15a9d3ee3288e33d0d3ba4525cf4cd5b641e5f4c80b0dbb"
+      }
   ]
 }

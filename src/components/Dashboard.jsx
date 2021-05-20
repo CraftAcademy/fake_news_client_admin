@@ -12,20 +12,27 @@ const JournalistDashboard = () => {
   }, []);
 
   const listOfArticles = articles.map((article) => (
-    <Table.Row key={article.id} textAlign='center'>
-      <Table.Cell textAlign='left' width={5} style={{ fontWeight: 'bold' }}>
+    <Table.Row key={article.id} textAlign='center' data-cy='article'>
+      <Table.Cell
+        data-cy='title'
+        textAlign='left'
+        width={5}
+        style={{ fontWeight: 'bold' }}>
         {article.title}
       </Table.Cell>
-      <Table.Cell singleLine>{article.category}</Table.Cell>
+      <Table.Cell data-cy='category' singleLine>
+        {article.category}
+      </Table.Cell>
 
-      <Table.Cell>{article.date}</Table.Cell>
-      <Table.Cell>
+      <Table.Cell data-cy='date'>{article.date}</Table.Cell>
+      <Table.Cell data-cy='author'>
         {article.author
           ? `${article.author.first_name} ${article.author.last_name}`
           : 'Bob Kramer'}
       </Table.Cell>
       <Table.Cell>
         <Rating
+          data-cy='rating'
           icon='star'
           size='tiny'
           defaultRating={
@@ -36,7 +43,9 @@ const JournalistDashboard = () => {
         />
       </Table.Cell>
       <Table.Cell>
-        <Link to={{ pathname: '/edit', state: { id: article.id } }}>
+        <Link
+          data-cy='edit-article-btn'
+          to={{ pathname: '/edit', state: { id: article.id } }}>
           <Button>Edit</Button>
         </Link>
       </Table.Cell>
@@ -67,7 +76,7 @@ const JournalistDashboard = () => {
             <Segment
               attached='bottom'
               data-cy='no-articles-message'
-              style={{ color: 'white' }}>
+              style={{ color: '#2b2b2b' }}>
               You don't have any articles yet
             </Segment>
           )}

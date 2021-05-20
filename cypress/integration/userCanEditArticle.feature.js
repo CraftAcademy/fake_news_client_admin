@@ -38,11 +38,11 @@ describe('User can edit article', () => {
           );
         cy.get('[data-cy=teaser]').should(
           'contain.text',
-          'Mike Hughes, a California man who is most known for'
+          'Mike Hughes, a California man who is most known for his belief that the Earth is shaped like a Frisbee'
         );
         cy.get('[data-cy=body]').should(
           'contain.text',
-          'Science gets a lot of respect these days'
+          'The 61-year-old limo driver and daredevil-turned-rocket-maker soared about 1,875'
         );
         cy.get('[data-cy="categories"]')
           .find('[aria-atomic="true"]')
@@ -54,6 +54,7 @@ describe('User can edit article', () => {
     it('is expected to show success message', () => {
       cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]')
+          .find('input')
           .clear()
           .type('Amateur rocket man became flat after all');
         cy.get('[data-cy=submit-btn]').click();
@@ -77,7 +78,7 @@ describe('User can edit article', () => {
     });
     it('is expected to restrict article submit if any fields are empty', () => {
       cy.get('[data-cy=article-form]').within(() => {
-        cy.get('[data-cy=title]').clear();
+        cy.get('[data-cy=title]').find('input').clear();
         cy.get('[data-cy=submit-btn]').click();
         cy.get('input:invalid').should('have.length', 1);
         cy.get('[data-cy=title]')

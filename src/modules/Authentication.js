@@ -21,10 +21,7 @@ const Authentication = {
       });
       saveToLocalStorage(response);
       authenticate(response.data.data);
-    } catch (error) {
-      localStorage.clear()
-      store.dispatch({type: 'LOG_OUT'})
-    }
+    } catch (error) {}
   },
 };
 

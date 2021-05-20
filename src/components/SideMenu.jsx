@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Icon, Menu } from 'semantic-ui-react';
+import avatar from '../assets/avatar.jpg';
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState('dashboard');
@@ -12,16 +13,15 @@ const SideMenu = () => {
   };
   return (
     <Menu vertical inverted pointing style={styles.container}>
-      <h4
-        data-cy='greeting'
-        style={{
-          color: 'white',
-          fontSize: 16,
-          textAlign: 'center',
-          marginBottom: 20,
-        }}>
-        {`WELCOME BACK ${fullName.toUpperCase()}`}
-      </h4>
+      <div style={styles.avatar}>
+        <h4
+          data-cy='greeting'
+          style={{ fontSize: 18, color: '#333', textAlign: 'center' }}>
+          WELCOME BACK <br />
+          {fullName.toUpperCase()}
+        </h4>
+      </div>
+
       <Menu.Item
         name='dashboard'
         active={activeItem === 'dashboard'}
@@ -33,6 +33,7 @@ const SideMenu = () => {
 
       <Menu.Item
         name='backyard'
+        data-cy='create-article-btn'
         active={activeItem === 'backyard'}
         onClick={handleItemClick}
         as={Link}
@@ -63,5 +64,13 @@ const styles = {
     display: 'flex',
     paddingTop: 95,
     width: 250,
+  },
+  avatar: {
+    backgroundImage: `url(${avatar})`,
+    display: 'flex',
+    height: 200,
+    marginBottom: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 };

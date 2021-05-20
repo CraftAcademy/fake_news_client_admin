@@ -36,21 +36,20 @@ const Articles = {
     }
   },
 
-  async create(article, setModalOpen) {
+  async create(article) {
     let params = { article: article };
     try {
       let response = await axios.post('/articles', params, {
         headers: getFromLocalStorage(),
       });
       Articles.index();
-      setModalOpen(false);
       Popup.open('SUCCESS_MESSAGE', response.data.message);
     } catch (error) {
       errorHandler(error);
     }
   },
 
-  async update(article, setModalOpen) {
+  async update(article) {
     let params = { article: article };
     try {
       let response = await axios.put(`/articles/${article.id}`, params, {
@@ -58,7 +57,6 @@ const Articles = {
       });
       Articles.index();
       Popup.open('SUCCESS_MESSAGE', response.data.message);
-      setModalOpen(false);
     } catch (error) {
       errorHandler(error);
     }

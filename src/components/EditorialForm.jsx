@@ -26,8 +26,10 @@ const EditorialForm = ({ isCreateMode }) => {
   let location = useLocation();
 
   useEffect(() => {
-    // eslint-disable-next-line
-    !isCreateMode && getArticle();
+    if (!isCreateMode) {
+      // eslint-disable-next-line
+      getArticle();
+    }
   }, [isCreateMode]);
 
   const getArticle = async () => {
@@ -164,12 +166,7 @@ const EditorialForm = ({ isCreateMode }) => {
             Submit
           </Form.Button>
           <Link to='/'>
-            <Form.Button
-              type='submit'
-              data-cy='submit-btn'
-              style={{ marginLeft: 25 }}>
-              Cancel
-            </Form.Button>
+            <Form.Button style={{ marginLeft: 25 }}>Cancel</Form.Button>
           </Link>
         </Form.Group>
       </Form>
