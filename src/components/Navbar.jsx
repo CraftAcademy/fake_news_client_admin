@@ -1,4 +1,5 @@
 import React from 'react';
+import Authentication from '../modules/Authentication'
 import { Button } from 'semantic-ui-react';
 
 const Navbar = () => {
@@ -11,7 +12,7 @@ const Navbar = () => {
           NEWS
         </h1>
       </div>
-      <Button data-cy='logout-button' size='tiny' style={styles.button}>
+      <Button onClick={() => Authentication.signOut()} data-cy='logout-button' size='tiny' style={styles.button}>
         Log Out
       </Button>
     </div>

@@ -25,6 +25,7 @@ describe('User can log out', () => {
     it('is expected to get redirected back to main page', () => {
       cy.get('[data-cy=logout-button]').click();
       cy.get('[data-cy=login-btn]').should('be.visible');
+      cy.get('[data-cy=popup-message]').should('contain', 'You have been logged out')
       cy.get('[data-cy=logout-button]').should('not.exist');
     });
   });

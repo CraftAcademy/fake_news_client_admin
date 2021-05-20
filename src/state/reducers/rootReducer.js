@@ -29,6 +29,8 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         authenticated: false,
+        message: action.payload,
+        popupOpen: true,
       };
     case 'SET_ARTICLES':
       return {

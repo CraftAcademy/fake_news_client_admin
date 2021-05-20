@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 import Popup from '../modules/Popup';
 
 const SuccessMessage = () => {
-  const message = useSelector((state) => state.message);
-  const error = useSelector((state) => state.error);
-  const popupOpen = useSelector((state) => state.popupOpen);
+  const { popupOpen, message, error } = useSelector((state) => state);
 
   return (
     <Portal closeOnDocumentClick onClose={() => Popup.close()} open={popupOpen}>
@@ -19,9 +17,10 @@ const SuccessMessage = () => {
           bottom: 25,
           transform: 'translate(-50%)',
           zIndex: 1000,
-        }}>
+        }}
+      >
         <Header>{error ? 'Error' : 'Success'}</Header>
-        <p data-cy='popup-message'>{message}</p>
+        <p data-cy="popup-message">{message}</p>
       </Segment>
     </Portal>
   );
