@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Header, Button, Table, Rating, Segment } from 'semantic-ui-react';
+import { Button, Table, Rating, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 const JournalistDashboard = () => {
@@ -13,7 +13,7 @@ const JournalistDashboard = () => {
 
   const listOfArticles = articles.map((article) => (
     <Table.Row key={article.id} textAlign='center'>
-      <Table.Cell textAlign='left' width={5}>
+      <Table.Cell textAlign='left' width={5} style={{ fontWeight: 'bold' }}>
         {article.title}
       </Table.Cell>
       <Table.Cell singleLine>{article.category}</Table.Cell>
@@ -48,7 +48,7 @@ const JournalistDashboard = () => {
       <div style={styles.container}>
         <div className='box-shadow' style={styles.articleContainer}>
           <Segment inverted attached='top'>
-            <Header>All Articles</Header>
+            <h2>All Articles</h2>
           </Segment>
           <Table celled padded inverted style={{ overflowY: 'scroll' }}>
             <Table.Header>
@@ -61,16 +61,16 @@ const JournalistDashboard = () => {
                 <Table.HeaderCell>Action</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
-            {articles[0] ? (
-              <Table.Body>{listOfArticles}</Table.Body>
-            ) : (
-              <Table.Row
-                data-cy='no-articles-message'
-                style={{ color: 'white' }}>
-                You don't have any articles yet
-              </Table.Row>
-            )}
+            {articles[0] && <Table.Body>{listOfArticles}</Table.Body>}
           </Table>
+          {!articles[0] && (
+            <Segment
+              attached='bottom'
+              data-cy='no-articles-message'
+              style={{ color: 'white' }}>
+              You don't have any articles yet
+            </Segment>
+          )}
         </div>
       </div>
     </>

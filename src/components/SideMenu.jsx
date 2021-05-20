@@ -16,7 +16,7 @@ const SideMenu = () => {
         data-cy='greeting'
         style={{
           color: 'white',
-          fontSize: 14,
+          fontSize: 16,
           textAlign: 'center',
           marginBottom: 20,
         }}>
@@ -61,7 +61,7 @@ const styles = {
     height: '100%',
     top: 0,
     display: 'flex',
-    paddingTop: 75,
+    paddingTop: 95,
     width: 250,
   },
 };

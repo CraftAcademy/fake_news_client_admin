@@ -1,6 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto Condensed';
+}
+td,
+a {
+  font-size: 18px;
 }
 
 p {
@@ -11,7 +16,7 @@ button {
   border: 2px solid #fdfd96 !important;
   background: transparent !important;
   color: white !important;
-  transition: 0.3s;
+  transition: 0.3s !important;
 }
 button:hover {
   background-color: #fdfd96 !important;
@@ -21,20 +26,20 @@ button:hover {
 
 input,
 textarea {
-  background-color: #202325 !important;
+  background-color: #2b2b2b !important;
   color: white !important;
   box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.25),
     8px 30px 30px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.3) !important;
 }
 
 div.ui.fluid.selection.dropdown {
-  background-color: #202325 !important;
+  background-color: #2b2b2b !important;
   color: white !important;
   box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.25),
     8px 30px 30px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.3) !important;
 }
 div.ui.active.visible.fluid.selection.dropdown {
-  background-color: #202325 !important;
+  background-color: #2b2b2b !important;
   color: white !important;
   box-shadow: -1px -1px 2px rgba(255, 255, 255, 0.25),
     8px 30px 30px rgba(0, 0, 0, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.3) !important;

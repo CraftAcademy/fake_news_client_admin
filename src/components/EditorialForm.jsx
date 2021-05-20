@@ -75,7 +75,7 @@ const EditorialForm = ({ isCreateMode }) => {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className='box-shadow'>
       <Form
         style={styles.form}
         data-cy='article-form'
@@ -86,7 +86,8 @@ const EditorialForm = ({ isCreateMode }) => {
             padding: '10px 0',
             margin: 0,
             display: 'flex',
-            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            alignItems: 'center',
           }}>
           <Form.Field widths={5}>
             <Form.Input
@@ -121,34 +122,20 @@ const EditorialForm = ({ isCreateMode }) => {
               onChange={(event) => handleImage(event)}
             />
           </Form.Field>
-          <div>
-            {article.image && (
+          <div style={{ marginRight: 50 }}>
+            {article.image ? (
               <img
                 data-cy='thumbnail'
                 src={thumbnail ? URL.createObjectURL(thumbnail) : article.image}
                 alt='thumbnail'
-                style={{
-                  objectFit: 'cover',
-                  width: 300,
-                  height: 190,
-                  padding: '0 35px',
-                }}
+                style={styles.thumbnail}
               />
+            ) : (
+              <div style={styles.thumbnailPlaceholder}>
+                <p style={{ fontSize: 20, color: 'white' }}>Thumbnail</p>
+              </div>
             )}
           </div>
-          <Form.Group>
-            <Form.Button type='submit' data-cy='submit-btn'>
-              Submit
-            </Form.Button>
-            <Link to='/'>
-              <Form.Button
-                type='submit'
-                data-cy='submit-btn'
-                style={{ marginLeft: 25 }}>
-                Cancel
-              </Form.Button>
-            </Link>
-          </Form.Group>
         </Form.Group>
         <Form.Group grouped style={{ padding: 10 }}>
           <Form.TextArea
@@ -172,6 +159,19 @@ const EditorialForm = ({ isCreateMode }) => {
             style={{ marginBottom: 15, height: 250 }}
           />
         </Form.Group>
+        <Form.Group>
+          <Form.Button type='submit' data-cy='submit-btn'>
+            Submit
+          </Form.Button>
+          <Link to='/'>
+            <Form.Button
+              type='submit'
+              data-cy='submit-btn'
+              style={{ marginLeft: 25 }}>
+              Cancel
+            </Form.Button>
+          </Link>
+        </Form.Group>
       </Form>
     </div>
   );
@@ -186,8 +186,25 @@ const styles = {
     marginTop: 100,
     marginLeft: 350,
     marginRight: 100,
+    backgroundColor: '#333',
+    padding: 25,
   },
   form: {
     width: '100%',
+  },
+  thumbnailPlaceholder: {
+    display: 'flex',
+    width: 300,
+    height: 190,
+    padding: '0 35px',
+    border: '3px solid #2b2b2b',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  thumbnail: {
+    objectFit: 'cover',
+    width: 300,
+    height: 190,
+    padding: '0 35px',
   },
 };
