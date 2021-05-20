@@ -23,14 +23,6 @@ const Authentication = {
       authenticate(response.data.data);
     } catch (error) {}
   },
-
-  async signOut() {
-    try {
-      await axios.delete('auth/sign_out', { headers: getFromLocalStorage() });
-    } catch (error) {
-      errorHandler(error);
-    }
-  },
 };
 
 export default Authentication;

@@ -1,14 +1,10 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import Authentication from '../modules/Authentication';
 
 const FixedHeader = () => {
   return (
     <div style={styles.container} className='box-shadow'>
-      <Button
-        size='tiny'
-        style={styles.button}
-        onClick={() => Authentication.signOut()}>
+      <Button size='tiny' style={styles.button}>
         Log Out
       </Button>
     </div>
