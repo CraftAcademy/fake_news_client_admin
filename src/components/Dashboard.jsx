@@ -67,7 +67,7 @@ const JournalistDashboard = () => {
               <Table.Row textAlign='center'>
                 <Table.HeaderCell singleLine>Title</Table.HeaderCell>
                 <Table.HeaderCell>Categories</Table.HeaderCell>
-                <Table.HeaderCell>Posted On</Table.HeaderCell>
+                <Table.HeaderCell>Updated On</Table.HeaderCell>
                 <Table.HeaderCell>Author</Table.HeaderCell>
                 <Table.HeaderCell>Status</Table.HeaderCell>
                 <Table.HeaderCell>Rating</Table.HeaderCell>
