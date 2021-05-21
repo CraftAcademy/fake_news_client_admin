@@ -54,10 +54,17 @@ const EditorialForm = ({ isCreateMode }) => {
   };
 
   const handleChange = (event) => {
-    setArticle({
-      ...article,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === 'body') {
+      setArticle({
+        ...article,
+        [event.target.name]: event.target.value,
+      });
+    } else {
+      setArticle({
+        ...article,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const handleChangeCategory = (event) => {

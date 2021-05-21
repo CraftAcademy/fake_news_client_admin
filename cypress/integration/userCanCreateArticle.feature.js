@@ -37,7 +37,9 @@ describe('User can create article', () => {
       cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]').type('Title');
         cy.get('[data-cy=teaser]').type('CIA is spying on you');
-        cy.get('[data-cy=body]').type('No for real! Get a tinfoil hat quick!');
+        cy.get('[data-cy=body]').type(
+          'No for real! Get a tinfoil hat quick!{shift+enter}{shift+enter}And some more content!'
+        );
         cy.get('[data-cy=image]')
           .attachFile('imageFixture.jpg', { subjectType: 'drag-n-drop' })
           .trigger('change');
