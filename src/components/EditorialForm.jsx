@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Form } from 'semantic-ui-react';
+import { Form, Radio } from 'semantic-ui-react';
 import Articles, { imageEncoder } from '../modules/Articles';
 
 const emptyArticle = {
@@ -9,6 +9,7 @@ const emptyArticle = {
   teaser: '',
   body: '',
   category: '',
+  premium: false,
 };
 const categories = [
   { key: 'HW', text: 'Hollywood', value: 'Hollywood' },
@@ -53,10 +54,17 @@ const EditorialForm = ({ isCreateMode }) => {
   };
 
   const handleChange = (event) => {
-    setArticle({
-      ...article,
-      [event.target.name]: event.target.value,
-    });
+    if (event.target.name === 'body') {
+      setArticle({
+        ...article,
+        [event.target.name]: event.target.value,
+      });
+    } else {
+      setArticle({
+        ...article,
+        [event.target.name]: event.target.value,
+      });
+    }
   };
 
   const handleChangeCategory = (event) => {
@@ -103,18 +111,51 @@ const EditorialForm = ({ isCreateMode }) => {
               placeholder='Title'
               data-cy='title'
             />
-            <Form.Select
-              style={{ marginBottom: 10 }}
-              required
-              data-cy='categories'
-              fluid
-              onChange={(event) => handleChangeCategory(event)}
-              value={article.category}
-              name='category'
-              label='Category'
-              options={categories}
-              placeholder='Category'
-            />
+            <Form.Group inline>
+              <Form.Select
+                style={{ marginBottom: 10, width: 210 }}
+                required
+                data-cy='categories'
+                fluid
+                onChange={(event) => handleChangeCategory(event)}
+                value={article.category}
+                name='category'
+                label='Category'
+                options={categories}
+                placeholder='Category'
+              />
+              <Form.Group
+                style={{
+                  backgroundColor: '#333',
+                  marginTop: 20,
+                }}>
+                <div className='box-shadow' style={styles.radioWrapper}>
+                  <Radio
+                    label='Free'
+                    data-cy='free'
+                    checked={!article.premium}
+                    onChange={() =>
+                      setArticle({
+                        ...article,
+                        premium: !article.premium,
+                      })
+                    }
+                  />
+                  <Radio
+                    style={{ marginLeft: 15 }}
+                    label='Premium'
+                    data-cy='premium'
+                    checked={article.premium}
+                    onChange={() =>
+                      setArticle({
+                        ...article,
+                        premium: !article.premium,
+                      })
+                    }
+                  />
+                </div>
+              </Form.Group>
+            </Form.Group>
             <Form.Input
               type='file'
               label='Image'
@@ -203,5 +244,11 @@ const styles = {
     width: 300,
     height: 190,
     padding: '0 35px',
+  },
+  radioWrapper: {
+    padding: 9,
+    borderRadius: 4,
+    width: 175,
+    marginLeft: 7,
   },
 };
