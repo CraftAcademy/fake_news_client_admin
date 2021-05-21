@@ -37,7 +37,9 @@ describe('User can create article', () => {
       cy.get('[data-cy=article-form]').within(() => {
         cy.get('[data-cy=title]').type('Title');
         cy.get('[data-cy=teaser]').type('CIA is spying on you');
-        cy.get('[data-cy=body]').type('No for real! Get a tinfoil hat quick!');
+        cy.get('[data-cy=body]').type(
+          'No for real! Get a tinfoil hat quick!{shift+enter}{shift+enter}And some more content!'
+        );
         cy.get('[data-cy=image]')
           .attachFile('imageFixture.jpg', { subjectType: 'drag-n-drop' })
           .trigger('change');
@@ -46,6 +48,8 @@ describe('User can create article', () => {
         cy.get('[data-cy=categories]').click();
         cy.get('.item').contains('Illuminati').click();
         cy.get('[data-cy=thumbnail]').should('be.visible');
+        cy.get('[data-cy=premium]').click();
+        cy.get('[data-cy=premium]').should('have.class', 'checked');
         cy.get('[data-cy=submit-btn]').click();
       });
       cy.get('[data-cy=popup-message]').should(
