@@ -48,7 +48,7 @@ describe('User can edit article', () => {
           .find('[aria-atomic="true"]')
           .should('contain', 'Aliens');
       });
-      cy.get('[data-cy=premium]').should('be.checked')
+      cy.get('[data-cy=premium]').should('have.class', 'checked');
       cy.get('[data-cy=thumbnail]').should('be.visible');
     });
 
