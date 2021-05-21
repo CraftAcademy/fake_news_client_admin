@@ -18,6 +18,7 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         popupOpen: false,
+        error: false,
       };
     case 'LOG_IN':
       return {

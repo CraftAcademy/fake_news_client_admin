@@ -33,6 +33,8 @@ describe('User can log out', () => {
         'You have been logged out'
       );
       cy.get('[data-cy=logout-button]').should('not.exist');
+      cy.wait(2000)
+      cy.get('[data-cy=popup-message]').should('not.exist')
     });
   });
 });
