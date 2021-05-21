@@ -18,7 +18,7 @@ describe('User can see their articles', () => {
     });
 
     it('is expected to show the list of articles', () => {
-      cy.get('[data-cy=article]').should('have.length', 4);
+      cy.get('[data-cy=article]').should('have.length', 7);
     });
 
     it('is expected to show the first article', () => {
@@ -27,12 +27,12 @@ describe('User can see their articles', () => {
         .within(() => {
           cy.get('[data-cy=title]').should(
             'contain',
-            "Amateur Rocket-Maker Finally Launches Himself Off Earth - Now To Prove It's Flat"
+            'Moderna Chief Medical Officer Confirms mRNA Injection For COVID-19 Can Change Your Genetic Code.'
           );
-          cy.get('[data-cy=date]').should(
-            'contain',
-            'Created at: 2021-05-14, 18:14'
-          );
+          cy.get('[data-cy=category]').should('contain', 'Hollywood');
+          cy.get('[data-cy=date]').should('contain', '2021-05-19, 15:10');
+          cy.get('[data-cy=author]').should('contain', 'Bob Kramer');
+          cy.get('[data-cy=rating]').should('be.visible');
         });
     });
 

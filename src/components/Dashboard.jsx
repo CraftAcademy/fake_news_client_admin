@@ -1,86 +1,113 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { Container, Header, Item, Segment, Grid } from 'semantic-ui-react';
+import { Button, Table, Rating, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
-import EditorialModal from './EditorialModal';
 
 const JournalistDashboard = () => {
-  const { authenticated, fullName, articles } = useSelector((state) => state);
+  const { articles } = useSelector((state) => state);
 
   useEffect(() => {
     Articles.index();
   }, []);
 
-  const listOfArticles = articles.map((article) => {
-    return (
-      <Item
-        key={article.id}
-        data-cy='article'
-        style={{ borderBottom: '1px solid white' }}>
-        <Item.Content style={{ width: '100%' }} verticalAlign='middle'>
-          <Item.Header
-            data-cy='title'
-            as={Header}
-            size='small'
-            style={{ color: 'white' }}>
-            {article.title}
-          </Item.Header>
-          <Item.Meta data-cy='date' style={{ color: 'white' }}>
-            Created at: {article.date}
-          </Item.Meta>
-        </Item.Content>
-        <Item.Extra style={{ width: 'auto', marginLeft: 50 }}>
-          <EditorialModal id={article.id} />
-        </Item.Extra>
-      </Item>
-    );
-  });
+  const listOfArticles = articles.map((article) => (
+    <Table.Row key={article.id} textAlign='center' data-cy='article'>
+      <Table.Cell
+        data-cy='title'
+        textAlign='left'
+        width={5}
+        style={{ fontWeight: 'bold' }}>
+        {article.title}
+      </Table.Cell>
+      <Table.Cell data-cy='category' singleLine>
+        {article.category}
+      </Table.Cell>
+
+      <Table.Cell data-cy='date'>{article.date}</Table.Cell>
+      <Table.Cell data-cy='author'>
+        {article.author
+          ? `${article.author.first_name} ${article.author.last_name}`
+          : 'Bob Kramer'}
+      </Table.Cell>
+      <Table.Cell>
+        <Rating
+          data-cy='rating'
+          icon='star'
+          size='tiny'
+          defaultRating={
+            article.rating ? article.rating : Math.floor(Math.random() * 6)
+          }
+          maxRating={5}
+          disabled
+        />
+      </Table.Cell>
+      <Table.Cell>
+        <Link
+          data-cy='edit-article-btn'
+          to={{ pathname: '/edit', state: { id: article.id } }}>
+          <Button>Edit</Button>
+        </Link>
+      </Table.Cell>
+    </Table.Row>
+  ));
 
   return (
     <>
-      {!authenticated && <Redirect to='/' />}
-      <Grid centered>
-        <Grid.Row centered>
-          <h1 style={{ color: 'white', fontSize: 40, marginTop: 25 }}>
-            FAKE
-            <span style={{ color: '#FCE42D' }}> ? </span>
-            NEWS
-          </h1>
-        </Grid.Row>
-        <Grid.Row centered>
-          <p
-            data-cy='greeting'
-            style={{
-              color: 'white',
-              fontSize: 14,
-              fontStyle: 'italic',
-            }}>
-            {`WELCOME BACK ${fullName.toUpperCase()}`}
-          </p>
-        </Grid.Row>
-        <Grid.Row>
-          <EditorialModal isCreateMode={true} />
-        </Grid.Row>
-      </Grid>
-      <Container
-        text
-        as={Segment}
-        style={{
-          maxHeight: 550,
-          overflowY: 'scroll',
-          backgroundColor: '#202325',
-        }}>
-        {articles[0] ? (
-          <Item.Group>{listOfArticles}</Item.Group>
-        ) : (
-          <p data-cy='no-articles-message' style={{ color: 'white' }}>
-            You don't have any articles yet
-          </p>
-        )}
-      </Container>
+      <div style={styles.container}>
+        <div className='box-shadow' style={styles.articleContainer}>
+          <Segment inverted attached='top'>
+            <h2>All Articles</h2>
+          </Segment>
+          <Table celled padded inverted style={{ overflowY: 'scroll' }}>
+            <Table.Header>
+              <Table.Row textAlign='center'>
+                <Table.HeaderCell singleLine>Title</Table.HeaderCell>
+                <Table.HeaderCell>Categories</Table.HeaderCell>
+                <Table.HeaderCell>Posted On</Table.HeaderCell>
+                <Table.HeaderCell>Author</Table.HeaderCell>
+                <Table.HeaderCell>Rating</Table.HeaderCell>
+                <Table.HeaderCell>Action</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            {articles[0] && <Table.Body>{listOfArticles}</Table.Body>}
+          </Table>
+          {!articles[0] && (
+            <Segment
+              attached='bottom'
+              data-cy='no-articles-message'
+              style={{ color: '#2b2b2b' }}>
+              You don't have any articles yet
+            </Segment>
+          )}
+        </div>
+      </div>
     </>
   );
 };
 
 export default JournalistDashboard;
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 100,
+    marginLeft: 350,
+    marginRight: 100,
+  },
+  articleContainer: {
+    backgroundColor: '#202325',
+    width: '100%',
+  },
+  formContainer: {
+    width: '45%',
+    marginLeft: '5%',
+    padding: 10,
+  },
+  createButton: {
+    position: 'absolute',
+    top: 105,
+    left: 300,
+  },
+};

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Image, Segment, Form, Button, Input } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -6,10 +6,12 @@ import Authentication from '../modules/Authentication';
 
 const LogIn = () => {
   const authenticated = useSelector((state) => state.authenticated);
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (event) => {
+    setLoading(true);
     event.preventDefault();
-    Authentication.signIn(event);
+    Authentication.signIn(event, setLoading);
   };
 
   return (
@@ -18,7 +20,7 @@ const LogIn = () => {
 
       <Grid columns='2' divided>
         <Grid.Row centered>
-          <h1 style={{ color: 'white', fontSize: 40 }}>
+          <h1 style={{ color: 'white', fontSize: 40, fontFamily: 'KoHo' }}>
             FAKE
             <span style={{ color: '#FCE42D' }}> ? </span>
             NEWS
@@ -62,8 +64,9 @@ const LogIn = () => {
             </Form.Field>
             <Button
               type='submit'
+              loading={loading ? true : false}
               data-cy='login-btn'
-              style={{ backgroundColor: '#FCE42D' }}>
+              style={{ marginTop: 15 }}>
               Login
             </Button>
           </Form>
