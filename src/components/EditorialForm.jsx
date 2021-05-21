@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Form } from 'semantic-ui-react';
+import { Form, Checkbox } from 'semantic-ui-react';
 import Articles, { imageEncoder } from '../modules/Articles';
 
 const emptyArticle = {
@@ -159,6 +159,15 @@ const EditorialForm = ({ isCreateMode }) => {
             placeholder='Article Body'
             data-cy='body'
             style={{ marginBottom: 15, height: 250 }}
+          />
+          <Checkbox
+            toggle
+            label='Premium'
+            checked={article.premium}
+            onChange={() => setArticle({
+              ...article,
+              [article.premium]: !article.premium,
+            })}
           />
         </Form.Group>
         <Form.Group>

@@ -30,6 +30,9 @@ const JournalistDashboard = () => {
           ? `${article.author.first_name} ${article.author.last_name}`
           : 'Bob Kramer'}
       </Table.Cell>
+      <Table.Cell data-cy='premium'>
+        {article.premium ? 'Premium' : 'Free'}
+      </Table.Cell>
       <Table.Cell>
         <Rating
           data-cy='rating'
@@ -66,6 +69,7 @@ const JournalistDashboard = () => {
                 <Table.HeaderCell>Categories</Table.HeaderCell>
                 <Table.HeaderCell>Posted On</Table.HeaderCell>
                 <Table.HeaderCell>Author</Table.HeaderCell>
+                <Table.HeaderCell>Status</Table.HeaderCell>
                 <Table.HeaderCell>Rating</Table.HeaderCell>
                 <Table.HeaderCell>Action</Table.HeaderCell>
               </Table.Row>
