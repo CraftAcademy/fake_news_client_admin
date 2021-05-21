@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Authentication from '../modules/Authentication';
 
 const LogIn = () => {
-  const authenticated = useSelector((state) => state.authenticated);
+  const { authenticated } = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (event) => {

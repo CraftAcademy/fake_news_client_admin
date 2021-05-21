@@ -46,6 +46,8 @@ describe('User can create article', () => {
         cy.get('[data-cy=categories]').click();
         cy.get('.item').contains('Illuminati').click();
         cy.get('[data-cy=thumbnail]').should('be.visible');
+        cy.get('[data-cy=premium]').click();
+        cy.get('[data-cy=premium]').should('have.class', 'checked');
         cy.get('[data-cy=submit-btn]').click();
       });
       cy.get('[data-cy=popup-message]').should(
