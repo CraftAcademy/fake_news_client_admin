@@ -37,7 +37,7 @@ const Articles = {
   },
 
   async create(article) {
-    let params = { article: article };
+    let params = { article: { ...article, body: article.body.split('\n\n') } };
     try {
       let response = await axios.post('/articles', params, {
         headers: getFromLocalStorage(),
@@ -50,7 +50,7 @@ const Articles = {
   },
 
   async update(article) {
-    let params = { article: article };
+    let params = { article: { ...article, body: article.body.split('\n\n') } };
     try {
       let response = await axios.put(`/articles/${article.id}`, params, {
         headers: getFromLocalStorage(),
