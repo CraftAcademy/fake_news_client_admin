@@ -52,11 +52,12 @@ describe('User can create article', () => {
         cy.get('[data-cy=premium]').should('have.class', 'checked');
         cy.get('[data-cy=submit-btn]').click();
       });
-      cy.get('[data-cy=popup-message]').should(
+      cy.get('[data-cy=submit-message]').should(
         'contain',
         'Your article has successfully been created'
       );
       cy.wait(1000);
+      cy.url().should('contain', '/dashboard');
     });
   });
 

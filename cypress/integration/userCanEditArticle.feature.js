@@ -60,14 +60,16 @@ describe('User can edit article', () => {
           .type('Amateur rocket man became flat after all');
         cy.get('[data-cy=submit-btn]').click();
       });
-      cy.get('[data-cy=popup-message]').should(
+      cy.get('[data-cy=submit-message]').should(
         'contain',
         'You successfully updated the article'
       );
+      cy.wait(1000);
+      cy.url().should('contain', '/dashboard');
     });
   });
 
-  describe('Unsuccesfully', () => {
+  describe('Unsuccesfully with invalid params', () => {
     beforeEach(() => {
       cy.intercept(
         'PUT',
@@ -97,6 +99,27 @@ describe('User can edit article', () => {
       });
       cy.get('[data-cy=article-edit-modal]').should('not.exist');
       cy.get('[data-cy=popup-message]').should('not.exist');
+    });
+  });
+
+  describe('Unsuccesfully identical data', () => {
+    beforeEach(() => {
+      cy.intercept(
+        'PUT',
+        'https://fakest-newzz.herokuapp.com/api/articles/**',
+        {
+          message: 'You successfully updated the article',
+        }
+      );
+    });
+    it('is expected to show an error message if the article is identical to the original', () => {
+      cy.get('[data-cy=article-form]').within(() => {
+        cy.get('[data-cy=submit-btn]').click();
+      });
+      cy.get('[data-cy=popup-message]').should(
+        'contain',
+        'You might want to change something in the article!'
+      );
     });
   });
 });

@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Form, Radio } from 'semantic-ui-react';
 import Articles, { imageEncoder } from '../modules/Articles';
+import Popup from '../modules/Popup';
+import SubmitMessage from './SubmitMessage';
 
 const emptyArticle = {
   title: '',
@@ -21,6 +24,7 @@ const categories = [
 ];
 
 const EditorialForm = ({ isCreateMode }) => {
+  const { submitted } = useSelector((state) => state);
   const [article, setArticle] = useState(emptyArticle);
   const [originalArticle, setOriginalArticle] = useState({});
   const [thumbnail, setThumbnail] = useState();
@@ -46,7 +50,10 @@ const EditorialForm = ({ isCreateMode }) => {
       Articles.create(article);
     } else {
       if (article === originalArticle) {
-        // raise error
+        Popup.open(
+          'ERROR_MESSAGE',
+          'You might want to change something in the article!'
+        );
       } else {
         Articles.update(article);
       }
@@ -79,6 +86,7 @@ const EditorialForm = ({ isCreateMode }) => {
 
   return (
     <div style={styles.container} className='box-shadow'>
+      {submitted && <SubmitMessage time={2000} />}
       <Form
         style={styles.form}
         data-cy='article-form'
