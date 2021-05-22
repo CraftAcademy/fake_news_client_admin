@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Popup from './Popup';
 import store from '../state/store/configureStore';
 import errorHandler from './ErrorHandler';
 
@@ -43,7 +42,10 @@ const Articles = {
         headers: getFromLocalStorage(),
       });
       Articles.index();
-      Popup.open('SUCCESS_MESSAGE', response.data.message);
+      store.dispatch({
+        type: 'SUBMIT',
+        payload: { status: true, message: response.data.message },
+      });
     } catch (error) {
       errorHandler(error);
     }
@@ -56,7 +58,10 @@ const Articles = {
         headers: getFromLocalStorage(),
       });
       Articles.index();
-      Popup.open('SUCCESS_MESSAGE', response.data.message);
+      store.dispatch({
+        type: 'SUBMIT',
+        payload: { status: true, message: response.data.message },
+      });
     } catch (error) {
       errorHandler(error);
     }
