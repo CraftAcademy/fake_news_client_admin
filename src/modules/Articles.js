@@ -43,7 +43,7 @@ const Articles = {
       });
       Articles.index();
       store.dispatch({
-        type: 'SUBMIT',
+        type: 'SET_SUBMIT',
         payload: { status: true, message: response.data.message },
       });
     } catch (error) {
@@ -59,7 +59,7 @@ const Articles = {
       });
       Articles.index();
       store.dispatch({
-        type: 'SUBMIT',
+        type: 'SET_SUBMIT',
         payload: { status: true, message: response.data.message },
       });
     } catch (error) {

@@ -38,7 +38,7 @@ const rootReducer = (state, action) => {
         ...state,
         articles: action.payload,
       };
-    case 'SUBMIT':
+    case 'SET_SUBMIT':
       return {
         ...state,
         submitted: action.payload.status,

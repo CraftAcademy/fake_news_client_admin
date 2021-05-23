@@ -11,7 +11,7 @@ const SubmitMessage = ({ time }) => {
   useEffect(() => {
     setTimeout(() => {
       setRedirect(true);
-      store.dispatch({ type: 'SUBMIT', payload: false });
+      store.dispatch({ type: 'SET_SUBMIT', payload: false });
     }, time);
   });
 
