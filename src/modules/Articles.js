@@ -52,7 +52,12 @@ const Articles = {
   },
 
   async update(article) {
-    let params = { article: { ...article, body: article.body.split('\n\n') } };
+    let params
+    if (Array.isArray(article.body)) {
+      params = {article: article}
+    } else {
+      params = { article: { ...article, body: article.body.split('\n\n') } };
+    }
     try {
       let response = await axios.put(`/articles/${article.id}`, params, {
         headers: getFromLocalStorage(),
