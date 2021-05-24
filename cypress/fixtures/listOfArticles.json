@@ -7,6 +7,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Hollywood",
           "premium": true,
+          "published": false,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/93wree7gq2b2mn6m8mw7h7vismvc?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184423Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a8b2a4d9c4d5e48be630b36c624d9a9bf2221701dfa52be4f520d09f8579ec57"
       },
       {
@@ -16,6 +17,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Covid",
           "premium": true,
+          "published": false,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/3gto4sydx2um2jhnk187rldrbvm4?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184423Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=753cee01d7bffbdf102c08ab8ea4e95550c89761f2c8a3d8fc0ecef9d8675b6d"
       },
       {
@@ -25,6 +27,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Covid",
           "premium": false,
+          "published": false,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/7w93r5y72vntpogapgg6nwxy8cp5?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184424Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=6e083c24c5c829a127e91511ae124036542b7169b82373f6eb28fd79d4da7038"
       },
       {
@@ -34,6 +37,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Science",
           "premium": false,
+          "published": true,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/l6tzkfinht95sampjqd5ns5lpeix?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184424Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=463e8d8aacc6d37430b8f7592ce1f586c5067c72d6e428fa7b105e7b0f6c3f4d"
       },
       {
@@ -43,6 +47,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Science",
           "premium": true,
+          "published": true,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/ireivnxpyf00g1vleopddtyk6x7o?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184424Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=81c353a6dcebea138f669ff6c5a93ffb68b6049dc663ec0686ecbc960ad54ad3"
       },
       {
@@ -52,6 +57,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Illuminati",
           "premium": false,
+          "published": true,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/sop4xummulpqmhcd1fxtk6yi5550?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184425Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b08f50b061072cf59b452699ede978b817776fad1fd4a2c0a474f194d9ad82d0"
       },
       {
@@ -61,6 +67,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Aliens",
           "premium": true,
+          "published": true,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/39se5vnkfpub6nhawzaui6n5olws?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184425Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f5c9bdc7b4c6e266f15a9d3ee3288e33d0d3ba4525cf4cd5b641e5f4c80b0dbb"
       }
   ]
