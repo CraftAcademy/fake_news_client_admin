@@ -63,6 +63,6 @@ const getFromLocalStorage = () => {
 
 const authenticate = (data) => {
   let fullName = `${data.first_name} ${data.last_name}`;
-  let role = `${data.role}`
-  store.dispatch({ type: 'LOG_IN', payload: fullName, role });
+  let role = data.role
+  store.dispatch({ type: 'LOG_IN', payload: {fullName, role} });
 };

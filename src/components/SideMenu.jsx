@@ -16,9 +16,9 @@ const SideMenu = () => {
       <div style={styles.avatar}>
         <h4
           data-cy='greeting'
-          style={{ fontSize: 18, color: '#333', textAlign: 'center' }}>
-          WELCOME BACK <br />
-          {fullName.toUpperCase()}
+          style={{ fontSize: 18, color: '#333', textAlign: 'center', textTransform: 'uppercase' }}>
+          welcome back <br />
+          {fullName}
         </h4>
       </div>
 

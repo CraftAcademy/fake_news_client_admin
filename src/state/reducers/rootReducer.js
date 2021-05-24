@@ -24,7 +24,8 @@ const rootReducer = (state, action) => {
       return {
         ...state,
         authenticated: true,
-        fullName: action.payload,
+        fullName: action.payload.fullName,
+        role: action.payload.role
       };
     case 'LOG_OUT':
       return {
@@ -44,6 +45,11 @@ const rootReducer = (state, action) => {
         submitted: action.payload.status,
         message: action.payload.message,
       };
+    case 'PUBLISH_ARTICLE':
+      return {
+        ...state,
+        published: true
+      }
     default:
       return state;
   }

@@ -5,7 +5,7 @@ import { Button, Table, Rating, Segment } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 const JournalistDashboard = () => {
-  const { articles, authenticated } = useSelector((state) => state);
+  const { role, articles } = useSelector((state) => state);
 
   useEffect(() => {
     Articles.index();
@@ -47,7 +47,7 @@ const JournalistDashboard = () => {
         />
       </Table.Cell>
       <Table.Cell>
-        {(authenticated.role == 'editor') ? (
+        {role === 'editor' ? (
           <Button data-cy='publish-btn' >Publish</Button>
         ) : (
           <Link
