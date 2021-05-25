@@ -1,18 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button, Table, Rating, Segment, Popup } from 'semantic-ui-react';
+import {
+  Button,
+  Table,
+  Rating,
+  Segment,
+  Popup,
+  Modal,
+} from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 const JournalistDashboard = () => {
   const { role, articles } = useSelector((state) => state);
-
+  const [confirming, setConfirming] = useState(false);
 
   useEffect(() => {
     Articles.index();
   }, []);
 
-  const actionPopup = (
+  const actionPopup = (article) => (
     <Popup
       trigger={<Button data-cy='action-btn'>Actions</Button>}
       flowing
@@ -22,10 +29,29 @@ const JournalistDashboard = () => {
       style={{ padding: 15 }}
       on='click'>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Button id='publish-btn' style={{ marginBottom: 10 }} onClick={(article)=>Articles.publish(article)}>
-          Publish
-        </Button>
-        <Button data-cy='edit'>Edit</Button>
+        {confirming ? (
+          <>
+            <Button
+              id='confirm-btn'
+              style={{ marginBottom: 10 }}
+              onClick={() => Articles.publish(article.id)}>
+              Confirm
+            </Button>
+            <Button onClick={() => setConfirming(false)} id='cancel-btn'>
+              Cancel
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              id='publish-btn'
+              style={{ marginBottom: 10 }}
+              onClick={() => setConfirming(true)}>
+              Publish
+            </Button>
+            <Button id='edit'>Edit</Button>
+          </>
+        )}
       </div>
     </Popup>
   );
@@ -69,7 +95,7 @@ const JournalistDashboard = () => {
       </Table.Cell>
       <Table.Cell>
         {role === 'editor' ? (
-          actionPopup
+          actionPopup(article)
         ) : (
           <Link
             data-cy='edit-article-btn'

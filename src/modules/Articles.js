@@ -66,19 +66,18 @@ const Articles = {
       errorHandler(error);
     }
   },
-  async publish(article) {
+  async publish(id) {
     try {
-      debugger
-    let response = await axios.put(`/articles/${article.id}`, {
-      headers: getFromLocalStorage(),
-    });
-    Articles.index();
-    store.dispatch({ 
-      type: 'SUCCESS_MESSAGE',
-      payload: { status: true, message: response.data.message}
-    })}
-    catch (error) {
-      errorHandler(error)
+      let response = await axios.put(`/articles/${id}`, {
+        headers: getFromLocalStorage(),
+      });
+      Articles.index();
+      store.dispatch({
+        type: 'SUCCESS_MESSAGE',
+        payload: response.data.message,
+      });
+    } catch (error) {
+      errorHandler(error);
     }
   },
 };

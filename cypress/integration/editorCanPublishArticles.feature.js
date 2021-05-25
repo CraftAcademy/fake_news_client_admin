@@ -22,12 +22,10 @@ describe('editor can publish articles', () => {
     it('is expected to show action button in dashboard', () => {
       cy.get('[data-cy=action-btn]').first().click();
       cy.get('#publish-btn').click();
-      cy.get('[data-cy=confirm-modal]').within(() => {
-        cy.get('[data-cy=confirm-btn]').click();
-      });
+      cy.get('#confirm-btn').click();
       cy.get('[data-cy=popup-message]').should(
         'contain',
-        'The article has successfully been published'
+        'The article has been successfully published'
       );
     });
   });
