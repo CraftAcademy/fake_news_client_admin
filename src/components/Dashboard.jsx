@@ -7,6 +7,7 @@ import Articles from '../modules/Articles';
 const JournalistDashboard = () => {
   const { role, articles } = useSelector((state) => state);
 
+
   useEffect(() => {
     Articles.index();
   }, []);
@@ -21,7 +22,7 @@ const JournalistDashboard = () => {
       style={{ padding: 15 }}
       on='click'>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Button id='publish-btn' style={{ marginBottom: 10 }}>
+        <Button id='publish-btn' style={{ marginBottom: 10 }} onClick={(article)=>Articles.publish(article)}>
           Publish
         </Button>
         <Button data-cy='edit'>Edit</Button>
