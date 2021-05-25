@@ -7,6 +7,9 @@ describe('editor can publish articles', () => {
 
   describe('Successfully as an editor', () => {
     before(() => {
+      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/7', {
+        message: 'The article has been successfully published',
+      });
       cy.visit('/');
       cy.window()
         .its('store')
@@ -16,10 +19,11 @@ describe('editor can publish articles', () => {
         });
     });
 
-    it('is expected to show edit button in dashboard', () => {
+    it('is expected to show action button in dashboard', () => {
       cy.get('[data-cy=action-btn]').first().click();
+      cy.get('#publish-btn').click();
       cy.get('[data-cy=confirm-modal]').within(() => {
-        cy.get('[data-cy=confirm]').click();
+        cy.get('[data-cy=confirm-btn]').click();
       });
       cy.get('[data-cy=popup-message]').should(
         'contain',
@@ -40,8 +44,9 @@ describe('editor can publish articles', () => {
     });
 
     it('is expected to not be able to click the button', () => {
-      cy.get('[data-cy=action-btn]').eq(1).should('be.disabled');
       cy.get('[data-cy=action-btn]').eq(1).click();
+      cy.get('#publish-btn').should('be.disabled');
+      cy.get('#publish-btn').click();
       cy.get('[data-cy=confirm-modal]').should('not.exist');
     });
   });
@@ -58,7 +63,7 @@ describe('editor can publish articles', () => {
     });
 
     it('is expected to not be able to click the button', () => {
-      cy.get('[data-cy=publish-btn]').should('not.exist');
+      cy.get('[data-cy=action-btn]').should('not.exist');
     });
   });
 });

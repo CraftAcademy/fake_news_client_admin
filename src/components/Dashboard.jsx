@@ -16,12 +16,12 @@ const JournalistDashboard = () => {
       trigger={<Button data-cy='action-btn'>Actions</Button>}
       flowing
       inverted
-      offset={[0, 25]}
-      position='left center'
+      offset={[0, 5]}
+      position='bottom center'
       style={{ padding: 15 }}
       on='click'>
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Button data-cy='publish' style={{ marginBottom: 10 }}>
+        <Button id='publish-btn' style={{ marginBottom: 10 }}>
           Publish
         </Button>
         <Button data-cy='edit'>Edit</Button>
