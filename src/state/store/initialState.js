@@ -4,7 +4,7 @@ const initialState = {
   fullName: '',
   submitted: false,
   role: '',
-  published: false
+  published: false,
 };
 
 export default initialState;

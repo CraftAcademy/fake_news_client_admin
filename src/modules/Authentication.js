@@ -25,11 +25,11 @@ const Authentication = {
   },
   async signOut() {
     try {
-       await axios.delete('auth/sign_out', {
+      await axios.delete('auth/sign_out', {
         headers: getFromLocalStorage(),
       });
-      localStorage.removeItem('userData')
-      store.dispatch({ type: 'LOG_OUT', payload: 'You have been logged out'  });
+      localStorage.removeItem('userData');
+      store.dispatch({ type: 'LOG_OUT', payload: 'You have been logged out' });
     } catch (error) {}
   },
 };
@@ -63,6 +63,6 @@ const getFromLocalStorage = () => {
 
 const authenticate = (data) => {
   let fullName = `${data.first_name} ${data.last_name}`;
-  let role = data.role
-  store.dispatch({ type: 'LOG_IN', payload: {fullName, role} });
+  let role = data.role;
+  store.dispatch({ type: 'LOG_IN', payload: { fullName, role } });
 };

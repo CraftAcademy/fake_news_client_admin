@@ -27,7 +27,7 @@ const Articles = {
   async show(id) {
     try {
       let response = await axios.get(`/articles/${id}`, {
-        headers: getFromLocalStorage(),
+        headers: { ...getFromLocalStorage(), source: 'admin-system' },
       });
       return response.data.article;
     } catch (error) {
@@ -66,6 +66,7 @@ const Articles = {
       errorHandler(error);
     }
   },
+
   async publish(id) {
     try {
       let response = await axios.put(`/articles/${id}`, {
