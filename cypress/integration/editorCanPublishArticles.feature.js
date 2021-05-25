@@ -6,7 +6,7 @@ describe('editor can publish articles', () => {
   });
 
   describe('Successfully as an editor', () => {
-    before(() => {
+    beforeEach(() => {
       cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/7', {
         message: 'The article has been successfully published',
       });
@@ -31,7 +31,7 @@ describe('editor can publish articles', () => {
   });
 
   describe('Unsuccessfully because article is already published', () => {
-    before(() => {
+    beforeEach(() => {
       cy.visit('/');
       cy.window()
         .its('store')
@@ -44,13 +44,13 @@ describe('editor can publish articles', () => {
     it('is expected to not be able to click the button', () => {
       cy.get('[data-cy=action-btn]').eq(1).click();
       cy.get('#publish-btn').should('be.disabled');
-      cy.get('#publish-btn').click();
-      cy.get('[data-cy=confirm-modal]').should('not.exist');
+      cy.get('#publish-btn').click({ force: true });
+      cy.get('#confirm-btn').should('not.exist');
     });
   });
 
   describe('Unsuccessfully as a journalist', () => {
-    before(() => {
+    beforeEach(() => {
       cy.visit('/');
       cy.window()
         .its('store')
