@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button, Table, Rating, Segment } from 'semantic-ui-react';
+import { Button, Table, Rating, Segment, Popup } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 
 const JournalistDashboard = () => {
@@ -11,34 +11,51 @@ const JournalistDashboard = () => {
     Articles.index();
   }, []);
 
+  const actionPopup = (
+    <Popup
+      trigger={<Button data-cy='action-btn'>Actions</Button>}
+      flowing
+      inverted
+      offset={[0, 25]}
+      position='left center'
+      style={{ padding: 15 }}
+      on='click'>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Button data-cy='publish' style={{ marginBottom: 10 }}>
+          Publish
+        </Button>
+        <Button data-cy='edit'>Edit</Button>
+      </div>
+    </Popup>
+  );
+
   const listOfArticles = articles.map((article) => (
-    <Table.Row key={article.id} textAlign="center" data-cy="article">
+    <Table.Row key={article.id} textAlign='center' data-cy='article'>
       <Table.Cell
-        data-cy="title"
-        textAlign="left"
+        data-cy='title'
+        textAlign='left'
         width={5}
-        style={{ fontWeight: 'bold' }}
-      >
+        style={{ fontWeight: 'bold' }}>
         {article.title}
       </Table.Cell>
-      <Table.Cell data-cy="category" singleLine>
+      <Table.Cell data-cy='category' singleLine>
         {article.category}
       </Table.Cell>
 
-      <Table.Cell data-cy="date">{article.date}</Table.Cell>
-      <Table.Cell data-cy="author">
+      <Table.Cell data-cy='date'>{article.date}</Table.Cell>
+      <Table.Cell data-cy='author'>
         {article.author
           ? `${article.author.first_name} ${article.author.last_name}`
           : 'Bob Kramer'}
       </Table.Cell>
-      <Table.Cell data-cy="premium">
+      <Table.Cell data-cy='premium'>
         {article.premium ? 'Premium' : 'Free'}
       </Table.Cell>
       <Table.Cell>
         <Rating
-          data-cy="rating"
-          icon="star"
-          size="tiny"
+          data-cy='rating'
+          icon='star'
+          size='tiny'
           defaultRating={
             article.rating ? article.rating : Math.floor(Math.random() * 6)
           }
@@ -46,14 +63,16 @@ const JournalistDashboard = () => {
           disabled
         />
       </Table.Cell>
+      <Table.Cell data-cy='published'>
+        {article.published ? 'Published' : 'Unpublished'}
+      </Table.Cell>
       <Table.Cell>
         {role === 'editor' ? (
-          <Button data-cy='publish-btn' >Publish</Button>
+          actionPopup
         ) : (
           <Link
-            data-cy="edit-article-btn"
-            to={{ pathname: '/edit', state: { id: article.id } }}
-          >
+            data-cy='edit-article-btn'
+            to={{ pathname: '/edit', state: { id: article.id } }}>
             <Button>Edit</Button>
           </Link>
         )}
@@ -64,19 +83,20 @@ const JournalistDashboard = () => {
   return (
     <>
       <div style={styles.container}>
-        <div className="box-shadow" style={styles.articleContainer}>
-          <Segment inverted attached="top">
+        <div className='box-shadow' style={styles.articleContainer}>
+          <Segment inverted attached='top'>
             <h2>All Articles</h2>
           </Segment>
           <Table celled padded inverted style={{ overflowY: 'scroll' }}>
             <Table.Header>
-              <Table.Row textAlign="center">
+              <Table.Row textAlign='center'>
                 <Table.HeaderCell singleLine>Title</Table.HeaderCell>
                 <Table.HeaderCell>Categories</Table.HeaderCell>
                 <Table.HeaderCell>Updated On</Table.HeaderCell>
                 <Table.HeaderCell>Author</Table.HeaderCell>
                 <Table.HeaderCell>Status</Table.HeaderCell>
                 <Table.HeaderCell>Rating</Table.HeaderCell>
+                <Table.HeaderCell>Published</Table.HeaderCell>
                 <Table.HeaderCell>Action</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
@@ -84,10 +104,9 @@ const JournalistDashboard = () => {
           </Table>
           {!articles[0] && (
             <Segment
-              attached="bottom"
-              data-cy="no-articles-message"
-              style={{ color: '#2b2b2b' }}
-            >
+              attached='bottom'
+              data-cy='no-articles-message'
+              style={{ color: '#2b2b2b' }}>
               You don't have any articles yet
             </Segment>
           )}
