@@ -17,7 +17,7 @@
           "date": "2021-05-19, 15:10",
           "category": "Covid",
           "premium": true,
-          "published": false,
+          "published": true,
           "image": "https://fake-news-2021-production.s3.eu-north-1.amazonaws.com/3gto4sydx2um2jhnk187rldrbvm4?response-content-disposition=inline%3B%20filename%3D%22article_image.jpg%22%3B%20filename%2A%3DUTF-8%27%27article_image.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAUYRJY36EVBTLAPKU%2F20210520%2Feu-north-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T184423Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=753cee01d7bffbdf102c08ab8ea4e95550c89761f2c8a3d8fc0ecef9d8675b6d"
       },
       {

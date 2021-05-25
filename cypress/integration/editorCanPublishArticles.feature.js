@@ -5,28 +5,60 @@ describe('editor can publish articles', () => {
     });
   });
 
-  describe('Successfully through signing in', () => {
+  describe('Successfully as an editor', () => {
     before(() => {
-      cy.intercept(
-        'POST',
-        'https://fakest-newzz.herokuapp.com/api/auth/sign_in',
-        {
-          fixture: 'handleEditorLogin.json',
-        }
-      );
       cy.visit('/');
-      cy.get('[data-cy=login-form]').within(() => {
-        cy.get('[data-cy=login-username]').type('mrEditor@fakenews.com');
-        cy.get('[data-cy=login-password]').type('password');
-        cy.get('[data-cy=login-btn]').click();
-      });
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Fake', role: 'editor' },
+        });
     });
 
     it('is expected to show edit button in dashboard', () => {
-      cy.get('[ data-cy=article]').within(() => {
-        cy.get('[data-cy=publish-btn]').click();
-      });
-      cy.get('[data-cy=popup-message]').should('contain', 'The article has successfully been published')
+      cy.get('[data-cy=publish-btn]').first().click();
+      cy.get('[data-cy=confirm-modal]').within(() => {
+        cy.get('[data-cy=confirm]').click()
+      })
+      cy.get('[data-cy=popup-message]').should(
+        'contain',
+        'The article has successfully been published'
+      );
+    });
+  });
+
+  describe('Unsuccessfully because article is already published', () => {
+    before(() => {
+      cy.visit('/');
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Fake', role: 'editor' },
+        });
+    });
+
+    it('is expected to not be able to click the button', () => {
+      cy.get('[data-cy=publish-btn]').second().should('be.disabled');
+      cy.get('[data-cy=publish-btn]').second().click();
+      cy.get('[data-cy=confirm-modal]').should('not.exist');
+    });
+  });
+
+  describe('Unsuccessfully as a journalist', () => {
+    before(() => {
+      cy.visit('/');
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Fake', role: 'editor' },
+        });
+    });
+
+    it('is expected to not be able to click the button', () => {
+      cy.get('[data-cy=publish-btn]').should('not.exist');
     });
   });
 });
