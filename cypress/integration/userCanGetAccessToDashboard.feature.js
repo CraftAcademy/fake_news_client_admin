@@ -7,12 +7,20 @@ describe('User can get access to dashboard', () => {
 
   describe('Successfully through signing in', () => {
     before(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
-        statusCode: 401,
-      });
-      cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/auth/sign_in', {
-        fixture: 'handleLogin.json',
-      });
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+        {
+          statusCode: 401,
+        }
+      );
+      cy.intercept(
+        'POST',
+        'https://fakest-newzz.herokuapp.com/api/auth/sign_in',
+        {
+          fixture: 'handleLogin.json',
+        }
+      );
       cy.visit('/');
     });
 
@@ -29,9 +37,13 @@ describe('User can get access to dashboard', () => {
 
   describe('Successfully through token validation', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
-        fixture: 'handleLogin.json',
-      });
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+        {
+          fixture: 'handleLogin.json',
+        }
+      );
       cy.visit('/');
     });
 
@@ -44,12 +56,20 @@ describe('User can get access to dashboard', () => {
 
   describe('Unsuccessfully through faulty sign in', () => {
     before(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
-        statusCode: 401,
-      });
-      cy.intercept('POST', 'https://fakest-newzz.herokuapp.com/api/auth/sign_in', {
-        statusCode: 401,
-      });
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+        {
+          statusCode: 401,
+        }
+      );
+      cy.intercept(
+        'POST',
+        'https://fakest-newzz.herokuapp.com/api/auth/sign_in',
+        {
+          statusCode: 401,
+        }
+      );
       cy.visit('/');
     });
 
@@ -69,9 +89,13 @@ describe('User can get access to dashboard', () => {
 
   describe('Unsuccessfully through token validation', () => {
     before(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/auth/validate_token', {
-        statusCode: 401,
-      });
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+        {
+          statusCode: 401,
+        }
+      );
       cy.visit('/');
     });
 
