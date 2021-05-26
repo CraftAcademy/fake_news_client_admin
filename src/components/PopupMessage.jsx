@@ -11,7 +11,7 @@ const SuccessMessage = () => {
     setTimeout(() => {
       store.dispatch({ type: 'CLOSE_MESSAGE' });
     }, 3000);
-  },[]);
+  }, []);
 
   return (
     <Portal closeOnDocumentClick onClose={() => Popup.close()} open={popupOpen}>
