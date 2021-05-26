@@ -1,4 +1,4 @@
-describe('editor can publish articles', () => {
+describe('Publishing articles', () => {
   beforeEach(() => {
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'listOfArticles.json',
@@ -19,10 +19,10 @@ describe('editor can publish articles', () => {
         });
     });
 
-    it('is expected to show action button in dashboard', () => {
+    it('is expected to display a success message', () => {
       cy.get('[data-cy=action-btn]').first().click();
-      cy.get('#publish-btn').click();
-      cy.get('#confirm-btn').click();
+      cy.get('button').contains('Publish').click();
+      cy.get('button').contains('Confirm').click();
       cy.get('[data-cy=popup-message]').should(
         'contain',
         'The article has been successfully published'
@@ -30,7 +30,7 @@ describe('editor can publish articles', () => {
     });
   });
 
-  describe('Unsuccessfully because article is already published', () => {
+  describe('Unsuccessfully when article is already published', () => {
     beforeEach(() => {
       cy.visit('/');
       cy.window()
@@ -41,11 +41,9 @@ describe('editor can publish articles', () => {
         });
     });
 
-    it('is expected to not be able to click the button', () => {
+    it('is expected to make publish button disabled', () => {
       cy.get('[data-cy=action-btn]').eq(1).click();
-      cy.get('#publish-btn').should('be.disabled');
-      cy.get('#publish-btn').click({ force: true });
-      cy.get('#confirm-btn').should('not.exist');
+      cy.get('button').contains('Publish').should('be.disabled');
     });
   });
 
@@ -60,7 +58,8 @@ describe('editor can publish articles', () => {
         });
     });
 
-    it('is expected to not be able to click the button', () => {
+    it('is expected not to be enabled', () => {
+      cy.get('[data-cy=edit-article-btn]').should('be.visible');
       cy.get('[data-cy=action-btn]').should('not.exist');
     });
   });

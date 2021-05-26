@@ -18,7 +18,7 @@ const JournalistDashboard = () => {
           <Segment inverted attached='top'>
             <h2>All Articles</h2>
           </Segment>
-          <ArticleTable articles={articles} />
+          <ArticleTable />
           {!articles[0] && (
             <Segment
               attached='bottom'
