@@ -93,11 +93,7 @@ const ArticleTable = () => {
                   data-cy='rating'
                   icon='star'
                   size='tiny'
-                  defaultRating={
-                    article.rating
-                      ? article.rating
-                      : Math.floor(Math.random() * 6)
-                  }
+                  defaultRating={article.rating}
                   maxRating={5}
                   disabled
                 />
