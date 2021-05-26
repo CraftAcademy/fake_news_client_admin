@@ -27,7 +27,7 @@ const Articles = {
   async show(id) {
     try {
       let response = await axios.get(`/articles/${id}`, {
-        headers: getFromLocalStorage(),
+        headers: { ...getFromLocalStorage(), source: 'admin-system' },
       });
       return response.data.article;
     } catch (error) {
@@ -36,7 +36,7 @@ const Articles = {
   },
 
   async create(article) {
-    let params = { article: { ...article, body: article.body.split('\n\n') } };
+    let params = { article: article };
     try {
       let response = await axios.post('/articles', params, {
         headers: getFromLocalStorage(),
@@ -52,7 +52,7 @@ const Articles = {
   },
 
   async update(article) {
-    let params = { article: { ...article, body: article.body.split('\n\n') } };
+    let params = { article: article };
     try {
       let response = await axios.put(`/articles/${article.id}`, params, {
         headers: getFromLocalStorage(),
@@ -61,6 +61,21 @@ const Articles = {
       store.dispatch({
         type: 'SET_SUBMIT',
         payload: { status: true, message: response.data.message },
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
+
+  async publish(id) {
+    try {
+      let response = await axios.put(`/articles/${id}`, {
+        headers: getFromLocalStorage(),
+      });
+      Articles.index();
+      store.dispatch({
+        type: 'SUCCESS_MESSAGE',
+        payload: response.data.message,
       });
     } catch (error) {
       errorHandler(error);

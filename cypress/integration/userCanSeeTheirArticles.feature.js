@@ -31,14 +31,15 @@ describe('User can see their articles', () => {
           );
           cy.get('[data-cy=category]').should('contain', 'Hollywood');
           cy.get('[data-cy=date]').should('contain', '2021-05-19, 15:10');
-          cy.get('[data-cy=premium]').should('contain', 'Premium')
+          cy.get('[data-cy=premium]').should('contain', 'Premium');
           cy.get('[data-cy=author]').should('contain', 'Bob Kramer');
           cy.get('[data-cy=rating]').should('be.visible');
+          cy.get('[data-cy=published]').should('contain', 'Unpublished');
         });
     });
 
     it('is expected to show the name of the journaist', () => {
-      cy.get('[data-cy=greeting]').should('contain', 'WELCOME BACK MR. FAKE');
+      cy.get('[data-cy=greeting]').should('contain', 'Welcome back Mr. Fake');
     });
   });
 

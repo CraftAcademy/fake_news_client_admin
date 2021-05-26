@@ -18,17 +18,17 @@ const SubmitMessage = ({ time }) => {
   return (
     <>
       {redirect && <Redirect to='/' />}
-        <Modal basic open={true} size='small'>
-          <div data-cy='authentication-popup' style={{ textAlign: 'center' }}>
-            <Header icon data-cy='submit-message' style={{ color: 'white' }}>
-              <Icon name='circle notched' loading />
-              {message}
-            </Header>
-            <Modal.Content data-cy='redirect-message'>
-              <p>Taking you back to dashboard..</p>
-            </Modal.Content>
-          </div>
-        </Modal>
+      <Modal basic open={true} size='small'>
+        <div data-cy='authentication-popup' style={{ textAlign: 'center' }}>
+          <Header icon data-cy='submit-message' style={{ color: 'white' }}>
+            <Icon name='circle notched' loading />
+            {message}
+          </Header>
+          <Modal.Content data-cy='redirect-message'>
+            <p>Taking you back to dashboard..</p>
+          </Modal.Content>
+        </div>
+      </Modal>
     </>
   );
 };
