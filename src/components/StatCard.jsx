@@ -4,13 +4,17 @@ import { Icon } from 'semantic-ui-react';
 const StatCard = ({ data, title, icon, color }) => {
   return (
     <div style={styles.container} className='box-shadow'>
-      <div>
-        <Icon bordered inverted color={color} name={icon} />
-      </div>
-      <div>
-        <h1>{data.total}</h1>
-        <h2>{title}</h2>
-      </div>
+      {data && (
+        <>
+          <div>
+            <Icon bordered circular fitted size='huge' color={color} name={icon} />
+          </div>
+          <div style={styles.contentContainer}>
+            <h1 style={{fontSize: 30, margin: 0, padding: 0}}>{data.total}</h1>
+            <h2 style={{fontSize: 20, margin: 0, padding: 0}}>{title}</h2>
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -21,9 +25,19 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    height: 300,
-    width: 300
+    height: 150,
+    width: 300,
+    padding: 25
+  },
+  contentContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+    color: 'white',
+    justifyContent: 'center',
+    alignItems: 'center'
+
   },
 };

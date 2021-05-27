@@ -12,16 +12,31 @@ const EditorOverview = () => {
 
   return (
     <div style={styles.container}>
-      IM HERE CONTAINER
       <div style={styles.cardContainer}>
-        {statistics[0] && (
-          <StatCard
-            data={statistics.articles}
-            title='Articles'
-            icon='newspaper outline'
-            color='olive'
-          />
-        )}
+        <StatCard
+          data={statistics.articles}
+          title='Articles'
+          icon='newspaper outline'
+          color='olive'
+        />
+        <StatCard
+          data={statistics.backyard_articles}
+          title='Backyard Articles'
+          icon='newspaper'
+          color='teal'
+        />
+        <StatCard
+          data={statistics.journalists}
+          title='Journalists'
+          icon='user'
+          color='violet'
+        />
+        <StatCard
+          data={statistics.subscribers}
+          title='Subscribers'
+          icon='users'
+          color='orange'
+        />
       </div>
     </div>
   );
@@ -39,7 +54,8 @@ const styles = {
   },
   cardContainer: {
     display: 'flex',
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
 };
