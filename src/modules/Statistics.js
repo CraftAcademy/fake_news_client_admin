@@ -3,7 +3,8 @@ import errorHandler from './ErrorHandler';
 import store from '../state/store/configureStore';
 
 const Statistics = {
-  async index() {
+  async index(setLoading) {
+    setLoading(true);
     try {
       let response = await axios.get('/statistics', {
         headers: getFromLocalStorage(),
@@ -16,13 +17,17 @@ const Statistics = {
       if (error.response.data.stripe_error) {
         store.dispatch({
           type: 'STRIPE_ERROR',
-          payload:{ message: 'Stripe servers are currently not responding, please try again later', statistics: error.response.data.statistics}
-            
+          payload: {
+            message:
+              'Stripe servers are currently not responding, please try again later',
+            statistics: error.response.data.statistics,
+          },
         });
       } else {
         errorHandler(error);
       }
     }
+    setLoading(false);
   },
 };
 

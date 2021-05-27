@@ -13,13 +13,14 @@ const StatCard = ({ data, title, icon, color }) => {
             <Icon
               circular
               fitted
-              size='huge'
-              style={{ color: color }}
+              style={{ color: color, fontSize: 35 }}
               name={icon}
             />
           </div>
           <div style={styles.contentContainer}>
-            <h1 data-cy='amount' style={{ fontSize: 30, margin: 0, padding: 0 }}>
+            <h1
+              data-cy='amount'
+              style={{ fontSize: 30, margin: 0, padding: 0 }}>
               {data.total}
             </h1>
             <h2
@@ -47,9 +48,9 @@ const styles = {
     justifyContent: 'space-around',
     alignItems: 'center',
     height: 150,
-    width: 300,
-    padding: 25,
-    margin: '0 50px 50px 50px',
+    width: 250,
+    padding: 15,
+    marginBottom: 50,
   },
   contentContainer: {
     display: 'flex',

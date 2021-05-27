@@ -1,37 +1,44 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Statistics from '../../modules/Statistics';
 import { useSelector } from 'react-redux';
 import StatCard from '../StatCard';
 import StatsGraphs from '../StatsGraphs';
+import { Redirect } from 'react-router';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 const EditorOverview = () => {
-  const { statistics, error } = useSelector((state) => state);
+  const { statistics, error, role } = useSelector((state) => state);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    Statistics.index();
+    Statistics.index(setLoading);
   }, []);
 
   return (
     <>
+      {!role === 'editor' && <Redirect to='/dashboard' />}
       <div style={styles.container}>
+        <Dimmer active={loading}>
+          <Loader size='huge'>Loading your statistics</Loader>
+        </Dimmer>
         <div style={styles.cardContainer}>
           <StatCard
             data={statistics.articles}
             title='Articles'
             icon='newspaper outline'
-            color='#42b0e0'
+            color='violet'
           />
           <StatCard
             data={statistics.backyard_articles}
             title='Backyard Articles'
             icon='newspaper'
-            color='#fdfd96'
+            color='violet'
           />
           <StatCard
             data={statistics.journalists}
             title='Journalists'
             icon='user'
-            color='violet'
+            color='#fdfd96'
           />
 
           {!error && (

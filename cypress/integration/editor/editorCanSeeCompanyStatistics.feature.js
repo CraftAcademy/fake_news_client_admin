@@ -1,13 +1,6 @@
 describe('Can get an overview of company statistics', () => {
   beforeEach(() => {
     cy.visit('/');
-    cy.window()
-      .its('store')
-      .invoke('dispatch', {
-        type: 'LOG_IN',
-        payload: { fullName: 'Mr. Editor', role: 'editor' },
-      });
-   
   });
 
   describe('successfully as an editor', () => {
@@ -15,6 +8,12 @@ describe('Can get an overview of company statistics', () => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/statistics', {
         fixture: 'statisticsResponse.json',
       });
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Editor', role: 'editor' },
+        });
       cy.get('[data-cy=editor-overiew]').click();
     });
     it('to view the company statistics overview', () => {
@@ -53,6 +52,12 @@ describe('Can get an overview of company statistics', () => {
         fixture: 'stripeErrorResponse.json',
         statusCode: 401,
       });
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Editor', role: 'editor' },
+        });
       cy.get('[data-cy=editor-overiew]').click();
     });
     it('is expected to still show only local data', () => {
@@ -66,6 +71,33 @@ describe('Can get an overview of company statistics', () => {
         'contain',
         'Stripe servers are currently not responding, please try again later'
       );
+    });
+  });
+
+  describe('unsuccessfully as a journalist', () => {
+    beforeEach(() => {
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+        {
+          fixture: 'handleLogin.json',
+        }
+      );
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Editor', role: 'journalist' },
+        });
+    });
+
+    it('is expected not to show an overview menu button', () => {
+      cy.get('[data-cy=editor-overiew]').should('not.exist');
+    });
+
+    it('is expected to get booted out if navigated to by url', () => {
+      cy.visit('/overview');
+      cy.url().should('contain', '/dashboard');
     });
   });
 });
