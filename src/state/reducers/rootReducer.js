@@ -39,6 +39,11 @@ const rootReducer = (state, action) => {
         ...state,
         articles: action.payload,
       };
+      case 'SET_STATISTICS':
+        return {
+          ...state,
+          statistics: action.payload,
+        };
     case 'SET_SUBMIT':
       return {
         ...state,

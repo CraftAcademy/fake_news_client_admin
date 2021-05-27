@@ -1,6 +1,7 @@
 const initialState = {
   authenticated: false,
   articles: [],
+  statistics: [],
   fullName: '',
   submitted: false,
   role: '',

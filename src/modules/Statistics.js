@@ -9,15 +9,16 @@ const Statistics = {
         headers: getFromLocalStorage(),
       });
       store.dispatch({
-        type: 'SET_STATISTICS', 
-        payload: response.data.statistics
-      })
-      
+        type: 'SET_STATISTICS',
+        payload: response.data.statistics,
+      });
     } catch (error) {
       errorHandler(error);
     }
   },
 };
+
+export default Statistics;
 
 const getFromLocalStorage = () => {
   return JSON.parse(localStorage.getItem('userData'));

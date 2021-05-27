@@ -11,6 +11,7 @@ const SideMenu = () => {
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
   };
+
   return (
     <Menu vertical inverted pointing style={styles.container}>
       <div style={styles.avatar}>
@@ -50,9 +51,12 @@ const SideMenu = () => {
       {role === 'editor' && (
         <Menu.Item
           name='overview'
+          data-cy='editor-overiew'
           active={activeItem === 'overview'}
           style={{ marginBottom: 50 }}
-          onClick={handleItemClick}>
+          onClick={handleItemClick}
+          as={Link}
+          to='/overview'>
           Overview
         </Menu.Item>
       )}
