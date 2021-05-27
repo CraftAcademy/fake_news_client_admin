@@ -13,7 +13,15 @@ const Statistics = {
         payload: response.data.statistics,
       });
     } catch (error) {
-      errorHandler(error);
+      if (error.response.data.stripe_error) {
+        store.dispatch({
+          type: 'STRIPE_ERROR',
+          payload:{ message: 'Stripe servers are currently not responding, please try again later', statistics: error.response.data.statistics}
+            
+        });
+      } else {
+        errorHandler(error);
+      }
     }
   },
 };

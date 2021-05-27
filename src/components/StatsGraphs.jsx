@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import {
   BarChart,
   ResponsiveContainer,
@@ -13,13 +15,15 @@ import {
 } from 'recharts';
 
 const StatsGraphs = ({ data }) => {
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 1400px)' });
   const { articles_timeline, subscribers } = data;
+  const { error } = useSelector((state) => state);
 
   return (
-    <div style={{ display: 'flex', flex: 1, justifyContent: 'space-between' }}>
+    <div style={styles.containerBigScreen}>
       {data && (
         <>
-          <div style={{ height: 400, width: '60%' }}>
+          <div data-cy='articles-graph' style={{ height: 400, width: isSmallScreen ? '100%' : '60%', marginBottom: 100}}>
             <h1 style={{ color: 'white', textAlign: 'center' }}>
               Articles created timeline
             </h1>
@@ -51,45 +55,52 @@ const StatsGraphs = ({ data }) => {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          <div style={{ height: 400, width: '35%' }}>
-            <h1 style={{ color: 'white', textAlign: 'center' }}>
-              Subscriber tiers
-            </h1>
-            <ResponsiveContainer
-              height={400}
-              width='100%'
-              className='box-shadow'>
-              <BarChart
-                data={[subscribers]}
-                maxBarSize={75}
-                margin={{
-                  top: 25,
-                  right: 30,
-                  bottom: 10,
-                }}>
-                <Bar
-                  dataKey='yearly_subscription'
-                  stroke='#fff'
-                  fill='#42b0e0'
-                />
-                <Bar
-                  dataKey='half_year_subscription'
-                  stroke='#fff'
-                  fill='#21d3a4'
-                />
-                <Bar
-                  dataKey='monthly_subscription'
-                  stroke='#fff'
-                  fill='violet'
-                />
-                <CartesianGrid strokeDasharray='3 3' style={{ opacity: 0.2 }} />
-                <XAxis dataKey={[subscribers]} />
-                <YAxis />
-                <Legend />
-                <Tooltip />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
+          {!error && (
+            <div
+              data-cy='subscribers-graph'
+              style={{ height: 400, width: isSmallScreen ? '100%' : '35%' }}>
+              <h1 style={{ color: 'white', textAlign: 'center' }}>
+                Subscriber tiers
+              </h1>
+              <ResponsiveContainer
+                height={400}
+                width='100%'
+                className='box-shadow'>
+                <BarChart
+                  data={[subscribers]}
+                  maxBarSize={75}
+                  margin={{
+                    top: 25,
+                    right: 30,
+                    bottom: 10,
+                  }}>
+                  <Bar
+                    dataKey='yearly_subscription'
+                    stroke='#fff'
+                    fill='#42b0e0'
+                  />
+                  <Bar
+                    dataKey='half_year_subscription'
+                    stroke='#fff'
+                    fill='#21d3a4'
+                  />
+                  <Bar
+                    dataKey='monthly_subscription'
+                    stroke='#fff'
+                    fill='violet'
+                  />
+                  <CartesianGrid
+                    strokeDasharray='3 3'
+                    style={{ opacity: 0.2 }}
+                  />
+                  <XAxis dataKey={[subscribers]} />
+                  <YAxis />
+                  <Legend />
+                  <Tooltip />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
         </>
       )}
     </div>
@@ -97,3 +108,18 @@ const StatsGraphs = ({ data }) => {
 };
 
 export default StatsGraphs;
+
+const styles = {
+  containerBigScreen: {
+    display: 'flex',
+    flex: 1,
+    justifyContent: 'space-between',
+    flexWrap: 'wrap'
+  },
+  containerSmallScreen: {
+    display: 'flex',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+};

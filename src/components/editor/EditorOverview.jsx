@@ -5,7 +5,7 @@ import StatCard from '../StatCard';
 import StatsGraphs from '../StatsGraphs';
 
 const EditorOverview = () => {
-  const { statistics } = useSelector((state) => state);
+  const { statistics, error } = useSelector((state) => state);
 
   useEffect(() => {
     Statistics.index();
@@ -33,13 +33,26 @@ const EditorOverview = () => {
             icon='user'
             color='violet'
           />
-          <StatCard
-            data={statistics.subscribers}
-            title='Subscribers'
-            icon='users'
-            color='#21d3a4'
-          />
+
+          {!error && (
+            <>
+              <StatCard
+                data={statistics.subscribers}
+                title='Subscribers'
+                icon='users'
+                color='#21d3a4'
+              />
+
+              <StatCard
+                data={statistics.total_income}
+                title='Total Monthly Income'
+                icon='money bill alternate'
+                color='#21d3a4'
+              />
+            </>
+          )}
         </div>
+
         <div style={styles.graphContainer}>
           <StatsGraphs data={statistics} />
         </div>
@@ -60,6 +73,7 @@ const styles = {
   },
   cardContainer: {
     display: 'flex',
+    flexWrap: 'wrap',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -70,5 +84,6 @@ const styles = {
     flexDirection: 'row',
     width: '100%',
     marginTop: 100,
+    justifyContent: 'center',
   },
 };

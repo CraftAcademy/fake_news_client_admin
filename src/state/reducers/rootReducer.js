@@ -14,6 +14,14 @@ const rootReducer = (state, action) => {
         message: action.payload,
         popupOpen: true,
       };
+      case 'STRIPE_ERROR':
+        return {
+          ...state,
+          error: true,
+          message: action.payload.message,
+          popupOpen: true,
+          statistics: action.payload.statistics
+        }
     case 'CLOSE_MESSAGE':
       return {
         ...state,
