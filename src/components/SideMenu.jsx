@@ -45,7 +45,7 @@ const SideMenu = () => {
         as={Link}
         to='/create'>
         Write new article
-        <Icon name='plus'></Icon>
+        <Icon name='plus' style={{color: '#fdfd96'}}></Icon>
       </Menu.Item>
 
       {role === 'editor' && (

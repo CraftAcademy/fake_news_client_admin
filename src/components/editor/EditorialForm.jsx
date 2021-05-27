@@ -31,7 +31,9 @@ const EditorialForm = ({ isCreateMode }) => {
   let location = useLocation();
 
   useEffect(() => {
-    if (!isCreateMode) {
+    if (isCreateMode) {
+      setArticle(emptyArticle);
+    } else {
       getArticle();
     }
     // eslint-disable-next-line

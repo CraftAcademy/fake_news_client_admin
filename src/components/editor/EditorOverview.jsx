@@ -17,13 +17,13 @@ const EditorOverview = () => {
           data={statistics.articles}
           title='Articles'
           icon='newspaper outline'
-          color='olive'
+          color='#42b0e0'
         />
         <StatCard
           data={statistics.backyard_articles}
           title='Backyard Articles'
           icon='newspaper'
-          color='teal'
+          color='#fdfd96'
         />
         <StatCard
           data={statistics.journalists}
@@ -35,7 +35,7 @@ const EditorOverview = () => {
           data={statistics.subscribers}
           title='Subscribers'
           icon='users'
-          color='orange'
+          color='#21d3a4'
         />
       </div>
     </div>
