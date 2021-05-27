@@ -23,11 +23,15 @@ describe('Can get an overview of company statistics', () => {
       cy.get('[data-cy=company-stats]')
         .eq(1)
         .find('[data-cy=amount]')
-        .should('contain', 10);
+        .should('contain', 7);
       cy.get('[data-cy=company-stats]')
         .eq(2)
         .find('[data-cy=amount]')
         .should('contain', 4);
+        cy.get('[data-cy=company-stats]')
+        .eq(3)
+        .find('[data-cy=amount]')
+        .should('contain', 10);
     });
   });
 });

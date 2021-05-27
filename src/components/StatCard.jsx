@@ -3,7 +3,10 @@ import { Icon } from 'semantic-ui-react';
 
 const StatCard = ({ data, title, icon, color }) => {
   return (
-    <div style={styles.container} className='box-shadow card-hover'>
+    <div
+      data-cy='company-stats'
+      style={styles.container}
+      className='box-shadow card-hover'>
       {data && (
         <>
           <div>

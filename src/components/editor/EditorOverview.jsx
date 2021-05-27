@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Statistics from '../../modules/Statistics';
 import { useSelector } from 'react-redux';
 import StatCard from '../StatCard';
+import StatsGraphs from '../StatsGraphs';
 
 const EditorOverview = () => {
   const { statistics } = useSelector((state) => state);
@@ -11,34 +12,39 @@ const EditorOverview = () => {
   }, []);
 
   return (
-    <div style={styles.container}>
-      <div style={styles.cardContainer}>
-        <StatCard
-          data={statistics.articles}
-          title='Articles'
-          icon='newspaper outline'
-          color='#42b0e0'
-        />
-        <StatCard
-          data={statistics.backyard_articles}
-          title='Backyard Articles'
-          icon='newspaper'
-          color='#fdfd96'
-        />
-        <StatCard
-          data={statistics.journalists}
-          title='Journalists'
-          icon='user'
-          color='violet'
-        />
-        <StatCard
-          data={statistics.subscribers}
-          title='Subscribers'
-          icon='users'
-          color='#21d3a4'
-        />
+    <>
+      <div style={styles.container}>
+        <div style={styles.cardContainer}>
+          <StatCard
+            data={statistics.articles}
+            title='Articles'
+            icon='newspaper outline'
+            color='#42b0e0'
+          />
+          <StatCard
+            data={statistics.backyard_articles}
+            title='Backyard Articles'
+            icon='newspaper'
+            color='#fdfd96'
+          />
+          <StatCard
+            data={statistics.journalists}
+            title='Journalists'
+            icon='user'
+            color='violet'
+          />
+          <StatCard
+            data={statistics.subscribers}
+            title='Subscribers'
+            icon='users'
+            color='#21d3a4'
+          />
+        </div>
+        <div style={styles.graphContainer}>
+          <StatsGraphs data={statistics} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -47,7 +53,7 @@ export default EditorOverview;
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     marginTop: 100,
     marginLeft: 350,
     marginRight: 100,
@@ -56,6 +62,13 @@ const styles = {
     display: 'flex',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
+  },
+
+  graphContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 100,
   },
 };
