@@ -1,0 +1,57 @@
+{
+  "statistics": {
+      "articles": {
+          "total": 26,
+          "published": 20,
+          "unpublished": 6
+      },
+      "backyard_articles": {
+          "total": 7
+      },
+      "journalists": {
+          "total": 4
+      },
+      "articles_timeline": [
+          {
+              "date": "2021-05-27",
+              "articles": 4
+          },
+          {
+              "date": "2021-05-26",
+              "articles": 4
+          },
+          {
+              "date": "2021-05-25",
+              "articles": 8
+          },
+          {
+              "date": "2021-05-24",
+              "articles": 3
+          },
+          {
+              "date": "2021-05-23",
+              "articles": 5
+          },
+          {
+              "date": "2021-05-22",
+              "articles": 2
+          },
+          {
+              "date": "2021-05-21",
+              "articles": 0
+          }
+      ],
+      "subscribers": {
+          "total": 10,
+          "yearly_subscription": 3,
+          "half_year_subscription": 2,
+          "monthly_subscription": 5
+      },
+      "total_income": {
+          "total": 1170,
+          "yearly_subscription": 300,
+          "half_year_subscription": 220,
+          "monthly_subscription": 650
+      }
+  }
+}

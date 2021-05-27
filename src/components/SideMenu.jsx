@@ -6,7 +6,7 @@ import avatar from '../assets/avatar.jpg';
 
 const SideMenu = () => {
   const [activeItem, setActiveItem] = useState('dashboard');
-  const { fullName } = useSelector((state) => state);
+  const { fullName, role } = useSelector((state) => state);
 
   const handleItemClick = (e, { name }) => {
     setActiveItem(name);
@@ -37,9 +37,9 @@ const SideMenu = () => {
       </Menu.Item>
 
       <Menu.Item
-        name='backyard'
+        name='create-article'
         data-cy='create-article-btn'
-        active={activeItem === 'backyard'}
+        active={activeItem === 'create-article'}
         onClick={handleItemClick}
         as={Link}
         to='/create'>
@@ -47,13 +47,15 @@ const SideMenu = () => {
         <Icon name='plus'></Icon>
       </Menu.Item>
 
-      <Menu.Item
-        name='admin'
-        active={activeItem === 'admin'}
-        style={{ marginBottom: 50 }}
-        onClick={handleItemClick}>
-        Admin
-      </Menu.Item>
+      {role === 'editor' && (
+        <Menu.Item
+          name='overview'
+          active={activeItem === 'overview'}
+          style={{ marginBottom: 50 }}
+          onClick={handleItemClick}>
+          Overview
+        </Menu.Item>
+      )}
     </Menu>
   );
 };

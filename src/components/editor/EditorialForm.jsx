@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Form, Radio } from 'semantic-ui-react';
-import Articles, { imageEncoder } from '../modules/Articles';
-import Popup from '../modules/Popup';
-import SubmitMessage from './SubmitMessage';
+import Articles, { imageEncoder } from '../../modules/Articles';
+import Popup from '../../modules/Popup';
+import SubmitMessage from '../SubmitMessage';
 
 const emptyArticle = {
   title: '',
