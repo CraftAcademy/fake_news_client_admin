@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Popup, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import Articles from '../modules/Articles';
+import Articles from '../../modules/Articles';
 
 const EditorActionButton = ({ article }) => {
   const [confirming, setConfirming] = useState(false);
