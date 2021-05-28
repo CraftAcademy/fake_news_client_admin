@@ -26,9 +26,7 @@ const ArticleTable = () => {
           ? `${article.author.first_name} ${article.author.last_name}`
           : 'Bob Kramer'}
       </Table.Cell>
-      <Table.Cell data-cy='premium'>
-        {article.premium ? 'Premium' : 'Free'}
-      </Table.Cell>
+      <Table.Cell data-cy='comments'>{article.comments}</Table.Cell>
       <Table.Cell>
         <Rating
           data-cy='rating'
@@ -38,6 +36,9 @@ const ArticleTable = () => {
           maxRating={5}
           disabled
         />
+      </Table.Cell>
+      <Table.Cell data-cy='premium'>
+        {article.premium ? 'Premium' : 'Free'}
       </Table.Cell>
       <Table.Cell data-cy='published'>
         {article.published ? 'Published' : 'Unpublished'}
@@ -57,15 +58,16 @@ const ArticleTable = () => {
   ));
 
   return (
-    <Table celled padded inverted style={{ overflowY: 'scroll' }}>
+    <Table stackable celled padded inverted style={{ overflowY: 'scroll' }}>
       <Table.Header>
         <Table.Row textAlign='center'>
           <Table.HeaderCell singleLine>Title</Table.HeaderCell>
-          <Table.HeaderCell>Categories</Table.HeaderCell>
+          <Table.HeaderCell>Category</Table.HeaderCell>
           <Table.HeaderCell>Updated On</Table.HeaderCell>
           <Table.HeaderCell>Author</Table.HeaderCell>
-          <Table.HeaderCell>Status</Table.HeaderCell>
+          <Table.HeaderCell>Comments</Table.HeaderCell>
           <Table.HeaderCell>Rating</Table.HeaderCell>
+          <Table.HeaderCell>Status</Table.HeaderCell>
           <Table.HeaderCell>Published</Table.HeaderCell>
           <Table.HeaderCell>Action</Table.HeaderCell>
         </Table.Row>

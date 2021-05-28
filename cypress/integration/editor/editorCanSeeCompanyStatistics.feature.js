@@ -26,16 +26,20 @@ describe('Can get an overview of company statistics', () => {
         .eq(1)
         .find('[data-cy=amount]')
         .should('contain', 7);
-      cy.get('[data-cy=company-stats]')
+        cy.get('[data-cy=company-stats]')
         .eq(2)
         .find('[data-cy=amount]')
-        .should('contain', 4);
+        .should('contain', 27);
       cy.get('[data-cy=company-stats]')
         .eq(3)
         .find('[data-cy=amount]')
-        .should('contain', 10);
+        .should('contain', 4);
       cy.get('[data-cy=company-stats]')
         .eq(4)
+        .find('[data-cy=amount]')
+        .should('contain', 10);
+      cy.get('[data-cy=company-stats]')
+        .eq(5)
         .find('[data-cy=amount]')
         .should('contain', 1170);
     });
