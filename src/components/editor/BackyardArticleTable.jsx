@@ -9,7 +9,7 @@ const BackyardArticleTable = () => {
     <Table.Row
       key={backyardArticle.id}
       textAlign='center'
-      data-cy='backyardarticle-row'>
+      data-cy='backyard-article-row'>
       <Table.Cell
         data-cy='title'
         textAlign='left'
@@ -24,7 +24,7 @@ const BackyardArticleTable = () => {
       <Table.Cell data-cy='written-by'>{backyardArticle.written_by}</Table.Cell>
       <Table.Cell data-cy='country'>{backyardArticle.location}</Table.Cell>
       <Table.Cell>
-        <Button>Options</Button>
+        <Button data-cy='view-btn'>View More</Button>
       </Table.Cell>
     </Table.Row>
   ));

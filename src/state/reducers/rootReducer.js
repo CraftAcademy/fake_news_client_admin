@@ -47,7 +47,6 @@ const rootReducer = (state, action) => {
         ...state,
         articles: action.payload,
       };
-
     case 'SET_BACKYARD_ARTICLES':
       return {
         ...state,

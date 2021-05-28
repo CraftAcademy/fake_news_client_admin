@@ -1,10 +1,13 @@
 describe('Backyard article dashboard can display articles', () => {
   beforeEach(() => {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
+      fixture: 'listOfArticles.json',
+    });
     cy.visit('/');
   });
   describe('Successfully as an editor', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
         fixture: 'listOfBackyardArticles.json',
       });
       cy.window()
@@ -13,15 +16,15 @@ describe('Backyard article dashboard can display articles', () => {
           type: 'LOG_IN',
           payload: { fullName: 'Mr. Editor', role: 'editor' },
         });
-      cy.get('[data-cy=backyard-menu-btn]').click();
+      cy.get('a').contains('Backyard Articles').click();
     });
 
     it('is expected to display a list of 6 backyard articles', () => {
-      cy.get('[data-cy=article-row]').should('have.lengty', 6);
+      cy.get('[data-cy=backyard-article-row]').should('have.length', 6);
     });
 
     it('is expected to display details of each article', () => {
-      cy.get('[data-cy=article-row]')
+      cy.get('[data-cy=backyard-article-row]')
         .first()
         .within(() => {
           cy.get('[data-cy=title]').should('contain', 'Something');
@@ -49,7 +52,7 @@ describe('Backyard article dashboard can display articles', () => {
 
   describe('Unsuccessfully with no articles', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
         backyard_articles: [],
       });
       cy.window()
@@ -58,7 +61,7 @@ describe('Backyard article dashboard can display articles', () => {
           type: 'LOG_IN',
           payload: { fullName: 'Mr. Editor', role: 'editor' },
         });
-      cy.get('[data-cy=backyard-menu-btn]').click();
+      cy.get('a').contains('Backyard Articles').click();
     });
 
     it('is expected to display a message', () => {
@@ -71,7 +74,7 @@ describe('Backyard article dashboard can display articles', () => {
 
   describe('Unsuccessfully as a journalist', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
         statusCode: 401,
       });
       cy.window()
