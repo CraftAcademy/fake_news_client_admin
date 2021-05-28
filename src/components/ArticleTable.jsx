@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Table, Rating } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
 
-import EditorActionButton from './EditorActionButton';
+import EditorActionButton from './editor/EditorActionButton';
 
 const ArticleTable = () => {
   const { role, articles } = useSelector((state) => state);

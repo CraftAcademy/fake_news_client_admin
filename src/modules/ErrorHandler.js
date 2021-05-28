@@ -18,6 +18,7 @@ const errorHandler = (error) => {
       case 422:
         Popup.open('ERROR_MESSAGE', 'Server is unable to process the request');
         break;
+
       default:
         Popup.open('ERROR_MESSAGE', error.message);
         break;
