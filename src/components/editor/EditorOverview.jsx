@@ -36,7 +36,7 @@ const EditorOverview = () => {
           />
           <StatCard
             data={statistics.comments}
-            title='Total comments'
+            title='Comments'
             icon='comments'
             color='#fdfd96'
           />
@@ -59,7 +59,7 @@ const EditorOverview = () => {
 
               <StatCard
                 data={statistics.total_income}
-                title='Total Monthly Income'
+                title='Monthly Income (SEK)'
                 icon='money bill alternate'
                 color='#21d3a4'
               />
