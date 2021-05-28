@@ -36,17 +36,18 @@ const SideMenu = () => {
         to='/dashboard'>
         Dashboard
       </Menu.Item>
-
-      <Menu.Item
-        name='create-article'
-        data-cy='create-article-btn'
-        active={activeItem === 'create-article'}
-        onClick={handleItemClick}
-        as={Link}
-        to='/create'>
-        Write new article
-        <Icon name='plus' style={{color: '#fdfd96'}}></Icon>
-      </Menu.Item>
+      {role === 'journalist' && (
+        <Menu.Item
+          name='create-article'
+          data-cy='create-article-btn'
+          active={activeItem === 'create-article'}
+          onClick={handleItemClick}
+          as={Link}
+          to='/create'>
+          Write new article
+          <Icon name='plus' style={{ color: '#fdfd96' }}></Icon>
+        </Menu.Item>
+      )}
 
       {role === 'editor' && (
         <Menu.Item
@@ -57,7 +58,7 @@ const SideMenu = () => {
           onClick={handleItemClick}
           as={Link}
           to='/overview'>
-          Overview
+          Analytics Overview
         </Menu.Item>
       )}
     </Menu>
