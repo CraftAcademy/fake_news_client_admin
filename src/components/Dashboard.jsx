@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Tab } from 'semantic-ui-react';
 import Articles from '../modules/Articles';
 import ArticleTable from './ArticleTable';
+import BackyardArticleTable from './editor/BackyardArticleTable';
 
 const JournalistDashboard = () => {
   const { articles } = useSelector((state) => state);
@@ -11,14 +12,27 @@ const JournalistDashboard = () => {
     Articles.index();
   }, []);
 
+  const panes = [
+    {
+      menuItem: 'Articles',
+      render: () => (
+        <Tab.Pane style={{ padding: 0}} inverted attached={true}>
+          <ArticleTable />
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: 'Backyard Articles',
+      render: () => <Tab.Pane style={{ padding: 0}} inverted attached={true}><BackyardArticleTable /></Tab.Pane>,
+    },
+  ];
+
   return (
     <>
       <div style={styles.container}>
         <div className='box-shadow' style={styles.articleContainer}>
-          <Segment inverted attached='top'>
-            <h2>All Articles</h2>
-          </Segment>
-          <ArticleTable />
+          <Tab menu={{ secondary: true, pointing: true, inverted: true }} panes={panes} />
+
           {!articles[0] && (
             <Segment
               attached='bottom'
