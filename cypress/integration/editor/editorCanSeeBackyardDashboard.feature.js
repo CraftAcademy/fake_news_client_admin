@@ -31,6 +31,20 @@ describe('Backyard article dashboard can display articles', () => {
           cy.get('[data-cy=country]').should('contain', 'Denmark');
         });
     });
+
+    it('is expected to be able to see content of each article', () => {
+      cy.get('[data-cy=view-btn]').first().click();
+      cy.get('[data-cy=backyard-preview]').within(() => {
+        cy.get('[data-cy=title]').should('contain', 'Something awesome');
+        cy.get('[data-cy=written_by]').should('contain', 'Bob Kramer');
+        cy.get('[data-cy=theme]').should('contain', 'My cat is spying on me');
+        cy.get('[data-cy=date]').should('contain', '2021-05-13, 20:03');
+        cy.get('[data-cy=body]').should(
+          'include',
+          'Science gets a lot of respect these days. Unfortunately, it’s also getting a lot of competition from misinformation.'
+        );
+      });
+    });
   });
 
   describe('Unsuccessfully with no articles', () => {
@@ -55,28 +69,27 @@ describe('Backyard article dashboard can display articles', () => {
     });
   });
 
-  describe('Unsuccessfully as a journalist'),
-    () => {
-      beforeEach(() => {
-        cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
-          statusCode: 401,
+  describe('Unsuccessfully as a journalist', () => {
+    beforeEach(() => {
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
+        statusCode: 401,
+      });
+      cy.window()
+        .its('store')
+        .invoke('dispatch', {
+          type: 'LOG_IN',
+          payload: { fullName: 'Mr. Journalist', role: 'journalist' },
         });
-        cy.window()
-          .its('store')
-          .invoke('dispatch', {
-            type: 'LOG_IN',
-            payload: { fullName: 'Mr. Journalist', role: 'journalist' },
-          });
-      });
+    });
 
-      it('is expected not to see any menu button', () => {
-        cy.get('[data-cy=backyard-menu-btn]').should('not.be.visible');
-      });
+    it('is expected not to see any menu button', () => {
+      cy.get('[data-cy=backyard-menu-btn]').should('not.be.visible');
+    });
 
-      it('is expected to be redirected', () => {
-        cy.get('[data-cy=backyard-menu-btn]').should('not.be.visible');
-        cy.visit('/overview');
-        cy.url().should('contain', '/dashboard');
-      });
-    };
+    it('is expected to be redirected', () => {
+      cy.get('[data-cy=backyard-menu-btn]').should('not.be.visible');
+      cy.visit('/overview');
+      cy.url().should('contain', '/dashboard');
+    });
+  });
 });

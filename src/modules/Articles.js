@@ -68,8 +68,9 @@ const Articles = {
   },
 
   async publish(id) {
+    let params = { published: true };
     try {
-      let response = await axios.put(`/articles/${id}`, {
+      let response = await axios.put(`/articles/${id}`, params, {
         headers: getFromLocalStorage(),
       });
       Articles.index();
