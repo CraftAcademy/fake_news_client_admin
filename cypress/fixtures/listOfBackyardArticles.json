@@ -1,0 +1,52 @@
+{
+  "backyard_articles": [
+    {
+      "id": 1,
+      "title": "Something",
+      "date": "2021-05-19, 15:10",
+      "written_by": "Bob Kramer",
+      "theme": "My cat is spying on me",
+      "location": "Denmark"
+    },
+    {
+      "id": 2,
+      "title": "Sup",
+      "date": "2021-05-19, 15:10",
+      "written_by": "Mrs Kramer",
+      "theme": "My cat is an Alien",
+      "location": "Sweden"
+    },
+    {
+      "id": 3,
+      "title": "Halo",
+      "date": "2021-05-19, 15:10",
+      "written_by": "Bob Kramer",
+      "theme": "My cat ate my dog??",
+      "location": "Denmark"
+    },
+    {
+      "id": 4,
+      "title": "Something",
+      "date": "2021-05-19, 15:10",
+      "written_by": "Bob Kramer",
+      "theme": "My cat is talking to me",
+      "location": "Sweden"
+    },
+    {
+      "id": 5,
+      "title": "Sup",
+      "date": "2021-05-19, 15:10",
+      "written_by": "Finn Kramer",
+      "theme": "Is my cat a dog?",
+      "location": "Denmark"
+    },
+    {
+      "id": 6,
+      "title": "Halo",
+      "date": "2021-05-19, 15:10",
+      "written_by": "Bob Kramer",
+      "theme": "Do I even have a cat?",
+      "location": "Denmark"
+    }
+  ]
+}
