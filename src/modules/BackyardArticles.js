@@ -16,6 +16,17 @@ const BackyardArticles = {
       errorHandler(error);
     }
   },
+
+  async show(id) {
+    try {
+      let response = await axios.get(`/backyards/${id}`, {
+        headers: getFromLocalStorage(),
+      });
+      return response.data.backyard_article;
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
 };
 
 export default BackyardArticles;

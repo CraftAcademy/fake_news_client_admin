@@ -10,6 +10,13 @@ describe('Backyard article dashboard can display articles', () => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
         fixture: 'listOfBackyardArticles.json',
       });
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/backyards/**',
+        {
+          fixture: 'singleBackyardArticle.json',
+        }
+      );
       cy.window()
         .its('store')
         .invoke('dispatch', {
@@ -39,9 +46,16 @@ describe('Backyard article dashboard can display articles', () => {
       cy.get('[data-cy=view-btn]').first().click();
       cy.get('[data-cy=backyard-preview]').within(() => {
         cy.get('[data-cy=title]').should('contain', 'Something awesome');
-        cy.get('[data-cy=written_by]').should('contain', 'Bob Kramer');
-        cy.get('[data-cy=theme]').should('contain', 'My cat is spying on me');
-        cy.get('[data-cy=date]').should('contain', '2021-05-13, 20:03');
+        cy.get('[data-cy=written_by]').should(
+          'contain',
+          'Written by: Bob Kramer'
+        );
+        cy.get('[data-cy=country]').should('contain', 'From: Denmark');
+        cy.get('[data-cy=theme]').should(
+          'contain',
+          'Theme: My cat is spying on me'
+        );
+        cy.get('[data-cy=date]').should('contain', 'Date: 2021-05-13, 20:03');
         cy.get('[data-cy=body]').should(
           'include',
           'Science gets a lot of respect these days. Unfortunately, it’s also getting a lot of competition from misinformation.'
@@ -86,11 +100,10 @@ describe('Backyard article dashboard can display articles', () => {
     });
 
     it('is expected not to see any menu button', () => {
-      cy.get('[data-cy=backyard-menu-btn]').should('not.be.visible');
+      cy.get('a').contains('Backyard Articles').should('not.exist');
     });
 
     it('is expected to be redirected', () => {
-      cy.get('[data-cy=backyard-menu-btn]').should('not.be.visible');
       cy.visit('/overview');
       cy.url().should('contain', '/dashboard');
     });
