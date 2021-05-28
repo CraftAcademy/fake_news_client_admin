@@ -13,7 +13,8 @@
         "last_name": "Kramer"
       },
       "premium": true,
-      "published": false
+      "published": false,
+      "comments": 0
     },
     {
       "id": 6,
@@ -28,7 +29,8 @@
         "last_name": "Kramer"
       },
       "premium": true,
-      "published": true
+      "published": true,
+      "comments": 3
     },
     {
       "id": 5,
@@ -43,7 +45,8 @@
         "last_name": "Fake"
       },
       "premium": false,
-      "published": true
+      "published": true,
+      "comments": 2
     },
     {
       "id": 4,
@@ -58,7 +61,8 @@
         "last_name": "Kramer"
       },
       "premium": false,
-      "published": true
+      "published": true,
+      "comments": 5
     },
     {
       "id": 3,
@@ -73,7 +77,8 @@
         "last_name": "Fake"
       },
       "premium": true,
-      "published": false
+      "published": false,
+      "comments": 0
     },
     {
       "id": 2,
@@ -88,7 +93,8 @@
         "last_name": "Kramer"
       },
       "premium": false,
-      "published": true
+      "published": true,
+      "comments": 12
     },
     {
       "id": 1,
@@ -103,7 +109,8 @@
         "last_name": "Fake"
       },
       "premium": true,
-      "published": true
+      "published": true,
+      "comments": 3
     }
   ]
 }

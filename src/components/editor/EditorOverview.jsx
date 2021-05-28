@@ -26,21 +26,28 @@ const EditorOverview = () => {
             data={statistics.articles}
             title='Articles'
             icon='newspaper outline'
-            color='violet'
+            color='#fdfd96'
           />
           <StatCard
             data={statistics.backyard_articles}
             title='Backyard Articles'
             icon='newspaper'
-            color='violet'
+            color='#fdfd96'
           />
+          <StatCard
+            data={statistics.comments}
+            title='Comments'
+            icon='comments'
+            color='#fdfd96'
+          />
+        </div>
+        <div style={styles.cardContainer}>
           <StatCard
             data={statistics.journalists}
             title='Journalists'
             icon='user'
-            color='#fdfd96'
+            color='#21d3a4'
           />
-
           {!error && (
             <>
               <StatCard
@@ -52,7 +59,7 @@ const EditorOverview = () => {
 
               <StatCard
                 data={statistics.total_income}
-                title='Total Monthly Income'
+                title='Monthly Income (SEK)'
                 icon='money bill alternate'
                 color='#21d3a4'
               />
@@ -83,7 +90,7 @@ const styles = {
     flexWrap: 'wrap',
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
 
   graphContainer: {
