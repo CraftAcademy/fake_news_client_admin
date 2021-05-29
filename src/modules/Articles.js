@@ -8,17 +8,10 @@ const Articles = {
       let response = await axios.get('/articles', {
         headers: getFromLocalStorage(),
       });
-      if (response.status.articles === []) {
-        store.dispatch({
-          type: 'SET_ARTICLES',
-          payload: [],
-        });
-      } else {
-        store.dispatch({
-          type: 'SET_ARTICLES',
-          payload: response.data.articles,
-        });
-      }
+      store.dispatch({
+        type: 'SET_ARTICLES',
+        payload: response.data.articles,
+      });
     } catch (error) {
       errorHandler(error);
     }
@@ -68,8 +61,9 @@ const Articles = {
   },
 
   async publish(id) {
+    let params = { published: true };
     try {
-      let response = await axios.put(`/articles/${id}`, {
+      let response = await axios.put(`/articles/${id}`, params, {
         headers: getFromLocalStorage(),
       });
       Articles.index();

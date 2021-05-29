@@ -1,5 +1,8 @@
 describe('Can get an overview of company statistics', () => {
   beforeEach(() => {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
+      fixture: 'listOfArticles.json',
+    });
     cy.visit('/');
   });
 
@@ -26,7 +29,7 @@ describe('Can get an overview of company statistics', () => {
         .eq(1)
         .find('[data-cy=amount]')
         .should('contain', 7);
-        cy.get('[data-cy=company-stats]')
+      cy.get('[data-cy=company-stats]')
         .eq(2)
         .find('[data-cy=amount]')
         .should('contain', 27);
@@ -91,7 +94,7 @@ describe('Can get an overview of company statistics', () => {
         .its('store')
         .invoke('dispatch', {
           type: 'LOG_IN',
-          payload: { fullName: 'Mr. Editor', role: 'journalist' },
+          payload: { fullName: 'Mr. Journalist', role: 'journalist' },
         });
     });
 
