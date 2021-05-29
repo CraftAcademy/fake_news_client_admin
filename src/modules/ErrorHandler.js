@@ -1,7 +1,7 @@
 import Popup from './Popup';
 
 const errorHandler = (error) => {
-  if (error.message !== 'Network Error') {
+  if (error.response) {
     switch (error.response.status) {
       case 500:
         Popup.open(
