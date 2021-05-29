@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
 import BackyardModal from './BackyardModal';
 import { Redirect } from 'react-router';

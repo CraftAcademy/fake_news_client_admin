@@ -56,8 +56,8 @@ describe('Backyard article dashboard can display articles', () => {
           'Theme: My cat is spying on me'
         );
         cy.get('[data-cy=date]').should('contain', 'Date: 2021-05-13, 20:03');
-        cy.get('[data-cy=body]').should(
-          'include',
+        cy.get('[data-cy=content-body]').should(
+          'include.text',
           'Science gets a lot of respect these days. Unfortunately, it’s also getting a lot of competition from misinformation.'
         );
       });
@@ -67,7 +67,7 @@ describe('Backyard article dashboard can display articles', () => {
   describe('Unsuccessfully with no articles', () => {
     beforeEach(() => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
-        backyard_articles: [],
+        articles: [],
       });
       cy.window()
         .its('store')
@@ -91,6 +91,13 @@ describe('Backyard article dashboard can display articles', () => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
         statusCode: 401,
       });
+      cy.intercept(
+        'GET',
+        'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+        {
+          fixture: 'handleLogin.json',
+        }
+      );
       cy.window()
         .its('store')
         .invoke('dispatch', {

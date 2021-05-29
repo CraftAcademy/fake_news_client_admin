@@ -1,22 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Button,
-  Image,
-  Modal,
-  Icon,
-  Segment,
-  Divider,
-} from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Button, Modal, Segment, Divider } from 'semantic-ui-react';
 
 import BackyardArticles from '../../modules/BackyardArticles';
 
 const BackyardModal = ({ id }) => {
   const [open, setOpen] = useState(false);
   const [backyardArticle, setBackyardArticle] = useState({});
-
-  useEffect(() => {
-    getBackyardArticle();
-  }, []);
 
   const getBackyardArticle = async () => {
     let response = await BackyardArticles.show(id);
@@ -30,7 +19,11 @@ const BackyardModal = ({ id }) => {
       open={open}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
-      trigger={<Button data-cy='view-btn'>View More</Button>}>
+      trigger={
+        <Button onClick={() => getBackyardArticle()} data-cy='view-btn'>
+          Preview
+        </Button>
+      }>
       <Segment style={styles.container} inverted data-cy='backyard-preview'>
         <Modal.Header data-cy='title' style={styles.title}>
           {backyardArticle.title}
@@ -53,8 +46,10 @@ const BackyardModal = ({ id }) => {
         </div>
         <Divider style={{ width: '70%', margin: '15px auto' }} />
         <Modal.Content scrolling>
-          <Modal.Description data-cy='body'>
-            <p style={styles.body}>{backyardArticle.body}</p>
+          <Modal.Description>
+            <p data-cy='content-body' style={styles.body}>
+              {backyardArticle.body}
+            </p>
           </Modal.Description>
         </Modal.Content>
       </Segment>

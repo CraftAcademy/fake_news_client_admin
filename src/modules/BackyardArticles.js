@@ -8,9 +8,10 @@ const BackyardArticles = {
       let response = await axios.get('/backyards', {
         headers: getFromLocalStorage(),
       });
+
       store.dispatch({
         type: 'SET_BACKYARD_ARTICLES',
-        payload: response.data.backyard_articles,
+        payload: response.data.articles,
       });
     } catch (error) {
       errorHandler(error);
