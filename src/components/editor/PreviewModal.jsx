@@ -2,15 +2,49 @@ import React, { useState } from 'react';
 import { Button, Modal, Segment, Divider } from 'semantic-ui-react';
 
 import BackyardArticles from '../../modules/BackyardArticles';
+import Articles from '../../modules/Articles';
 
-const BackyardModal = ({ id }) => {
+const PreviewModal = ({ id, isBackyard }) => {
   const [open, setOpen] = useState(false);
-  const [backyardArticle, setBackyardArticle] = useState({});
+  const [article, setArticle] = useState({});
 
-  const getBackyardArticle = async () => {
-    let response = await BackyardArticles.show(id);
-    setBackyardArticle(response);
+  const getArticle = async () => {
+    let response;
+    if (isBackyard) {
+      response = await BackyardArticles.show(id);
+    } else {
+      response = await Articles.show(id);
+    }
+    setArticle(response);
   };
+
+  const articleInfo = isBackyard ? (
+    <>
+      <p data-cy='written_by'>
+        <b>Written by: </b>
+        {article.written_by}
+      </p>
+      <p data-cy='theme'>
+        <b>Theme: </b>
+        {article.theme}
+      </p>
+      <p data-cy='country'>
+        <b>From:</b> {article.location}
+      </p>
+    </>
+  ) : (
+    <>
+      <p data-cy='author'>
+        <b>Written by: </b>
+        {article.author &&
+          `${article.author.first_name} ${article.author.last_name}`}
+      </p>
+      <p data-cy='category'>
+        <b>Category </b>
+        {article.category}
+      </p>
+    </>
+  );
 
   return (
     <Modal
@@ -20,35 +54,25 @@ const BackyardModal = ({ id }) => {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       trigger={
-        <Button onClick={() => getBackyardArticle()} data-cy='view-btn'>
+        <Button onClick={() => getArticle()} data-cy='view-btn'>
           Preview
         </Button>
       }>
-      <Segment style={styles.container} inverted data-cy='backyard-preview'>
+      <Segment style={styles.container} inverted data-cy='article-preview'>
         <Modal.Header data-cy='title' style={styles.title}>
-          {backyardArticle.title}
+          {article.title}
         </Modal.Header>
         <div style={styles.info}>
-          <p data-cy='written_by'>
-            <b>Written by: </b>
-            {backyardArticle.written_by}
-          </p>
-          <p data-cy='theme'>
-            <b>Theme: </b>
-            {backyardArticle.theme}
-          </p>
-          <p data-cy='country'>
-            <b>From:</b> {backyardArticle.location}
-          </p>
+          {articleInfo}
           <p data-cy='date'>
-            <b>Date:</b> {backyardArticle.date}
+            <b>Date:</b> {article.date}
           </p>
         </div>
         <Divider style={{ width: '70%', margin: '15px auto' }} />
         <Modal.Content scrolling>
           <Modal.Description>
             <p data-cy='content-body' style={styles.body}>
-              {backyardArticle.body}
+              {article.body}
             </p>
           </Modal.Description>
         </Modal.Content>
@@ -57,7 +81,7 @@ const BackyardModal = ({ id }) => {
   );
 };
 
-export default BackyardModal;
+export default PreviewModal;
 
 const styles = {
   container: {

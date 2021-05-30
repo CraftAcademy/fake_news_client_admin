@@ -22,9 +22,8 @@ const ArticleTable = () => {
       </Table.Cell>
       <Table.Cell data-cy='date'>{article.date}</Table.Cell>
       <Table.Cell data-cy='author'>
-        {article.author
-          ? `${article.author.first_name} ${article.author.last_name}`
-          : 'Bob Kramer'}
+        {article.author &&
+          `${article.author.first_name} ${article.author.last_name}`}
       </Table.Cell>
       <Table.Cell data-cy='comments'>{article.comments}</Table.Cell>
       <Table.Cell>

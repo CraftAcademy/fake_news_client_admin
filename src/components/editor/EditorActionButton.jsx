@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Popup, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Articles from '../../modules/Articles';
+import PreviewModal from './PreviewModal';
 
 const EditorActionButton = ({ article }) => {
   const [confirming, setConfirming] = useState(false);
@@ -35,18 +36,20 @@ const EditorActionButton = ({ article }) => {
           </>
         ) : (
           <>
-            <Button 
+            <Button
               style={{ marginBottom: 10, width: '100%' }}
-              disabled={article.published}
               onClick={() => setConfirming(true)}>
               {article.status === 'Published' ? 'Archive' : 'Publish'}
             </Button>
-            <Link
-              style={{ width: '100%' }}
-              data-cy='edit-article-btn'
-              to={{ pathname: '/edit', state: { id: article.id } }}>
-              <Button style={{ width: '100%' }}>Edit</Button>
-            </Link>
+            {article.author && (
+              <Link
+                style={{ width: '100%', marginBottom: 10 }}
+                data-cy='edit-article-btn'
+                to={{ pathname: '/edit', state: { id: article.id } }}>
+                <Button style={{ width: '100%' }}>Edit</Button>
+              </Link>
+            )}
+            <PreviewModal id={article.id} isBackyard={article.written_by} />
           </>
         )}
       </div>
