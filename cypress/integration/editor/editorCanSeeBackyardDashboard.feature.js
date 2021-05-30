@@ -44,8 +44,9 @@ describe('Backyard article dashboard can display articles', () => {
     });
 
     it('is expected to be able to see content of each article', () => {
-      cy.get('[data-cy=view-btn]').first().click();
-      cy.get('[data-cy=backyard-preview]').within(() => {
+      cy.get('[data-cy=action-btn]').first().click();
+      cy.get('[data-cy=view-btn]').click();
+      cy.get('[data-cy=article-preview]').within(() => {
         cy.get('[data-cy=title]').should('contain', 'Something awesome');
         cy.get('[data-cy=written_by]').should(
           'contain',

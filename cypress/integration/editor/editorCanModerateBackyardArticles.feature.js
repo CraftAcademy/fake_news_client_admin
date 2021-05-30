@@ -20,7 +20,7 @@ describe('Editor can moderate backyard articles', () => {
     beforeEach(() => {
       cy.intercept(
         'PUT',
-        'https://fakest-newzz.herokuapp.com/api/bakyards/**',
+        'https://fakest-newzz.herokuapp.com/api/backyards/**',
         {
           message: 'The backyard article has been successfully archived',
         }
@@ -42,7 +42,7 @@ describe('Editor can moderate backyard articles', () => {
     beforeEach(() => {
       cy.intercept(
         'PUT',
-        'https://fakest-newzz.herokuapp.com/api/bakyards/**',
+        'https://fakest-newzz.herokuapp.com/api/backyards/**',
         {
           message: 'The backyard article has been successfully published',
         }

@@ -71,6 +71,13 @@ const PreviewModal = ({ id, isBackyard }) => {
         <Divider style={{ width: '70%', margin: '15px auto' }} />
         <Modal.Content scrolling>
           <Modal.Description>
+          {!isBackyard && (
+            <>
+            <img alt="title" src={article.image} style={{ width: '100%', margin: '15px auto' }}/>
+            <p style={{ fontSize: 20, margin: '18px auto',fontFamily:'garamond,serif' }}>{article.teaser}</p>
+            <Divider style={{ fontSize: 20, margin: '15px auto'}} />
+            </>
+          ) }
             <p data-cy='content-body' style={styles.body}>
               {article.body}
             </p>

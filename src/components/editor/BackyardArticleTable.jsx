@@ -27,7 +27,7 @@ const BackyardArticleTable = () => {
       <Table.Cell data-cy='country'>{backyardArticle.location}</Table.Cell>
       <Table.Cell data-cy='status'>{backyardArticle.status}</Table.Cell>
       <Table.Cell>
-        <EditorActionButton article={backyardArticle} />
+        <EditorActionButton article={backyardArticle} isBackyard={true}/>
       </Table.Cell>
     </Table.Row>
   ));

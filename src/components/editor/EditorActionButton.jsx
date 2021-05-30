@@ -3,8 +3,9 @@ import { Popup, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Articles from '../../modules/Articles';
 import PreviewModal from './PreviewModal';
+import BackyardArticles from '../../modules/BackyardArticles';
 
-const EditorActionButton = ({ article }) => {
+const EditorActionButton = ({ article, isBackyard }) => {
   const [confirming, setConfirming] = useState(false);
 
   // change attribute to status fixture CHECK
@@ -29,7 +30,11 @@ const EditorActionButton = ({ article }) => {
           <>
             <Button
               style={{ marginBottom: 10 }}
-              onClick={() => Articles.setStatus(article.id, article.status)}>
+              onClick={() =>
+                isBackyard
+                  ? BackyardArticles.setStatus(article.id, article.status)
+                  : Articles.setStatus(article.id, article.status)
+              }>
               Confirm
             </Button>
             <Button onClick={() => setConfirming(false)}>Cancel</Button>
@@ -41,7 +46,7 @@ const EditorActionButton = ({ article }) => {
               onClick={() => setConfirming(true)}>
               {article.status === 'Published' ? 'Archive' : 'Publish'}
             </Button>
-            {article.author && (
+            {!isBackyard && (
               <Link
                 style={{ width: '100%', marginBottom: 10 }}
                 data-cy='edit-article-btn'
@@ -49,7 +54,7 @@ const EditorActionButton = ({ article }) => {
                 <Button style={{ width: '100%' }}>Edit</Button>
               </Link>
             )}
-            <PreviewModal id={article.id} isBackyard={article.written_by} />
+            <PreviewModal id={article.id} isBackyard={isBackyard} />
           </>
         )}
       </div>
