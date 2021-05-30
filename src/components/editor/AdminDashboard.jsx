@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Input } from 'semantic-ui-react';
+import { Redirect } from 'react-router';
+import Authentication from '../../modules/Authentication';
+import { useSelector } from 'react-redux';
+
 const AdminDashboard = () => {
+  const { role } = useSelector((state) => state);
+  const [loading, setLoading] = useState(false);
+
+  const handleLogin = async (event) => {
+    setLoading(true);
+    event.preventDefault();
+    Authentication.registerJournalist(event, setLoading);
+  };
+
   return (
     <div style={styles.container}>
+      {!role === 'editor' && <Redirect to='/dashboard' />}
       <h1 style={styles.header}>
         Fill the given form to register new journalist
       </h1>
-      <Form style={styles.form}>
+      <Form
+        style={styles.form}
+        onSubmit={(event) => handleLogin(event)}
+        data-cy='registration-form'>
         <Form.Field>
           <Input
             required
@@ -26,31 +43,31 @@ const AdminDashboard = () => {
         <Form.Field>
           <Input
             required
-            name='username'
+            name='email'
             type='string'
-            placeholder='username'
-            data-cy='username'></Input>
+            placeholder='Email'
+            data-cy='email'></Input>
         </Form.Field>
         <Form.Field>
           <Input
             required
             name='password'
             type='password'
-            placeholder='password'
+            placeholder='Password'
             data-cy='password'></Input>
         </Form.Field>
         <Form.Field>
           <Input
             required
-            name='confirmPassword'
+            name='passwordConfirmation'
             type='password'
-            placeholder='password'
+            placeholder='Password one more time..'
             data-cy='password-confirmation'></Input>
         </Form.Field>
         <Button
           type='submit'
-          // loading={loading ? true : false}
-          data-cy='login-btn'
+          loading={loading ? true : false}
+          data-cy='submit-btn'
           style={styles.button}>
           Register
         </Button>

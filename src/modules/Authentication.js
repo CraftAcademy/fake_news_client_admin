@@ -6,7 +6,7 @@ const Authentication = {
   async signIn(event, setLoading) {
     let credentials = getFormInput(event);
     try {
-      let response = await axios.post('auth/sign_in', credentials);
+      let response = await axios.post('/auth/sign_in', credentials);
       saveToLocalStorage(response);
       authenticate(response.data.data);
     } catch (error) {
@@ -16,7 +16,7 @@ const Authentication = {
   },
   async validateToken() {
     try {
-      let response = await axios.get('auth/validate_token', {
+      let response = await axios.get('/auth/validate_token', {
         headers: getFromLocalStorage(),
       });
       saveToLocalStorage(response);
@@ -25,12 +25,28 @@ const Authentication = {
   },
   async signOut() {
     try {
-      await axios.delete('auth/sign_out', {
+      await axios.delete('/auth/sign_out', {
         headers: getFromLocalStorage(),
       });
       localStorage.removeItem('userData');
       store.dispatch({ type: 'LOG_OUT', payload: 'You have been logged out' });
     } catch (error) {}
+  },
+
+  async registerJournalist(event, setLoading) {
+    let credentials = getRegistrationInput(event);
+    try {
+      let response = await axios.post('/auth', credentials, {
+        headers: getFromLocalStorage(),
+      });
+      store.dispatch({
+        type: 'SUCCESS_MESSAGE',
+        payload: `${response.data.data.first_name} ${response.data.data.last_name} has successfully been registered as a new journalist`,
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
+    setLoading(false);
   },
 };
 
@@ -42,6 +58,17 @@ const getFormInput = (event) => {
   return {
     email: event.target.username.value,
     password: event.target.password.value,
+    source: 'admin-system',
+  };
+};
+
+const getRegistrationInput = (event) => {
+  return {
+    first_name: event.target.firstName.value,
+    last_name: event.target.lastName.value,
+    email: event.target.email.value,
+    password: event.target.password.value,
+    password_confirmation: event.target.passwordConfirmation.value,
     source: 'admin-system',
   };
 };

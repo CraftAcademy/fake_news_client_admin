@@ -19,6 +19,7 @@ const SuccessMessage = () => {
         inverted
         color={error ? 'red' : 'green'}
         style={{
+          marginLeft: 350,
           left: '50%',
           position: 'fixed',
           bottom: 25,
