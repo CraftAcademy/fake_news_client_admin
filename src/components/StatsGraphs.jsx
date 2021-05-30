@@ -20,10 +20,16 @@ const StatsGraphs = ({ data }) => {
   const { error } = useSelector((state) => state);
 
   return (
-    <div style={styles.containerBigScreen}>
+    <div style={styles.container}>
       {data && (
         <>
-          <div data-cy='articles-graph' style={{ height: 400, width: isSmallScreen ? '100%' : '60%', marginBottom: 100}}>
+          <div
+            data-cy='articles-graph'
+            style={{
+              height: 400,
+              width: isSmallScreen ? '100%' : '60%',
+              marginBottom: 100,
+            }}>
             <h1 style={{ color: 'white', textAlign: 'center' }}>
               Articles created timeline
             </h1>
@@ -110,16 +116,10 @@ const StatsGraphs = ({ data }) => {
 export default StatsGraphs;
 
 const styles = {
-  containerBigScreen: {
+  container: {
     display: 'flex',
-    flex: 1,
+    width: '100%',
     justifyContent: 'space-between',
-    flexWrap: 'wrap'
-  },
-  containerSmallScreen: {
-    display: 'flex',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
 };

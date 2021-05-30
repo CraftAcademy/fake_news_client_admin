@@ -55,7 +55,7 @@ const ArticleTable = () => {
   ));
 
   return (
-    <Table stackable celled padded inverted style={{ overflowY: 'scroll' }}>
+    <Table celled padded inverted stackable={true}>
       <Table.Header>
         <Table.Row textAlign='center'>
           <Table.HeaderCell singleLine>Title</Table.HeaderCell>

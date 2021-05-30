@@ -88,14 +88,4 @@ const styles = {
     backgroundColor: '#202325',
     width: '100%',
   },
-  formContainer: {
-    width: '45%',
-    marginLeft: '5%',
-    padding: 10,
-  },
-  createButton: {
-    position: 'absolute',
-    top: 105,
-    left: 300,
-  },
 };

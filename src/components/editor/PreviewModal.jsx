@@ -40,7 +40,7 @@ const PreviewModal = ({ id, isBackyard }) => {
           `${article.author.first_name} ${article.author.last_name}`}
       </p>
       <p data-cy='category'>
-        <b>Category </b>
+        <b>Category: </b>
         {article.category}
       </p>
     </>
@@ -48,9 +48,8 @@ const PreviewModal = ({ id, isBackyard }) => {
 
   return (
     <Modal
-      as={Segment}
-      inverted
       open={open}
+      style={{ height: '80%', top: '10%' }}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       trigger={
@@ -69,15 +68,26 @@ const PreviewModal = ({ id, isBackyard }) => {
           </p>
         </div>
         <Divider style={{ width: '70%', margin: '15px auto' }} />
-        <Modal.Content scrolling>
+        <Modal.Content>
           <Modal.Description>
-          {!isBackyard && (
-            <>
-            <img alt="title" src={article.image} style={{ width: '100%', margin: '15px auto' }}/>
-            <p style={{ fontSize: 20, margin: '18px auto',fontFamily:'garamond,serif' }}>{article.teaser}</p>
-            <Divider style={{ fontSize: 20, margin: '15px auto'}} />
-            </>
-          ) }
+            {!isBackyard && (
+              <>
+                <img
+                  alt='title'
+                  src={article.image}
+                  style={{ width: '100%', margin: '15px auto' }}
+                />
+                <p
+                  style={{
+                    fontSize: 20,
+                    margin: '18px auto',
+                    fontFamily: 'garamond,serif',
+                  }}>
+                  {article.teaser}
+                </p>
+                <Divider style={{ fontSize: 20, margin: '15px auto' }} />
+              </>
+            )}
             <p data-cy='content-body' style={styles.body}>
               {article.body}
             </p>
@@ -93,7 +103,9 @@ export default PreviewModal;
 const styles = {
   container: {
     padding: 50,
-    height: '30%',
+    zIndex: 50,
+    height: '100%',
+    overflowY: 'scroll',
   },
   info: {
     display: 'flex',
