@@ -7,7 +7,7 @@ describe('Archiving articles', () => {
 
   describe('Successfully as an editor', () => {
     beforeEach(() => {
-      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/7', {
+      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
         message: 'The article has been successfully archived',
       });
       cy.visit('/');
@@ -20,7 +20,7 @@ describe('Archiving articles', () => {
     });
 
     it('is expected to display a success message', () => {
-      cy.get('[data-cy=action-btn]').first().click();
+      cy.get('[data-cy=action-btn]').eq(1).click();
       cy.get('button').contains('Archive').click();
       cy.get('button').contains('Confirm').click();
       cy.get('[data-cy=popup-message]').should(

@@ -26,7 +26,7 @@ const BackyardArticleTable = () => {
       <Table.Cell data-cy='written-by'>{backyardArticle.written_by}</Table.Cell>
       <Table.Cell data-cy='country'>{backyardArticle.location}</Table.Cell>
       <Table.Cell data-cy='status'>
-        {article.status}
+        {backyardArticle.status}
       </Table.Cell>
       <Table.Cell>
         <BackyardModal id={backyardArticle.id} />

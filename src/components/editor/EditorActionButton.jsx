@@ -28,18 +28,18 @@ const EditorActionButton = ({ article }) => {
           <>
             <Button
               style={{ marginBottom: 10 }}
-              onClick={() => Articles.publish(article.id)}>
+              onClick={() => Articles.setStatus(article.id, article.status)}>
               Confirm
             </Button>
             <Button onClick={() => setConfirming(false)}>Cancel</Button>
           </>
         ) : (
           <>
-            <Button
+            <Button 
               style={{ marginBottom: 10, width: '100%' }}
               disabled={article.published}
               onClick={() => setConfirming(true)}>
-              Publish
+              {article.status === 'Published' ? 'Archive' : 'Publish'}
             </Button>
             <Link
               style={{ width: '100%' }}

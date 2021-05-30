@@ -60,8 +60,9 @@ const Articles = {
     }
   },
 
-  async publish(id) {
-    let params = { published: true };
+  async setStatus(id, status) {
+    let params = { status: status === 'Published' ? 'archived': 'published'};
+    debugger
     try {
       let response = await axios.put(`/articles/${id}`, params, {
         headers: getFromLocalStorage(),
