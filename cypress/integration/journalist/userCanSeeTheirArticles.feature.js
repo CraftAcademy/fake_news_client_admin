@@ -35,7 +35,7 @@ describe('User can see their articles', () => {
           cy.get('[data-cy=author]').should('contain', 'Bob Kramer');
           cy.get('[data-cy=rating]').should('be.visible');
           cy.get('[data-cy=comments]').should('contain', '0');
-          cy.get('[data-cy=published]').should('contain', 'Unpublished');
+          cy.get('[data-cy=status]').should('contain', 'Draft');
         });
     });
 

@@ -13,7 +13,7 @@
         "last_name": "Kramer"
       },
       "premium": true,
-      "published": false,
+      "status": "Draft",
       "comments": 0
     },
     {
@@ -29,7 +29,7 @@
         "last_name": "Kramer"
       },
       "premium": true,
-      "published": true,
+      "status": "Published",
       "comments": 3
     },
     {
@@ -44,8 +44,8 @@
         "first_name": "Mr.",
         "last_name": "Fake"
       },
-      "premium": false,
-      "published": true,
+      "premium": true,
+      "status": "Archived",
       "comments": 2
     },
     {
@@ -60,8 +60,8 @@
         "first_name": "Bob",
         "last_name": "Kramer"
       },
-      "premium": false,
-      "published": true,
+      "premium": true,
+      "status": "Published",
       "comments": 5
     },
     {
@@ -77,7 +77,7 @@
         "last_name": "Fake"
       },
       "premium": true,
-      "published": false,
+      "status": "Draft",
       "comments": 0
     },
     {
@@ -92,8 +92,8 @@
         "first_name": "Bob",
         "last_name": "Kramer"
       },
-      "premium": false,
-      "published": true,
+      "premium": true,
+      "status": "Published",
       "comments": 12
     },
     {
@@ -109,7 +109,7 @@
         "last_name": "Fake"
       },
       "premium": true,
-      "published": true,
+      "status": "Published",
       "comments": 3
     }
   ]
