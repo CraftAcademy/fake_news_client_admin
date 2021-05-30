@@ -18,6 +18,7 @@ describe('Can create a new journalist', () => {
       });
     });
     it('is expected to', () => {
+      cy.get('[data-cy=admin-dashboard]').click();
       cy.get('[data-cy=registration-form]').within(() => {
         cy.get('[data-cy=first-name]').type('New');
         cy.get('[data-cy=last-name]').type('Guy');
