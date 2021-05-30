@@ -28,6 +28,23 @@ const BackyardArticles = {
       errorHandler(error);
     }
   },
+
+  async setStatus(id, status) {
+    let params = { status: status === 'Published' ? 'archived': 'published'};
+    debugger
+    try {
+      let response = await axios.put(`/backyards/${id}`, params, {
+        headers: getFromLocalStorage(),
+      });
+      BackyardArticles.index();
+      store.dispatch({
+        type: 'SUCCESS_MESSAGE',
+        payload: response.data.message,
+      });
+    } catch (error) {
+      errorHandler(error);
+    }
+  },
 };
 
 export default BackyardArticles;

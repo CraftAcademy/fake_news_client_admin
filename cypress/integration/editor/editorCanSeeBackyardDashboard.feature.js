@@ -39,12 +39,14 @@ describe('Backyard article dashboard can display articles', () => {
           cy.get('[data-cy=written-by]').should('contain', 'Bob Kramer');
           cy.get('[data-cy=date]').should('contain', '2021-05-19, 15:10');
           cy.get('[data-cy=country]').should('contain', 'Denmark');
+          cy.get('[data-cy=status]').should('contain', 'Published');
         });
     });
 
     it('is expected to be able to see content of each article', () => {
-      cy.get('[data-cy=view-btn]').first().click();
-      cy.get('[data-cy=backyard-preview]').within(() => {
+      cy.get('[data-cy=action-btn]').first().click();
+      cy.get('[data-cy=view-btn]').click();
+      cy.get('[data-cy=article-preview]').within(() => {
         cy.get('[data-cy=title]').should('contain', 'Something awesome');
         cy.get('[data-cy=written_by]').should(
           'contain',
