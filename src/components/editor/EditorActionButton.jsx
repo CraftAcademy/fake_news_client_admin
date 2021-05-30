@@ -2,9 +2,18 @@ import React, { useState } from 'react';
 import { Popup, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Articles from '../../modules/Articles';
+import PreviewModal from './PreviewModal';
+import BackyardArticles from '../../modules/BackyardArticles';
 
-const EditorActionButton = ({ article }) => {
+const EditorActionButton = ({ article, isBackyard }) => {
   const [confirming, setConfirming] = useState(false);
+
+  // change attribute to status fixture CHECK
+  // change published attribute to backyard fixture CHECK
+  // change display columns CHECK
+  // Publish param = status: published check
+  // Archive = status: archive CGECK
+  // Unpublish to backyard articles - status
 
   return (
     <Popup
@@ -21,7 +30,11 @@ const EditorActionButton = ({ article }) => {
           <>
             <Button
               style={{ marginBottom: 10 }}
-              onClick={() => Articles.publish(article.id)}>
+              onClick={() =>
+                isBackyard
+                  ? BackyardArticles.setStatus(article.id, article.status)
+                  : Articles.setStatus(article.id, article.status)
+              }>
               Confirm
             </Button>
             <Button onClick={() => setConfirming(false)}>Cancel</Button>
@@ -30,16 +43,18 @@ const EditorActionButton = ({ article }) => {
           <>
             <Button
               style={{ marginBottom: 10, width: '100%' }}
-              disabled={article.published}
               onClick={() => setConfirming(true)}>
-              Publish
+              {article.status === 'Published' ? 'Archive' : 'Publish'}
             </Button>
-            <Link
-              style={{ width: '100%' }}
-              data-cy='edit-article-btn'
-              to={{ pathname: '/edit', state: { id: article.id } }}>
-              <Button style={{ width: '100%' }}>Edit</Button>
-            </Link>
+            {!isBackyard && (
+              <Link
+                style={{ width: '100%', marginBottom: 10 }}
+                data-cy='edit-article-btn'
+                to={{ pathname: '/edit', state: { id: article.id } }}>
+                <Button style={{ width: '100%' }}>Edit</Button>
+              </Link>
+            )}
+            <PreviewModal id={article.id} isBackyard={isBackyard} />
           </>
         )}
       </div>

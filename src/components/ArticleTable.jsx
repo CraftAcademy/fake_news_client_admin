@@ -22,9 +22,8 @@ const ArticleTable = () => {
       </Table.Cell>
       <Table.Cell data-cy='date'>{article.date}</Table.Cell>
       <Table.Cell data-cy='author'>
-        {article.author
-          ? `${article.author.first_name} ${article.author.last_name}`
-          : 'Bob Kramer'}
+        {article.author &&
+          `${article.author.first_name} ${article.author.last_name}`}
       </Table.Cell>
       <Table.Cell data-cy='comments'>{article.comments}</Table.Cell>
       <Table.Cell>
@@ -40,9 +39,7 @@ const ArticleTable = () => {
       <Table.Cell data-cy='premium'>
         {article.premium ? 'Premium' : 'Free'}
       </Table.Cell>
-      <Table.Cell data-cy='published'>
-        {article.published ? 'Published' : 'Unpublished'}
-      </Table.Cell>
+      <Table.Cell data-cy='status'>{article.status}</Table.Cell>
       <Table.Cell>
         {role === 'editor' ? (
           <EditorActionButton article={article} />
@@ -58,7 +55,7 @@ const ArticleTable = () => {
   ));
 
   return (
-    <Table stackable celled padded inverted style={{ overflowY: 'scroll' }}>
+    <Table celled padded inverted stackable={true}>
       <Table.Header>
         <Table.Row textAlign='center'>
           <Table.HeaderCell singleLine>Title</Table.HeaderCell>
@@ -67,8 +64,8 @@ const ArticleTable = () => {
           <Table.HeaderCell>Author</Table.HeaderCell>
           <Table.HeaderCell>Comments</Table.HeaderCell>
           <Table.HeaderCell>Rating</Table.HeaderCell>
+          <Table.HeaderCell>Access</Table.HeaderCell>
           <Table.HeaderCell>Status</Table.HeaderCell>
-          <Table.HeaderCell>Published</Table.HeaderCell>
           <Table.HeaderCell>Action</Table.HeaderCell>
         </Table.Row>
       </Table.Header>

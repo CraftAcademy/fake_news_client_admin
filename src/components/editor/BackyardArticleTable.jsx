@@ -1,8 +1,8 @@
 import React from 'react';
 import { Table } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
-import BackyardModal from './BackyardModal';
 import { Redirect } from 'react-router';
+import EditorActionButton from './EditorActionButton';
 
 const BackyardArticleTable = () => {
   const { backyardArticles, role } = useSelector((state) => state);
@@ -25,8 +25,9 @@ const BackyardArticleTable = () => {
       <Table.Cell data-cy='date'>{backyardArticle.date}</Table.Cell>
       <Table.Cell data-cy='written-by'>{backyardArticle.written_by}</Table.Cell>
       <Table.Cell data-cy='country'>{backyardArticle.location}</Table.Cell>
+      <Table.Cell data-cy='status'>{backyardArticle.status}</Table.Cell>
       <Table.Cell>
-        <BackyardModal id={backyardArticle.id} />
+        <EditorActionButton article={backyardArticle} isBackyard={true}/>
       </Table.Cell>
     </Table.Row>
   ));
@@ -42,6 +43,7 @@ const BackyardArticleTable = () => {
             <Table.HeaderCell>Created On</Table.HeaderCell>
             <Table.HeaderCell>Written by</Table.HeaderCell>
             <Table.HeaderCell>Country</Table.HeaderCell>
+            <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>Action</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
