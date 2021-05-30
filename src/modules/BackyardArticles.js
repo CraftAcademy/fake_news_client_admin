@@ -30,8 +30,7 @@ const BackyardArticles = {
   },
 
   async setStatus(id, status) {
-    let params = { status: status === 'Published' ? 'archived': 'published'};
-    debugger
+    let params = { status: status === 'Published' ? 'archived' : 'published' };
     try {
       let response = await axios.put(`/backyards/${id}`, params, {
         headers: getFromLocalStorage(),
