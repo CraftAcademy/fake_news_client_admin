@@ -39,6 +39,7 @@ describe('Backyard article dashboard can display articles', () => {
           cy.get('[data-cy=written-by]').should('contain', 'Bob Kramer');
           cy.get('[data-cy=date]').should('contain', '2021-05-19, 15:10');
           cy.get('[data-cy=country]').should('contain', 'Denmark');
+          cy.get('[data-cy=status]').should('contain', 'Published');
         });
     });
 

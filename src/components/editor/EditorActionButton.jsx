@@ -6,6 +6,13 @@ import Articles from '../../modules/Articles';
 const EditorActionButton = ({ article }) => {
   const [confirming, setConfirming] = useState(false);
 
+  // change attribute to status fixture CHECK
+  // change published attribute to backyard fixture CHECK
+  // change display columns CHECK
+  // Publish param = status: published
+  // Archive = status: archive
+  // Unpublish to backyard articles - published: true/false
+
   return (
     <Popup
       trigger={<Button data-cy='action-btn'>Actions</Button>}

@@ -40,9 +40,7 @@ const ArticleTable = () => {
       <Table.Cell data-cy='premium'>
         {article.premium ? 'Premium' : 'Free'}
       </Table.Cell>
-      <Table.Cell data-cy='published'>
-        {article.published ? 'Published' : 'Unpublished'}
-      </Table.Cell>
+      <Table.Cell data-cy='status'>{article.status}</Table.Cell>
       <Table.Cell>
         {role === 'editor' ? (
           <EditorActionButton article={article} />
@@ -67,8 +65,8 @@ const ArticleTable = () => {
           <Table.HeaderCell>Author</Table.HeaderCell>
           <Table.HeaderCell>Comments</Table.HeaderCell>
           <Table.HeaderCell>Rating</Table.HeaderCell>
+          <Table.HeaderCell>Access</Table.HeaderCell>
           <Table.HeaderCell>Status</Table.HeaderCell>
-          <Table.HeaderCell>Published</Table.HeaderCell>
           <Table.HeaderCell>Action</Table.HeaderCell>
         </Table.Row>
       </Table.Header>

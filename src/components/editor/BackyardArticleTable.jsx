@@ -25,6 +25,9 @@ const BackyardArticleTable = () => {
       <Table.Cell data-cy='date'>{backyardArticle.date}</Table.Cell>
       <Table.Cell data-cy='written-by'>{backyardArticle.written_by}</Table.Cell>
       <Table.Cell data-cy='country'>{backyardArticle.location}</Table.Cell>
+      <Table.Cell data-cy='status'>
+        {article.status}
+      </Table.Cell>
       <Table.Cell>
         <BackyardModal id={backyardArticle.id} />
       </Table.Cell>
@@ -42,6 +45,7 @@ const BackyardArticleTable = () => {
             <Table.HeaderCell>Created On</Table.HeaderCell>
             <Table.HeaderCell>Written by</Table.HeaderCell>
             <Table.HeaderCell>Country</Table.HeaderCell>
+            <Table.HeaderCell>Status</Table.HeaderCell>
             <Table.HeaderCell>Action</Table.HeaderCell>
           </Table.Row>
         </Table.Header>

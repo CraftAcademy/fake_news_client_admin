@@ -1,4 +1,4 @@
-describe('Publishing articles', () => {
+describe('Archiving articles', () => {
   beforeEach(() => {
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'listOfArticles.json',
@@ -8,7 +8,7 @@ describe('Publishing articles', () => {
   describe('Successfully as an editor', () => {
     beforeEach(() => {
       cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/7', {
-        message: 'The article has been successfully published',
+        message: 'The article has been successfully archived',
       });
       cy.visit('/');
       cy.window()
@@ -21,16 +21,16 @@ describe('Publishing articles', () => {
 
     it('is expected to display a success message', () => {
       cy.get('[data-cy=action-btn]').first().click();
-      cy.get('button').contains('Publish').click();
+      cy.get('button').contains('Archive').click();
       cy.get('button').contains('Confirm').click();
       cy.get('[data-cy=popup-message]').should(
         'contain',
-        'The article has been successfully published'
+        'The article has been successfully archived'
       );
     });
   });
 
-  describe('Unsuccessfully when article is already published', () => {
+  describe('Unsuccessfully when article is already archived', () => {
     beforeEach(() => {
       cy.visit('/');
       cy.window()
@@ -41,10 +41,10 @@ describe('Publishing articles', () => {
         });
     });
 
-    it('is expected to show an archive button instead', () => {
-      cy.get('[data-cy=action-btn]').eq(1).click();
-      cy.get('button').contains('Publish').should('not.exist');
-      cy.get('button').contains('Archive').should('be.visible');
+    it('is expected to show a publish button instead', () => {
+      cy.get('[data-cy=action-btn]').eq(2).click();
+      cy.get('button').contains('Archive').should('not.exist');
+      cy.get('button').contains('Publish').should('be.visible');
     });
   });
 
