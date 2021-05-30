@@ -9,9 +9,9 @@ const EditorActionButton = ({ article }) => {
   // change attribute to status fixture CHECK
   // change published attribute to backyard fixture CHECK
   // change display columns CHECK
-  // Publish param = status: published
-  // Archive = status: archive
-  // Unpublish to backyard articles - published: true/false
+  // Publish param = status: published check
+  // Archive = status: archive CGECK
+  // Unpublish to backyard articles - status
 
   return (
     <Popup

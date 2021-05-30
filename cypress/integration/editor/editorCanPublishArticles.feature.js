@@ -7,7 +7,7 @@ describe('Publishing articles', () => {
 
   describe('Successfully as an editor', () => {
     beforeEach(() => {
-      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/7', {
+      cy.intercept('PUT', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
         message: 'The article has been successfully published',
       });
       cy.visit('/');
