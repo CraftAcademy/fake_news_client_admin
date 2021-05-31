@@ -6,6 +6,7 @@ import PopupMessage from './components/PopupMessage';
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 import Authentication from './modules/Authentication';
 import SideMenu from './components/SideMenu';
+import AdminDashboard from './components/editor/AdminDashboard';
 import './App.css';
 import Navbar from './components/Navbar';
 import EditorialForm from './components/editor/EditorialForm';
@@ -33,6 +34,7 @@ const App = () => {
         <Route exact path='/' component={LogIn}></Route>
         <Route exact path='/dashboard' component={Dashboard}></Route>
         <Route exact path='/overview' component={EditorOverview}></Route>
+        <Route exact path='/admin-dashboard' component={AdminDashboard}></Route>
         <Route exact path='/create'>
           <EditorialForm isCreateMode={true} />
         </Route>

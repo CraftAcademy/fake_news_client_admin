@@ -1,0 +1,13 @@
+{
+  "data": {
+    "email": "newguy@fakenews.com",
+    "uid": "newguy@fakenews.com",
+    "id": 7,
+    "provider": "email",
+    "allow_password_change": false,
+    "role": "journalist",
+    "first_name": "New",
+    "last_name": "Guy"
+  },
+  "status": "Success"
+}

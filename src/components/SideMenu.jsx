@@ -50,16 +50,26 @@ const SideMenu = () => {
       )}
 
       {role === 'editor' && (
-        <Menu.Item
-          name='overview'
-          data-cy='editor-overiew'
-          active={activeItem === 'overview'}
-          style={{ marginBottom: 50 }}
-          onClick={handleItemClick}
-          as={Link}
-          to='/overview'>
-          Analytics Overview
-        </Menu.Item>
+        <>
+          <Menu.Item
+            name='overview'
+            data-cy='editor-overiew'
+            active={activeItem === 'overview'}
+            onClick={handleItemClick}
+            as={Link}
+            to='/overview'>
+            Analytics Overview
+          </Menu.Item>
+          <Menu.Item
+            name='admin'
+            data-cy='admin-dashboard'
+            active={activeItem === 'admin'}
+            onClick={handleItemClick}
+            as={Link}
+            to='/admin-dashboard'>
+            Admin Dashboard
+          </Menu.Item>
+        </>
       )}
     </Menu>
   );
