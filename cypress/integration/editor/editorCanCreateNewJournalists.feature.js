@@ -18,7 +18,7 @@ describe('Can create a new journalist', () => {
       });
       cy.get('[data-cy=admin-dashboard]').click();
     });
-    it('is expected to', () => {
+    it('is expected to display a success message containing the new journalist\'s name', () => {
       cy.get('[data-cy=registration-form]').within(() => {
         cy.get('[data-cy=first-name]').type('New');
         cy.get('[data-cy=last-name]').type('Guy');
