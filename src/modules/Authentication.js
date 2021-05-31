@@ -43,6 +43,7 @@ const Authentication = {
         type: 'SUCCESS_MESSAGE',
         payload: `${response.data.data.first_name} ${response.data.data.last_name} has successfully been registered as a new journalist`,
       });
+      event.target.reset();
     } catch (error) {
       errorHandler(error);
     }
@@ -69,7 +70,7 @@ const getRegistrationInput = (event) => {
     email: event.target.email.value,
     password: event.target.password.value,
     password_confirmation: event.target.passwordConfirmation.value,
-    source: 'admin-system',
+    role: 'journalist',
   };
 };
 
