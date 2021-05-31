@@ -102,7 +102,6 @@ const StatsGraphs = ({ data }) => {
                   <XAxis dataKey={[subscribers]} />
                   <YAxis />
                   <Legend />
-                  <Tooltip />
                 </BarChart>
               </ResponsiveContainer>
             </div>
