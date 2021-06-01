@@ -45,7 +45,7 @@ const Articles = {
   },
 
   async update(article) {
-    let params = { article: article };
+    let params = { article: {...article, status: article.status.toLowerCase()} };
     try {
       let response = await axios.put(`/articles/${article.id}`, params, {
         headers: getFromLocalStorage(),
